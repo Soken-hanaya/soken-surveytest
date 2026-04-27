@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>測量法</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+
+<style>
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: #f0f2f5; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+        }
+        
+        .header { 
+            background: #1a3e5e; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold; 
+            flex-shrink: 0; /* ヘッダーの高さを固定 */
+        }
+
+        #container { 
+            flex: 1; 
+            display: flex; 
+            align-items: flex-start; /* 中央寄せから上寄せに変更 */
+            justify-content: center; 
+            padding: 15px; 
+            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
+            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+        }
+
+        .clause-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 600px; 
+            /* min-heightを解除し、中身に合わせて伸びるように変更 */
+            margin-bottom: 20px; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            display: none; 
+            flex-direction: column; 
+            box-sizing: border-box;
+        }
+        
+        .clause-card.active { display: flex; }
+
+        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+        .text { line-height: 2.3; font-size: 1.05rem; color: #333; word-wrap: break-word; }
+
+        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
+        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+
+        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+
+        .nav-bar { 
+            background: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid #ddd; 
+            flex-shrink: 0; /* ナビバーの高さを固定 */
+            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
+        }
+        
+        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
+        .nav-btn:disabled { background: #ccc; cursor: default; }
+        .page-info { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+<div class="header">公共測量の手続</div>
+
+<div id="container">
+    <div class="clause-card active">
+        <div class="clause-title">第一条</div>
+        <div class="text">
+        この法律は、国若しくは
+	<span class="blank" onclick="this.classList.toggle('show')">公共団体</span>が費用の全部若しくは一部を負担し、若しくは
+	<span class="blank" onclick="this.classList.toggle('show')">補助</span>して実施する
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">土地の測量</span>又はこれらの測量の結果を利用する
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">土地の測量</span>について、その実施の基準及び実施に必要な
+	<span class="blank" onclick="this.classList.toggle('show')">権能</span>を定め、
+	<span class="blank" onclick="this.classList.toggle('show')">測量の重複</span>を除き、並びに
+	<span class="blank" onclick="this.classList.toggle('show')">測量の正確さ</span>を確保するとともに、測量業を営む者の登録の実施、業務の規制等により、測量業の適正な運営とその健全な発達を図り、
+        もつて各種測量の調整及び測量制度の改善発達に資することを目的とする。
+        </div>
+    </div>
+
+    <div class="clause-card">
+        <div class="clause-title">第三条</div>
+        <div class="text">
+        この法律において「測量」とは、
+	<span class="blank" onclick="this.classList.toggle('show')">土地の測量</span>をいい、
+	<span class="blank" onclick="this.classList.toggle('show')">地図の調製</span>及び
+	<span class="blank" onclick="this.classList.toggle('show')">測量用写真の撮影</span>を含むものとする。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第四条</div>
+        <div class="text">
+        この法律において「基本測量」とは、
+	<span class="blank" onclick="this.classList.toggle('show')">すべての測量の基礎</span>となる測量で、国土地理院の行うものをいう。
+        </div>
+    </div>
+
+
+    <div class="clause-card">
+        <div class="clause-title">第五条</div>
+        <div class="text">
+        この法律において「公共測量」とは、
+	<span class="blank" onclick="this.classList.toggle('show')">基本測量</span>以外の測量で次に掲げるものをいい、
+	<span class="blank" onclick="this.classList.toggle('show')">建物</span>に関する測量その他の
+	<span class="blank" onclick="this.classList.toggle('show')">局地的</span>測量又は
+	<span class="blank" onclick="this.classList.toggle('show')">小縮尺図</span>の調製その他の高度の精度を必要としない測量で政令で定めるものを除く。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第六条</div>
+        <div class="text">
+        この法律において「基本測量及び公共測量以外の測量」とは、基本測量又は公共測量の
+	<span class="blank" onclick="this.classList.toggle('show')">測量成果</span>を使用して実施する基本測量及び公共測量以外の測量
+      （建物に関する測量その他の局地的測量又は小縮尺図の調製その他の高度の精度を必要としない測量で政令で定めるものを除く。）をいう。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第八条</div>
+        <div class="text">
+        この法律において「測量作業機関」とは、
+	<span class="blank" onclick="this.classList.toggle('show')">測量計画機関</span>の指示又は委託を受けて測量作業を実施する者をいう。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第九条</div>
+        <div class="text">
+        この法律において「
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">測量成果</span>」とは、当該測量において最終の目的として得た結果をいい、「
+	<span class="blank" onclick="this.classList.toggle('show')">測量記録</span>」とは、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">測量成果</span>を得る過程において得た作業記録をいう。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第十条</div>
+        <div class="text">
+        この法律において「測量標」とは、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">永久標識</span>、
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">一時標識</span>及び
+	<span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">仮設標識</span>をいい、これらは、左の各号に掲げる通りとする。
+　　　　<br>一　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">永久標識</span> 
+	三角点標石、図根点標石、方位標石、水準点標石、磁気点標石、基線尺検定標石、基線標石及びこれらの標石の代りに設置する恒久的な標識（験潮儀及び験潮場を含む。）をいう。
+　　　　<br>二　<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">一時標識</span> 測標及び標杭をいう。
+　　　　<br>三　<span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">仮設標識</span> 標旗及び仮杭をいう。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第二十二条</div>
+        <div class="text">
+        何人も、国土地理院の長の承諾を得ないで、基本測量の測量標を
+	<span class="blank" onclick="this.classList.toggle('show')">移転</span>し、
+	<span class="blank" onclick="this.classList.toggle('show')">汚損</span>し、その他その
+	<span class="blank" onclick="this.classList.toggle('show')">効用</span>を害する行為をしてはならない。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第二十六条</div>
+        <div class="text">
+        基本測量以外の測量を実施しようとする者は、
+	<span class="blank" onclick="this.classList.toggle('show')">国土地理院の長</span>の承認を得て、基本測量の測量標を使用することができる。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第三十二条</div>
+        <div class="text">
+        公共測量は、
+	<span class="blank" onclick="this.classList.toggle('show')">基本測量又は公共測量</span>の測量成果に基いて実施しなければならない。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第五十五条</div>
+        <div class="text">
+        測量業を営もうとする者は、この法律の定めるところにより、測量業者としての登録を受けなければならない。
+        <br>2　前項の登録の有効期間は、
+	<span class="blank" onclick="this.classList.toggle('show')">五年</span>とする。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第五十五条の十三</div>
+        <div class="text">
+        測量業者は、その営業所ごとに
+	<span class="blank" onclick="this.classList.toggle('show')">測量士</span>を一人以上置かなければならない。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第五十六条</div>
+        <div class="text">
+        測量業者は、その業務を誠実に行ない、常に測量成果の
+	<span class="blank" onclick="this.classList.toggle('show')">正確さ</span>の確保に努めなければならない。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第五十六条の二</div>
+        <div class="text">
+        測量業者は、いかなる方法をもつてするかを問わず、その請け負つた測量を
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">一括</span>して他人に請け負わせ、又は他の測量業者から当該他の測量業者の請け負つた測量を
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">一括</span>して請け負つてはならない。
+　　　　<br>2　前項の規定は、元請負人があらかじめ注文者の書面による承諾を得た場合には、適用しない。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第五十六条の六</div>
+        <div class="text">
+        測量業者は、その業務の改善又は測量技術の向上のために必要があるときは、
+	<span class="blank" onclick="this.classList.toggle('show')">国土交通大臣</span>に対して、必要な
+	<span class="blank" onclick="this.classList.toggle('show')">助言</span>を求めることができる。
+       </div>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
+    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
+    <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
+</div>
+
+<script>
+    var currentPage = 0;
+    var cards = document.getElementsByClassName('clause-card');
+    
+    function updateUI() {
+        var total = cards.length;
+        document.getElementById('total-pages').innerText = total;
+        document.getElementById('current-page').innerText = currentPage + 1;
+        document.getElementById('prevBtn').disabled = (currentPage === 0);
+        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+    }
+
+    function changePage(step) {
+        // すべての穴埋めをリセット
+        var allBlanks = document.getElementsByClassName('blank');
+        for (var j = 0; j < allBlanks.length; j++) {
+            allBlanks[j].classList.remove('show');
+        }
+
+        // 現在のカードを非表示にする
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('active');
+            cards[i].style.display = 'none';
+        }
+        
+        // ページ移動
+        currentPage += step;
+        if (currentPage < 0) currentPage = 0;
+        if (currentPage >= cards.length) currentPage = cards.length - 1;
+        
+        // 新しいカードを表示する
+        cards[currentPage].classList.add('active');
+        cards[currentPage].style.display = 'flex';
+        
+        updateUI();
+    }
+
+    function toggleLocal(el, groupClass) {
+        var parentCard = el.closest('.clause-card');
+        var targets = parentCard.getElementsByClassName(groupClass);
+        var isShow = el.classList.contains('show');
+        for (var i = 0; i < targets.length; i++) {
+            if (isShow) targets[i].classList.remove('show');
+            else targets[i].classList.add('show');
+        }
+    }
+
+    updateUI();
+</script>
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+</body>
+</html>
