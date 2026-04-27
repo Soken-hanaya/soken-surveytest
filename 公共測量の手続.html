@@ -91,12 +91,11 @@
 <body>
 
 
-<div class="header"><a href="index.html" class="back-btn">＜</a><span>公共測量の手続</span>公共測量の手続</div>
-
-
+	<div class="header"><a href="index.html" class="back-btn">＜</a><span>公共測量の手続</span>
+	</div>
 
 <div id="container">
-    <div class="clause-card active">
+<div class="clause-card active">
         <div class="clause-title">作業規定の承認申請</div>
         <div class="text">
         <span class="blank" onclick="this.classList.toggle('show')">測量計画機関</span>は、公共測量を実施しようとするときは、当該公共測量に関し
@@ -107,12 +106,7 @@
         </div>
     </div>
 
-<div class="header">
-    <a href="index.html" class="back-btn">＜</a>
-    <span>測量法</span>
-    測量法</div>
-
-    <div class="clause-card">
+<div class="clause-card">
         <div class="clause-title">公共測量実施計画書の提出</div>
         <div class="text">
 	測量計画機関は、公共測量を実施しようとするときは、あらかじめ、次に掲げる事項を記載した計画書を提出して、国土地理院の長の
@@ -143,7 +137,7 @@
     </div>
 
 
-    <div class="clause-card">
+<div class="clause-card">
         <div class="clause-title">実施及び終了の通知</div>
         <div class="text">
 	測量計画機関は、公共測量を実施しようとするときは、あらかじめその地域、期間その他必要な事項を
@@ -219,6 +213,10 @@
 
     updateUI();
 </script>
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
 
 </body>
 </html>
