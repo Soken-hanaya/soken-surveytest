@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>公共測量の手続</title>
-    <style>
+   
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+
+<style>
         body { 
             font-family: -apple-system, sans-serif; 
             background-color: #f0f2f5; 
@@ -49,12 +54,13 @@
         }
         
 	.back-btn {
-	color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-	text-decoration: none;
-	position: absolute;
-	left: 15px;
-	font-size: 1.5rem;    /* サイズの調整 */
-	font-weight: bold;    /* 太くして見やすくする */
+    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+    text-decoration: none;
+    position: absolute;
+    left: 15px;
+    font-size: 1.5rem;    /* サイズの調整 */
+    font-weight: bold;    /* 太くして見やすくする */
+}
 
         .clause-card.active { display: flex; }
 
@@ -84,7 +90,10 @@
 </head>
 <body>
 
-<div class="header"><a href="index.html" style="color: white; text-decoration: none; position: absolute; left: 15px;">🔙</a>公共測量の手続</div>
+
+<div class="header"><a href="index.html" class="back-btn">＜</a><span>公共測量の手続</span>公共測量の手続</div>
+
+
 
 <div id="container">
     <div class="clause-card active">
