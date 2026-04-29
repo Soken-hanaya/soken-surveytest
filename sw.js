@@ -8,7 +8,7 @@ const urlsToCache = [
   '作業規程の準則 路線測量.html',
   '作業規程の準則 河川測量.html',
   '作業規程の準則 用地測量.html',
-  'JPGIS.html',
+  '地理情報標準プロファイル(JPGIS).html',
   'manifest.json',
   'sw.js'
 ];
