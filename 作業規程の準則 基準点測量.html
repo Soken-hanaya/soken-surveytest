@@ -53,6 +53,11 @@
             box-sizing: border-box;
         }
         
+	.table-container {
+	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
+	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+	}
+
 	.back-btn {
     color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
     text-decoration: none;
@@ -99,6 +104,7 @@
         <div class="clause-title">既知点の種類等 第22条</div>
         <div class="text">
 	前条第2項に規定する基準点測量の各区分における既知点の種類、既知点間の距離及び新点間の距離は、次表を標準とする。
+	<div class="table-container">
 	<table style="width: 100%; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
             <thead>
                 <tr style="background: #1a3e5e; color: white;">
@@ -177,6 +183,7 @@
                 </tr>
 	</tbody>
         </table>
+	</div>
 	<br>3　1級基準点測量、2級基準点測量及び3級基準点測量においては、既知点を電子基準点のみとすることができる。この場合、
 	<span class="blank" onclick="this.classList.toggle('show')">既知点間の距離</span>の制限は適用しない。ただし、既知点とする電子基準点は、作業地域近傍のものを使用するものとする。
 	</div>
