@@ -56,6 +56,7 @@
 	.table-container {
 	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
 	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
 	}
 
 	.back-btn {
@@ -225,26 +226,26 @@
                         <td style="border: 1px solid #333; padding: 8px; text-align: center;">---</td>
                     </tr>
 					<tr>
-                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;">単位多角形の辺数</td>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">単位多角形の辺数</td>
                         <td style="border: 1px solid #333; padding: 8px; text-align: center;">10辺以下</td>
 						<td style="border: 1px solid #333; padding: 8px; text-align: center;">12辺以下</td>
                         <td style="border: 1px solid #333; padding: 8px; text-align: center;">---</td>
 						<td style="border: 1px solid #333; padding: 8px; text-align: center;">---</td>
                     </tr>			
                     <tr>
-                        <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">路線の辺数</td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">10辺以下</td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">12辺以下</td>
+                        <td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">路線の辺数</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">5辺以下</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">6辺以下</td>
                         <td style="border: 1px solid #333; padding: 8px; text-align: center;">7辺以下</td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">10辺以下</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">10辺以下<br>(15辺以下)</td>
                     </tr>
                     <!-- 節点間の距離 -->
                     <tr>
                         <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">節点間の距離</td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">250m以上</span></td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">150m以上</span></td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">70m以上</span></td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">20m以上</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">50m以上</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">150m以上</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">70m以上</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">20m以上</td>
                     </tr>
                     <!-- 路線長 -->
                     <tr>
@@ -256,6 +257,7 @@
                     </tr>
 					 <tr>
                         <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;">電子基準点のみ</td>
+						<td style="border: 1px solid #333; padding: 8px; text-align: center;">多角網</td>
                         <td colspan="3" style="border: 1px solid #333; padding: 8px; text-align: center;">この限りではない</td>
                         <td style="border: 1px solid #333; padding: 8px; text-align: center;">700m以下</td>
                     </tr>	
