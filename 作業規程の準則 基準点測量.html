@@ -201,15 +201,71 @@
         <div class="clause-title">基準点測量の方式 第23条</div>
         <div class="text">
 	2　結合多角方式の作業方法は、次表を標準とする。
-	<br>結合多角方式　項目
-	<br>　<span class="blank" onclick="this.classList.toggle('show')">1個の多角網における既知点数</span>
-	<br>　<span class="blank" onclick="this.classList.toggle('show')">単位多角形の辺数</span>
-	<br>　<span class="blank" onclick="this.classList.toggle('show')">路線の辺数</span>
-	<br>　<span class="blank" onclick="this.classList.toggle('show')">節点間の距離</span>
-	<br>　<span class="blank" onclick="this.classList.toggle('show')">路線長</span>
-	<br>　<span class="blank" onclick="this.classList.toggle('show')">偏心距離の制限</span>
-	<br>　<span class="blank" onclick="this.classList.toggle('show')">路線図形</span>
+	<div class="table-container">
+            <table style="width: 100%; min-width: 800px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+                <thead>
+                    <tr style="background: #1a3e5e; color: white;">
+                        <th colspan="2" style="border: 1px solid #333; padding: 8px; width: 150px;">項目 / 区分</th>
+                        <th style="border: 1px solid #333; padding: 8px;">1級基準点測量</th>
+                        <th style="border: 1px solid #333; padding: 8px;">2級基準点測量</th>
+                        <th style="border: 1px solid #333; padding: 8px;">3級基準点測量</th>
+                        <th style="border: 1px solid #333; padding: 8px;">4級基準点測量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 既知点数 -->
+                    <tr>
+                        <td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">既知点数</td>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;">多角網</td>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;">2 + (新点数 / 5) 以上</td>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;">3点以上</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;">電子基準点のみ</td>
+                        <td colspan="3" style="border: 1px solid #333; padding: 8px; text-align: center;">3点以上</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">---</td>
+                    </tr>
+                    <!-- 路線の辺数 -->
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">路線の辺数</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">10辺以下</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">12辺以下</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">7辺以下</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">10辺以下</span></td>
+                    </tr>
+                    <!-- 節点間の距離 -->
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">節点間の距離</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">250m以上</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">150m以上</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">70m以上</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">20m以上</span></td>
+                    </tr>
+                    <!-- 路線長 -->
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">路線長</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">3km以下</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">2km以下</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">1km以下</span></td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">500m以下</span></td>
+                    </tr>
+                    <!-- 路線図形（外側角） -->
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">路線図形(選点範囲)</td>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">40度以下</span></td>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">50度以下</span></td>
+                    </tr>
+                    <!-- 路線中の夾角 -->
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">路線中の夾角</td>
+                        <td colspan="4" style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">60度以上</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <p style="font-size: 0.75rem; color: #666; margin-top: 10px;">
+            ※詳細は画像を右にスクロールして確認してください。
+        </p>        </div>
     </div>
 
 <div class="clause-card">
