@@ -164,21 +164,112 @@
                 </tr>
                 <tr>
 		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">測量方式</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">結合多角</span>方式</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">地形の状況等によりやむを得ないときは、<span class="blank" onclick="this.classList.toggle('show')">単路線</span>方式とすることができる。</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+		<span class="blank" onclick="this.classList.toggle('show')">結合多角</span>方式</td>
+                </tr>
+		<tr>
+		<td style="border: 1px solid #333; padding: 8px; text-align: center;">地形の状況等によりやむを得ないときは、
+		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">単路線</span>方式とすることができる。</td>
+		</tr>
+		<tr>
+		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">既知点数</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">3点</span>以上</td>
+                </tr>
+		<tr>
+		<td style="border: 1px solid #333; padding: 8px; text-align: center;">
+		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">単路線</span>方式の場合は2点とすることができる。</td>
+		</tr>
+		<tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">路線の辺数</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">5辺以下</td>
+                </tr>
+		<tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">路線図形</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">新点は、外周路線に属する隣接既知点を結ぶ直線の内側に選点するものとする。ただし、地形の状況等によりやむを得ないときは、この限りでない。</td>
+                </tr>
+		<tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">観測楕円体比高</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">700ｍ以下を標準とし、700ｍを超える場合は日を変えて点検観測を行うものとする</td>
+                </tr>
+		<tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">偏心距離の制限(新点)</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">250m未満</td>
                 </tr>
             </tbody>
         </table>
        </div>
     </div>
 
+<div class="clause-card">
+        <div class="clause-title">観測　第89条</div>
+        <div class="text">
+	GNSS観測に当たり、計画機関の承認を得た平均図に基づき、観測図を作成するものとする。
+	<br>2　GNSS観測は、平均図等に基づき、第37条第2項第二号リ（1）に規定する
+	<span class="blank" onclick="this.classList.toggle('show')">スタティック法</span>により行う。
+	<br>一　GNSS観測の方法は、次表を標準とする。
+	<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; line-height: 1.4; table-layout: fixed;">
+            <tbody>
+                <tr>
+                <td  colspan="2" style="border: 1px solid #333; padding: 8px; width: 35%; background: #1a3e5e; color: white; text-align: center; font-weight: bold;">項目　＼　区分</td>
+                <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold; color: #1a3e5e; width:150px">3級水準測量</td>
+                </tr>
+                <tr>
+		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">観測時間</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">5時間</span>以上</td>
+                </tr>
+		<tr>
+		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ取得間隔</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">30秒</span>以下</td>
+                </tr>
+		<tr>
+		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">最低高度角</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+		<span class="blank" onclick="this.classList.toggle('show')">15°</span>を標準</td>
+                </tr>
+		<tr>
+		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">アンテナ高測定単位</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">mm</td>
+                </tr>
+		<tr>
+		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">観測楕円体比高</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">GPS･準天頂衛星</td>
+		<td style="border: 1px solid #333; padding: 8px; text-align: center;">
+		<span class="blank" onclick="this.classList.toggle('show')">5衛星</span>以上</td>
+                </tr>
+		<tr>
+		<td style="border: 1px solid #333; padding: 8px; text-align: center;">GPS･準天頂衛星及びGLONASS衛星</td>
+		<td style="border: 1px solid #333; padding: 8px; text-align: center;">
+		<span class="blank" onclick="this.classList.toggle('show')">6衛星</span>以上</td>
+                </tr>
+		<tr>
+		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">摘要</td>
+                <td style="border: 1px solid #333; padding: 8px;">1.観測時間は連続した
+		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">5時間</span>以上とする
+		<br>2.GNSS衛星の稼働状態、飛来情報等を考慮し、片寄った配置の使用は避けるものとする。
+		<br>3.GLONASS衛星を用いて観測する場合は、GPS･準天頂衛星及びGLONASS衛星を、それぞれ２衛星以上を用いること
+		<br>4.電子基準点の稼働状況を事前に確認するものとする。
+		<br>5.観測距離が 10km 以上の観測は、１級GNSS測量機により2周波で行う。10km未満の観測は2級以上の性能を有するGNSS測量機により行う。 ただし、1級GNSS測量機による場合は2周波で行うことができる。</td>
+                </tr>
+		<tr>
+            </tbody>
+        </table>
+       </div>
+    </div>
 
 <div class="clause-card">
-        <div class="clause-title">準備中</div>
+        <div class="clause-title">計算の方法等　第93条</div>
         <div class="text">
-	準備中
-	<br>準備中
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">準備中</span>
+	3　GNSS観測における基線解析は次の各号にいより実施することを標準とする。
+	<br>二　GNSS衛星の軌道情報は、
+	<span class="blank" onclick="this.classList.toggle('show')">放送</span>暦を標準とする。
+	<br>三　基線解析では、原則として
+	<span class="blank" onclick="this.classList.toggle('show')">PCV</span>補正を行うものとする。
+	<br>四　気象要素の補正は、基線解析ソフトウェアで採用している標準大気によるものとする。
+	<br>五　基線解析は、基線長が10キロメートル以上の場合は2周波で行うものとし、基線長が10キロメートル未満の場合は1周波又は2周波で行うものとする。
+	<br>六　基線解析の固定点の緯度及び経度は、元期座標又は今期座標とする。以後の基線解析は、固定点の緯度及び経度を用いて求められた緯度及び経度を使用するものとする。
+	<br>七　基線解析の固定点の楕円体高は、成果表の標高及び第40条第二号に規定するジオイド高から求めた値（成果表の楕円体高も用いることができる。）とし、元期座標又は今期座標とする。以後の基線解析は、固定点の楕円体高を用いて求められた楕円体高を使用するものとする。
+	<br>八　基線解析に使用するＧＮＳＳ衛星の最低高度角は、観測時に設定した最低高度角とする。
        </div>
     </div>
 

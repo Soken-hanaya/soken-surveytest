@@ -194,7 +194,12 @@
         <div class="clause-title">基準点測量の方式 第23条</div>
         <div class="text">
 	基準点測量は、次の方式を標準とする。
-	<span class="blank" onclick="this.classList.toggle('show')">平均計画図</span>を作成するものとする。
+	<br>一　1級基準点測量及び2級基準点測量は、原則として、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">結合多角方式</span>により行うものとする。ただし、やむを得ない場合に限り
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">単路線方式</span>により行うことができる。
+	<br>二　3級基準点測量及び4級基準点測量は、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">結合多角方式</span>又は
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">単路線方式</span>により行うものとする。
         </div>
     </div>
 
@@ -203,7 +208,7 @@
         <div class="text">
 	2　結合多角方式の作業方法は、次表を標準とする。
 	<div class="table-container">
-            <table style="width: 100%; min-width: 800px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+	<table style="width: 100%; min-width: 800px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
                 <thead>
                 <tr style="background: #1a3e5e; color: white;">
                         <th colspan="2" style="border: 1px solid #333; padding: 8px; width: 120px;">項目 ＼ 区分</th>
@@ -237,7 +242,7 @@
                         <td style="border: 1px solid #333; padding: 8px; text-align: center;">5辺以下</td>
 			<td style="border: 1px solid #333; padding: 8px; text-align: center;">6辺以下</td>
                         <td style="border: 1px solid #333; padding: 8px; text-align: center;">7辺以下</td>
-			<td style="border: 1px solid #333; padding: 8px; text-align: center;">10辺以下<br>15辺以下</td>
+			<td style="border: 1px solid #333; padding: 8px; text-align: center;">10辺以下<br>(15辺以下)</td>
                 </tr>
 		<tr>
                         <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;">節点間の距離</td>
@@ -266,10 +271,9 @@
                 <tr>
                         <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;">電子基準点のみ</td>
                         <td colspan="3" style="border: 1px solid #333; padding: 8px; text-align: center;">
-			電子基準点のみを既知点とする場合は、Ｓを新点間の距離とし、新点を１点設置する場合の偏心距離は、この式によらず 100ｍ以内を標準とする。</td>
+			電子基準点のみを既知点とする場合は、Sを新点間の距離とし、新点を１点設置する場合の偏心距離は、この式によらず 100ｍ以内を標準とする。</td>
 			<td style="border: 1px solid #333; padding: 8px; text-align: center;">---</td>
                 </tr>
-
                 </tbody>
             </table>
         </div>
@@ -280,10 +284,7 @@
         <div class="clause-title">作業計画 第25条</div>
         <div class="text">
 	作業計画は、第11条の規定によるほか、地形図上で新点の概略位置を決定し、
-	<br>一　1級基準点測量及び2級基準点測量は、原則として、
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">結合多角方式</span>により行うものとする。ただし、やむを得ない場合に限り単路線方式により行うことができる。
-	<br>二　3級基準点測量及び4級基準点測量は、
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">結合多角方式</span>又は単路線方式により行うものとする。
+	<span class="blank" onclick="this.classList.toggle('show')">平均計画図</span>を作成するものとする。
         </div>
     </div>
 
@@ -365,7 +366,31 @@
         <div class="clause-title">観測 第37条</div>
         <div class="text">
 	観測に当たり、計画機関の承認を得た平均図に基づき、
-	<span class="blank" onclick="this.classList.toggle('show')">観測図</span>を作成するものとする。
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測図</span>を作成するものとする。
+	<br>2　観測は、<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測図</span>又は平均図に基づき、次に定めるところにより行うものとする。
+	<br>イ　器械高、反射鏡高及び目標高は、ミリメートル位まで測定するものとする。
+	<br>ロ　TSを使用する場合は、水平角観測、鉛直角観測及び距離測定は、１視準で同時に行うことを原則とするものとする。
+	<br>ハ　水平角観測は、1視準<span class="blank" onclick="this.classList.toggle('show')">1</span>読定、望遠鏡正及び反の観測を1対回とする
+	<br>ニ　鉛直角観測は、1視準<span class="blank" onclick="this.classList.toggle('show')">1</span>読定、望遠鏡正及び反の観測を1対回とする。
+	<br>ホ　距離測定は、1視準<span class="blank" onclick="this.classList.toggle('show')">2</span>読定を１セットとする。
+	<br>ヘ　距離測定の気象補正に使用する気温及び気圧の測定は、次のとおり行うものとする。
+	<br>　(1)TS又は測距儀を整置した観測点で行うものとする。ただし、3級基準点測量及び4級基準点測量においては、気圧の測定を行わず、標準大気圧を用いて気象補正を行うことができる。 
+	<br>　(2)気温及び気圧の測定は、距離測定の開始直前又は終了直後に行うものとする。
+	<br>　(3)観測点と反射鏡を整置した反射点の標高差が400メートル以上のときは、観測点及び反射点の気温及び気圧を測定するものとする。ただし、反射点の気温及び気圧は、計算により求めることができる。
+	<br>ト　水平角観測において、対回内の観測方向数は、5方向以下とする。
+	</div>
+     </div>
+
+<div class="clause-card">
+        <div class="clause-title">観測値の点検及び再測 第38条</div>
+        <div class="text">
+	観測値について点検を行い、許容範囲を超えた場合は、再測するものとする。
+	<br>一 TS等による許容範囲は、次表を標準とする
+	<br>項目
+	<br>水平角観測：<span class="blank" onclick="this.classList.toggle('show')">倍較差</span>、<span class="blank" onclick="this.classList.toggle('show')">観測差</span>
+	<br>鉛直角観測：<span class="blank" onclick="this.classList.toggle('show')">高度定数</span>の較差
+	<br>距離測定：<span class="blank" onclick="this.classList.toggle('show')">1セット内の測定値</span>の較差、<span class="blank" onclick="this.classList.toggle('show')">各セット内の平均値</span>の較差
+	<br>測標水準：<span class="blank" onclick="this.classList.toggle('show')">往復観測値</span>の較差
 	</div>
      </div>
 
@@ -430,8 +455,6 @@
 	<br>2　作業機関は、品質評価手順に基づき品質評価を行い、品質評価表に取りまとめるものとする。
 	</div>
      </div>
-
-
 </div>
 
 <div class="nav-bar">
