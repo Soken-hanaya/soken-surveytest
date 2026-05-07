@@ -96,31 +96,256 @@
 
 <div id="container">
 <div class="clause-card active">
-        <div class="clause-title">準備中</div>
+        <div class="clause-title">第3節　線形決定</div>
         <div class="text">
-       <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">準備中</span>
+	第639条(要旨)
+	<br>「線形決定」とは、路線選定の結果に基づき、地形図上で交点（以下「IP」という。）の位置を座標として定め、
+	<span class="blank" onclick="this.classList.toggle('show')">線形図</span>データファイルを作成する作業をいう。
         </div>
     </div>
 
 <div class="clause-card">
-        <div class="clause-title">準備中</div>
+        <div class="clause-title">第3節　線形決定</div>
         <div class="text">
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">準備中</span>
+	第640条(方法)
+	<br>線形決定は、地図情報レベル
+	<span class="blank" onclick="this.classList.toggle('show')">1000</span>以下の地形図上において、設計条件及び現地の状況を勘案して行うものとする。
+	<br>2　設計条件となる点（以下「条件点」という。）の座標値は、近傍の
+	<span class="blank" onclick="this.classList.toggle('show')">4</span>級基準点以上の基準点に基づき、
+	<span class="blank" onclick="this.classList.toggle('show')">放射法</span>等により求めるものとする。
+	<br>4 ネットワーク型RTK法による観測は、
+	<span class="blank" onclick="this.classList.toggle('show')">間接観測</span>法又は
+	<span class="blank" onclick="this.classList.toggle('show')">単点観測</span>法を用いる。
+	<br>6　線形図データファイルは、計算等により求めた主要点及び中心点の
+	<span class="blank" onclick="this.classList.toggle('show')">座標値</span>を用いて作成する。
+	<br>7　点検測量は、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">条件点間</span>の距離を測定し、座標差から求めた距離との比較により行う。ただし、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">条件点間</span>の距離を直接測定できない場合は、ＴＳの
+	<span class="blank" onclick="this.classList.toggle('show')">対辺測定</span>機能を用いて測定した
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">条件点間</span>の距離を用いることができる。
+	<br>8　前項において
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">条件点間</span>の距離が測定できない場合は、条件点の座標値（採用値）とその条件点の座標値の決定に用いた既知点以外の既設点から別に求めた条件点の座標値（点検値）との較差を比較する。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第4節　中心線測量</div>
+        <div class="text">
+	第642条(要旨)
+	<br>「中心線測量」とは、
+	<span class="blank" onclick="this.classList.toggle('show')">主要点</span>及び
+	<span class="blank" onclick="this.classList.toggle('show')">中心点</span>を現地に設置し、
+	<span class="blank" onclick="this.classList.toggle('show')">線形地形図</span>データファイルを作成 する作業をいう。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第4節　中心線測量</div>
+        <div class="text">
+	第643条(方法)
+	<br>主要点の設置は、近傍の
+	<span class="blank" onclick="this.classList.toggle('show')">4</span>級基準点以上の基準点等に基づき、
+	<span class="blank" onclick="this.classList.toggle('show')">放射法</span>等により行うものとする。ただし、直接視通がとれない場合は節点を設けることができる。
+	<br>2　中心点を設置する間隔は、次表を標準とする。
+	<div class="table-container">
+	<table style="width: 100%; min-width: 500px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+                <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                        <th colspan="2" style="border: 1px solid #333; padding: 8px; width: 200px;">種別</th>
+                        <th style="border: 1px solid #333; padding: 8px;">間隔</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                        <td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">道路</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">計画調査</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">100m又は50m</td>
+                </tr>
+                <tr>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">実施設計</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">20m</td>
+                </tr>
+		<tr>
+                        <td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">河川</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">計画調査</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">100m又は50m</td>
+                </tr>
+		<tr>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">実施設計</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">20m又は50m</td>
+                </tr>
+		<tr>
+			<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">海岸</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">実施設計</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">20m又は50m</td>
+                </tr>
+                </tbody>
+            </table>
+       </div>
+    </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">第4節　中心線測量</div>
+        <div class="text">
+	第644条(標杭の設置)
+	<br>主要点には役杭を、中心点には中心杭を設置する。
+	<br>2　役杭には、必要に応じて
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">引照点</span>杭又は
+	<span class="blank" onclick="this.classList.toggle('show')">保護</span>杭を設置する。
+	<br>3　役杭及び中心杭には、識別のための名称等を記入する。
+	<br>4　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">引照点</span>杭を設置した場合は、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">引照点</span>図を作成する。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第4節　中心線測量</div>
+        <div class="text">
+	第644条(標杭の設置)
+	<br>主要点には役杭を、中心点には中心杭を設置する。
+	<br>2　役杭には、必要に応じて
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">引照点</span>杭又は
+	<span class="blank" onclick="this.classList.toggle('show')">保護</span>杭を設置する。
+	<br>3　役杭及び中心杭には、識別のための名称等を記入する。
+	<br>4　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">引照点</span>杭を設置した場合は、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">引照点</span>図を作成する。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第5節　仮BM設置測量</div>
+        <div class="text">
+	第645条(要旨)
+	<br>「仮BM設置測量」とは、縦断測量及び横断測量に必要な
+	<span class="blank" onclick="this.classList.toggle('show')">水準点</span>（以下「仮BM」という。）を現地に設置し、
+	<span class="blank" onclick="this.classList.toggle('show')">標高</span>を定める作業をいう。ただし、河川等で距離標がある場合は、これを仮BMとして使用することができる。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第5節　仮BM設置測量</div>
+        <div class="text">
+	第646条(方法)
+	<br>仮ＢＭ設置測量は、平地においては
+	<span class="blank" onclick="this.classList.toggle('show')">3級</span>水準測量により行い、山地においては
+	<span class="blank" onclick="this.classList.toggle('show')">4級</span>水準測量により行うものとする。
+	<br>2 仮BMを設置する間隔は、0.5キロメートルを標準とする。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第6節　縦断測量</div>
+        <div class="text">
+	第648条(要旨)
+	<br>「縦断測量」とは、中心杭等の
+	<span class="blank" onclick="this.classList.toggle('show')">標高</span>を定め、
+	<span class="blank" onclick="this.classList.toggle('show')">縦断面図</span>データファイルを作成する作業をいう。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第6節　縦断測量</div>
+        <div class="text">
+	第649条(方法)
+	<br>縦断測量は、中心杭高及び中心点並びに中心線上の地形変化点（以下「縦断変化点」という。）の地盤高及び中心線上の主要な構造物の標高を仮BM又はこれと同等以上の水準点に基づき、
+	レベル等による水準測量により、平地においては
+	<span class="blank" onclick="this.classList.toggle('show')">4級</span>水準測量、山地においては
+	<span class="blank" onclick="this.classList.toggle('show')">簡易</span>水準測量により行うものとする。
+	<br>2　前項の規定にかかわらず、仮BM又はターニングポイントの中間にある点の観測は、中間視によるも のとする。
+	<br>3　
+	<span class="num-label">1</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">縦断変化点</span>には、標杭を設置する。
+	<br>4　観測の基準とする点は、
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">仮BM</span>とし、観測の路線は、
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">仮BM</span>から出発し、他の
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">仮BM</span>に結合する。
+	<br>5　観測は、往路においては
+	<span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">中心杭高</span>、中心杭・
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断変化点</span>杭の地盤高及び中心線上の主要な構造物の標高について行い、復路においては
+	<span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">中心杭高</span>について行うものとする。
+	<br>6　
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断変化点</span>及び主要な構造物の位置は、中心点からの距離を測定して定める。
+	<br>7　地形、地物等の状況により、直接水準測量に代えて間接水準測量によることができる。
+	<br>8　間接水準測量は、TSを用いた単観測昇降式による往復観測とする。ただし、その閉合差の許容範囲 は、第69条第1項第二号に規定する表に定める簡易水準測量の閉合差を準用する。
+	<br>9　縦断面図データファイルは、縦断測量の結果又は第4編の規定を準用して三次元点群データにより作 成するものとする。
+	<br>10　縦断面図データファイルを図紙に出力する場合は、縦断面図の距離を表す横の縮尺（以下「横の縮尺」という。）は線形地形図の縮尺と同一とし、
+	高さを表す縦の縮尺（以下「縦の縮尺」という。）は、線形地形図の縮尺の5倍から10倍までを標準とする。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第7節　横断測量</div>
+        <div class="text">
+	第650条(要旨)
+	<br>「横断測量」とは、
+	<span class="blank" onclick="this.classList.toggle('show')">中心杭</span>等を基準にして地形の変化点等の
+	<span class="blank" onclick="this.classList.toggle('show')">距離</span>及び地盤高を定め、
+	<span class="blank" onclick="this.classList.toggle('show')">横断面図</span>データファイルを作成する作業をいう。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第7節　横断測量</div>
+        <div class="text">
+	第651条(方法)
+	<br>横断測量は、中心杭等を基準にして、中心点における中心線の接線に対して直角方向の線上 にある地形の変化点及び地物について、中心点からの距離及び地盤高を測定するものとする。
+	<span class="blank" onclick="this.classList.toggle('show')">4級</span>水準測量、山地においては
+	<span class="blank" onclick="this.classList.toggle('show')">簡易</span>水準測量により行うものとする。
+	<br>2　横断方向には、原則として、
+	<span class="blank" onclick="this.classList.toggle('show')">見通杭</span>を設置するものとする。
+	<br>3　測量の基準とする点は、中心杭及び計画機関が指示する縦断変化点杭とする。
+	<br>4　横断測量における地盤高の測定は、地形、地物等の状況により直接
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">水準測量</span>又は間接
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">水準測量</span>により行うものとする。
+	<br>9　点検測量は、点検測量率によって選択された横断面について、再度横断測量を実施し、その結果に基づいて描画した横断面図を、先に描画した横断面図の中心点及び
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">末端見通杭</span>を固定して重ね合わせ、横断形状を比較することにより行うものとする。また、中心杭と
+	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">末端見通杭の距離及び標高の測定値と点検測量値との比較を行うものとし、較差の許容範囲は、次表を標準とする。
+	<br>10　横断面図データファイルを図紙に出力する場合は、横断面図の縮尺は
+	<span class="blank" onclick="this.classList.toggle('show')">縦断面図</span>の縦の縮尺と同一のものを標準とする。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第8節　詳細測量</div>
+        <div class="text">
+	第652条(要旨)
+	<br>「詳細測量」とは、主要な構造物の設計に必要な
+	<span class="blank" onclick="this.classList.toggle('show')">詳細平面図</span>データファイル、縦断面図デー タファイル及び横断面図データファイルを作成する作業をいう。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第9節　用地幅杭設置測量</div>
+        <div class="text">
+	第654条(要旨)
+	<br>「用地幅杭設置測量」とは、取得等に係る用地の範囲を示すため所定の位置に
+	<span class="blank" onclick="this.classList.toggle('show')">用地幅杭</span>を設置する作業をいう。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第9節　用地幅杭設置測量</div>
+        <div class="text">
+	第655条(方法)
+	<br>用地幅杭設置測量は、中心点等から中心線に対して直角方向の用地幅杭点座標値を計算し、 それに基づいて、近傍の4級基準点以上の基準点、主要点、中心点等から
+	<span class="blank" onclick="this.classList.toggle('show')">放射法等</span>により用地幅杭を設置して行うものとする。設置した標杭には、測点番号、中心杭等からの距離等を表示する。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第9節　用地幅杭設置測量</div>
+        <div class="text">
+	第656条(用地幅杭点間測量)
+	<br>用地幅杭点間測量は、TS等により隣接する用地幅杭点間全辺について距離を現地で測定するとともに、前条の規定に基づいて計算した用地幅杭点間距離と比較を行うものとする。
+	<br>2　前項において用地幅杭点間の距離が測定できない場合は、第640条第8項の規定を準用する。
+	<br>第640条第8項
+	<br>前項において条件点間の距離が測定できない場合は、条件点の座標値（採用値）とその条件点の座標値の決定に用いた既知点以外の既設点から別に求めた条件点の座標値（点検値）との較差を比較する。
 	</div>
     </div>
 
 
-<div class="clause-card">
-        <div class="clause-title">準備中</div>
-        <div class="text">
-	準備中
-	<br>準備中
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">準備中</span>
-       </div>
-    </div>
-
-
 </div>
+
 
 <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
