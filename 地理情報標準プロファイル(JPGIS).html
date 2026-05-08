@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>地理情報標準プロファイル(JPGIS)</title>
+    <title>作業規程の準則 路線測量</title>
    
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -52,14 +52,20 @@
             flex-direction: column; 
             box-sizing: border-box;
         }
+
+	.table-container {
+	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
+	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
+	}
         
 	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
+	color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+	text-decoration: none;
+	position: absolute;
+	left: 15px;
+	font-size: 1.5rem;    /* サイズの調整 */
+	font-weight: bold;    /* 太くして見やすくする */
 }
 
         .clause-card.active { display: flex; }
@@ -91,40 +97,173 @@
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>地理情報標準プロファイル(JPGIS)</span>
-	</div>
+<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 路線測量</span>
+</div>
 
 <div id="container">
 <div class="clause-card active">
-        <div class="clause-title">準備中</div>
+        <div class="clause-title">地理空間情報の実用化(JPGIS化)でできること</div>
         <div class="text">
-       <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">準備中</span>
+	JPGISは、GISの基盤となる空間データを、異なるシステム間で相互利用する際の互換性の確保を主な目的に、国際規格及び国内規格に準じて、
+	<span class="blank" onclick="this.classList.toggle('show')">データの設計</span>、
+	<span class="blank" onclick="this.classList.toggle('show')">品質</span>、
+	<span class="blank" onclick="this.classList.toggle('show')">記述方法</span>、
+	<span class="blank" onclick="this.classList.toggle('show')">仕様の書き方</span>等のルールを規定した実用標準です。
+	<br>そのため、JPGISの利用が進むことで、データの相互利用しやすい環境が整備され、異なる整備主体で整備されたデータの共用、
+	<span class="blank" onclick="this.classList.toggle('show')">システム依存性の低下</span>、
+	<span class="blank" onclick="this.classList.toggle('show')">重複投資の排除</span>等の効果を期待することができ、コスト削減や業務の効率化等が可能となり、
+	より効率的な情報社会の形成や安全・安心な社会の実現に寄与します。
         </div>
-    </div>
+</div>
 
 <div class="clause-card">
-        <div class="clause-title">準備中</div>
+        <div class="clause-title">製品仕様書</div>
         <div class="text">
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">準備中</span>
+	データの定義・構造・品質・記録方法等を統一化された考え方や基準のもとで、利用目的に応じたデータ仕様を決めることができるJPGISでは、製品仕様書の作成について規定されています。
+	<br>製品仕様書は、いわばデータの設計図であり、データの利用目的に応じた要求事項や完成した製品の品質の程度、すなわち、「データの内容と構造」「データの交換標準形式」「データの品質保証」といったデータを作り、流通をさせるために必要な事項を記述することになっています。それにより、データ作成者は、製品仕様書に従ったデータを作ることができ、データ利用者は、データの詳細を知ることができます。
+	<br>つまり、製品仕様書は、データ作成者及びデータ利用者に対して、守らなければならないルールを規定しています。
+	<br>また、製品仕様書は、データ作成時には「発注仕様書」として、データ交換時には「説明書」として使用することができます。
 	</div>
-    </div>
+</div>
 
 
 <div class="clause-card">
-        <div class="clause-title">準備中</div>
+        <div class="clause-title">データ・ソフトウェアの標準化</div>
         <div class="text">
-	準備中
-	<br>準備中
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">準備中</span>
+	相互運用性が確保されたデータを、さまざまなGISソフトで使うことができる GISで利用する場合には、一般的には各々のシステムの内部形式に変換して使用し、データ交換時には標準の形式で交換します。そうすることによって、データの相互運用性、正確性・迅速性、再利用性が向上します。
        </div>
-    </div>
+</div>
 
+<div class="clause-card">
+        <div class="clause-title">データの品質表示</div>
+        <div class="text">
+	JPGISでは、データの品質をチェックするためのルールを定めています。JPGISで定められた品質チェックの方法にしたがって、データの品質がチェックされ、データは「製品」として流通します。品質チェックの報告は、「メタデータ（※後述）」によって記述されます。 地理空間情報の品質とは？ 地理空間情報の品質の良し悪しは、製品仕様書等により記された、必要とする地理空間情報の姿（これを論議領域といいます。）と実際の地理空間情報との差異であり、実世界との比較ではありません。
+       </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">メタデータでの情報流通</div>
+        <div class="text">
+	作成された地理空間データに関する説明情報が共有化され、既存のデータを検索する際に利用できる。 メタデータとは、データそのものではなく、データ（製品）に関する説明情報です。 JPGISでは、メタデータを定めています。 JPGISに準拠しているメタデータを使用することで、以下の2点が実現されます。
+	<br>地理空間データの検索と取得の同時化
+	<br>インターネット上の検索システム（=クリアリングハウス）に登録するメタデータにデータの入手先を記述することで、利用者がクリアリングハウスで欲しいデータの有無を検索すると同時にオンラインでデータを入手することも可能になります。
+	<br>地理空間データの品質の確保
+	<br>メタデータに地理空間データの品質を明示することで、提供者にとっては利用者に対してデータの品質において責任を負うこととなり、利用者にとってはより安心してデータを利用することが可能になります。
+	<br>国土地理院では、JPGISに準拠したメタデータ記述形式としてJMP2.0を定めています。JMPとは日本版メタデータプロファイル（ Japan Metadata Profile ）の略称で、そのバージョンが2.0であるものをJMP2.0といいます。
+       </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">適用範囲</div>
+        <div class="text">
+	JPGISは，異なる使用者，システム及び場所の間において
+	<span class="blank" onclick="this.classList.toggle('show')">地理空間</span>データを取得，処理，解析，アクセス，表現及び転送するための手法，手段及びサービスを実現するために最低限必要となる
+	基本的な要素を整理したものである。
+	<br>このプロファイルは，個別の
+	<span class="blank" onclick="this.classList.toggle('show')">地理空間</span>情報の分野ごとのアプリケーションを開発するための枠組みを提供しており，用途に応じ，
+	各要素の拡張規則を遵守した上で拡張プロファイルを作成して使用することもできる。
+	</div>
+</div>
+
+
+<div class="clause-card">
+        <div class="clause-title">画像データ</div>
+        <div class="text">
+	JPGISでは画像データの形式を
+	<span class="blank" onclick="this.classList.toggle('show')">決めていません</span>。画像データは、一般的に使用されている形式を使用します。
+       </div>
+</div>
+
+
+<div class="clause-card">
+        <div class="clause-title">地理空間データ製品仕様書記載事項とJPJISの関係</div>
+        <div class="text">
+	表附11-1
+	<div class="table-container">
+	<table style="width: 100%; min-width: 400px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+        <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #333; padding: 8px;">地理空間データ製品仕様書</th>
+                <th style="border: 1px solid #333; padding: 8px;">JPGIS</th>
+		</tr>
+	</thead>
+	<tbody>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">概欄</td>
+		<td style="border: 1px solid #333; padding: 8px;"></td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">適用範囲</td>
+		<td style="border: 1px solid #333; padding: 8px;"></td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ製品識別</td>
+		<td style="border: 1px solid #333; padding: 8px;"></td>
+	</tbody>
+	<tbody>
+                </tr>
+                <tr>
+		<th rowspan="6" style="border: 1px solid #333; padding: 10px; background: #f8f9fa; text-align: center; width: 120px;">データ内容及び構造</th>
+		<td style="border: 1px solid #333; padding: 8px;">6 応用スキーマのための規則</td>
+                </tr>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px;">7 空間スキーマ</td>
+                </tr>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px;">8 時間スキーマ</td>
+                </tr>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px;">9 被覆の幾何及び関数のためのスキーマー</td>
+                </tr>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px;">10 地理識別子による空間参照</td>
+                </tr>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px;">11 地物カタログ化法</td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">参照系</td>
+		<td style="border: 1px solid #333; padding: 8px;">附属書2(既定)参照系</td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ品質</td>
+		<td style="border: 1px solid #333; padding: 8px;">附属書3(既定)品質</td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ製品配布</td>
+		<td style="border: 1px solid #333; padding: 8px;">12 符号化</td>
+                </tr>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px;">付属書8(参考)
+		<span class="blank" onclick="this.classList.toggle('show')">XML</span>に基づく符号化規則
+		<br>付属書12(既定)地理マーク付け言語(
+		<span class="blank" onclick="this.classList.toggle('show')">GML</span>)</td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">メタデータ</td>
+		<td style="border: 1px solid #333; padding: 8px;">付属書4(既定)メタデータ</td>
+                </tr>
+	</tbody>
+	</table>
+	</div></div></div>
 
 </div>
 
 <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
-    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
+    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">--</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
 </div>
 
