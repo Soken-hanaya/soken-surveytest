@@ -208,14 +208,14 @@
         <div class="text">
 	2　結合多角方式の作業方法は、次表を標準とする。
 	<div class="table-container">
-	<table style="width: 100%; min-width: 800px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+	<table style="width: 100%; min-width: 720px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
                 <thead>
                 <tr style="background: #1a3e5e; color: white;">
                         <th colspan="2" style="border: 1px solid #333; padding: 8px; width: 120px;">項目 ＼ 区分</th>
-                        <th style="border: 1px solid #333; padding: 8px;">1級基準点測量</th>
-                        <th style="border: 1px solid #333; padding: 8px;">2級基準点測量</th>
-                        <th style="border: 1px solid #333; padding: 8px;">3級基準点測量</th>
-                        <th style="border: 1px solid #333; padding: 8px;">4級基準点測量</th>
+                        <th style="border: 1px solid #333; padding: 8px; width: 125px;">1級基準点測量</th>
+                        <th style="border: 1px solid #333; padding: 8px; width: 125px;">2級基準点測量</th>
+                        <th style="border: 1px solid #333; padding: 8px; width: 125px;">3級基準点測量</th>
+                        <th style="border: 1px solid #333; padding: 8px; width: 125px;">4級基準点測量</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -270,8 +270,8 @@
                 </tr>
                 <tr>
                         <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;">電子基準点のみ</td>
-                        <td colspan="3" style="border: 1px solid #333; padding: 8px; text-align: center;">
-			電子基準点のみを既知点とする場合は、Sを新点間の距離とし、新点を１点設置する場合の偏心距離は、この式によらず 100ｍ以内を標準とする。</td>
+                        <td colspan="3" style="border: 1px solid #333; padding: 8px;">
+			電子基準点のみを既知点とする場合は、Sを新点間の距離とし、新点を1点設置する場合の偏心距離は、この式によらず 100ｍ以内を標準とする。</td>
 			<td style="border: 1px solid #333; padding: 8px; text-align: center;">---</td>
                 </tr>
                 </tbody>
@@ -368,11 +368,12 @@
 	観測に当たり、計画機関の承認を得た平均図に基づき、
 	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測図</span>を作成するものとする。
 	<br>2　観測は、<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測図</span>又は平均図に基づき、次に定めるところにより行うものとする。
+	<br>一	TS等観測の方法は、次表(略)のとおりとする。ただし、水平角観測において、目盛変更が不可能な機器は、1対回の繰り返し観測を行うものとする。
 	<br>イ　器械高、反射鏡高及び目標高は、ミリメートル位まで測定するものとする。
 	<br>ロ　TSを使用する場合は、水平角観測、鉛直角観測及び距離測定は、１視準で同時に行うことを原則とするものとする。
 	<br>ハ　水平角観測は、1視準<span class="blank" onclick="this.classList.toggle('show')">1</span>読定、望遠鏡正及び反の観測を1対回とする
 	<br>ニ　鉛直角観測は、1視準<span class="blank" onclick="this.classList.toggle('show')">1</span>読定、望遠鏡正及び反の観測を1対回とする。
-	<br>ホ　距離測定は、1視準<span class="blank" onclick="this.classList.toggle('show')">2</span>読定を１セットとする。
+	<br>ホ　距離測定は、1視準<span class="blank" onclick="this.classList.toggle('show')">2</span>読定を1セットとする。(すべての基準点測量で2セット行う)
 	<br>ヘ　距離測定の気象補正に使用する気温及び気圧の測定は、次のとおり行うものとする。
 	<br>　(1)TS又は測距儀を整置した観測点で行うものとする。ただし、3級基準点測量及び4級基準点測量においては、気圧の測定を行わず、標準大気圧を用いて気象補正を行うことができる。 
 	<br>　(2)気温及び気圧の測定は、距離測定の開始直前又は終了直後に行うものとする。
@@ -380,6 +381,130 @@
 	<br>ト　水平角観測において、対回内の観測方向数は、5方向以下とする。
 	</div>
      </div>
+
+<div class="clause-card">
+        <div class="clause-title">観測 第37条</div>
+        <div class="text">
+	一　GNSS観測の方法は、次により行うものとする。
+	<br>イ　観測距離が
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10</span>キロメートル以上の観測は、1級GNSS測量機により2周波で行う。
+	ただし、2級GNSS測量機を使用する場合には、観測距離を
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10</span>キロメートル未満になるよう節点を設け行うことができる。
+	<br>ロ　観測距離が
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10</span>キロメートル未満の観測は、2級以上の性能を有するGNSS測量機により1周波で行う。
+	ただし、1級GNSS測量機による場合は2周波で行うことができる。
+	<br>ハ　GNSS観測の方法は次表を標準とする。
+	<div class="table-container">
+	<table style="width: 100%; min-width: 525px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+                <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                        <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 150px;">観測方法</th>
+                        <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 100px;">観測時間</th>
+                        <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 100px;">データ取得間隔</th>
+                        <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 175px;">摘要</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                        <td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">スタティック法</td>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">
+			<span class="blank" onclick="this.classList.toggle('show')">120分</span>以上</td>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">30秒以下</td>
+                        <td style="border: 1px solid #333; padding: 8px;">1～3級基準点測量(10km以上)</td>
+                </tr>
+                <tr>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">60分以上</td>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">30秒以下</td>
+                        <td style="border: 1px solid #333; padding: 8px;">1～3級基準点測量(10km未満)<br>4級基準点測量</td>
+                </tr>
+		</tbody>
+		<tbody>
+		<tr>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold; text-align: center;">短縮スタティック法*1</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">20分以上</td>
+			<td style="border: 1px solid #333; padding: 8px; text-align: center;">15秒以下</td>
+                        <td rowspan="4" style="border: 1px solid #333; padding: 8px; ">3～4級基準点</td>
+                </tr>
+		<tr>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold;text-align: center;">キネマティック法</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">10秒以上*2</td>
+			<td style="border: 1px solid #333; padding: 8px; text-align: center;">5秒以下</td>
+                </tr>
+		<tr>
+			<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; font-weight: bold; text-align: center;">RTK法*4</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">10秒以上*3</td>
+			<td style="border: 1px solid #333; padding: 8px; text-align: center;">1秒</td>
+                </tr>
+		<tr>
+ 			<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">ネットワーク型RTK法*4</td>
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">10秒以上*3</td>
+			<td style="border: 1px solid #333; padding: 8px; text-align: center;">1秒</td>
+		</tr>
+		</tbody>
+		<tbody>
+                <tr>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;text-align: center;font-weight: bold;">備考</td>
+                        <td colspan="3" style="border: 1px solid #333; padding: 8px; ">*1　
+			<span class="blank" onclick="this.classList.toggle('show')">電子基準点</span>のみを既知点とする場合には適用しないものとする。
+			<br>*2　10エポック以上のデータが取得できる時間とする。
+			<br>*3　FIX解を得てから10エポック以上のデータが取得できる時間とする。
+			<br>*4　後処理で行う場合も含めるものとする。</td>
+                </tr>
+		</tbody>
+            </table>
+        </div>
+	</div>
+     </div>
+
+<div class="clause-card">
+        <div class="clause-title">観測 第37条</div>
+        <div class="text">
+	ニ　観測方法により使用衛星数は、次表を標準とする。
+	<div class="table-container">
+	<table style="width: 100%; min-width: 470px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+                <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                        <th style="border: 1px solid #333; padding: 8px;text-align: right; width: 150px;">観測方法→</th>
+                        <th rowspan="2" style="border: 1px solid #333; padding: 8px;text-align: center; width: 160px;">スタティック法</th>
+                        <th rowspan="2" style="border: 1px solid #333; padding: 8px;text-align: center; width: 160px;">短縮スタティック法<br>キネマティック法<br>RTK法<br>ネットワーク型RTK法</th>
+                </tr>
+		<tr style="background: #1a3e5e; color: white;">
+			<th style="border: 1px solid #333; padding: 8px;text-align: left;">↓GNSS衛星の組み合わせ</th>
+		</tr>
+                </thead>
+                <tbody>
+                <tr>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">GPS･準天頂衛星</td>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">
+			<span class="blank" onclick="this.classList.toggle('show')">4</span>衛星以上</td>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">
+			<span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上</td>
+                </tr>
+		</tbody>
+		<tbody>
+		<tr>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">GPS･準天頂衛星<br>及びGLONASS衛星</td>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">
+			<span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上</td>
+                        <td style="border: 1px solid #333; padding: 8px;text-align: center;">
+			<span class="blank" onclick="this.classList.toggle('show')">6</span>衛星以上</td>
+                </tr>
+		</tbody>
+		<tbody>
+		<tr>
+                        <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">備考</td>
+                        <td colspan="2" style="border: 1px solid #333; padding: 8px;">1.GLONASS衛星を用いて観測する場合は、GPS･準天頂衛星及びGLONASS衛星を、それぞれ
+			<span class="blank" onclick="this.classList.toggle('show')">2</span>衛星以上を用いること。
+			<br>2.スタティック法による10㎞以上の観測では、GPS･準天頂衛星を用いて観測する場合は
+			<span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上とし、GPS･準天頂衛星及びGLONASS衛星を用いて観測する場合は
+			<span class="blank" onclick="this.classList.toggle('show')">6</span>衛星以上とする</td> 
+		</tr>
+		</tbody>
+		</table>
+        </div>
+	
+	</div>
+</div>
 
 <div class="clause-card">
         <div class="clause-title">観測値の点検及び再測 第38条</div>
