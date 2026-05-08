@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>作業規程の準則 地形及び写真測量(三次元点群測量)</title>
+   
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+
+<style>
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: #f0f2f5; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+        }
+        
+        .header { 
+            background: #1a3e5e; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold; 
+            flex-shrink: 0; /* ヘッダーの高さを固定 */
+        }
+
+        #container { 
+            flex: 1; 
+            display: flex; 
+            align-items: flex-start; /* 中央寄せから上寄せに変更 */
+            justify-content: center; 
+            padding: 15px; 
+            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
+            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+        }
+
+        .clause-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 600px; 
+            /* min-heightを解除し、中身に合わせて伸びるように変更 */
+            margin-bottom: 20px; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            display: none; 
+            flex-direction: column; 
+            box-sizing: border-box;
+        }
+        
+	.table-container {
+	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
+	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
+	}
+
+	.back-btn {
+    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+    text-decoration: none;
+    position: absolute;
+    left: 15px;
+    font-size: 1.5rem;    /* サイズの調整 */
+    font-weight: bold;    /* 太くして見やすくする */
+}
+
+        .clause-card.active { display: flex; }
+
+        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+        .text { line-height: 2.3; font-size: 1.05rem; color: #333; word-wrap: break-word; }
+
+        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
+        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+
+        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+
+        .nav-bar { 
+            background: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid #ddd; 
+            flex-shrink: 0; /* ナビバーの高さを固定 */
+            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
+        }
+        
+        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
+        .nav-btn:disabled { background: #ccc; cursor: default; }
+        .page-info { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+
+	<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 地形及び写真測量(三次元点群測量)</span>
+	</div>
+
+<div id="container">
+<div class="clause-card active">
+        <div class="clause-title">地上レーザー測量</div>
+        <div class="text">
+	第364条
+	<br>「地上レーザ測量」とは、地上レーザスキャナを用いて地形、地物等を計測し、取得したデータからオリジナルデータ等の三次元点群データ及び数値地形図データ等を作成する作業をいう。
+	<br>第368条
+	<br>数値地形図データの地図情報レベルは、250及び500を標準とし、数値図化の対象地物は目的に応じて設定するものとする。また、計測条件は地図情報レベルに応じて次表を標準とする。
+	<div class="table-container">
+	<table style="width: 100%; min-width: 400px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+         <thead>
+         <tr style="background: #1a3e5e; color: white;">
+                <th rowspan="2"style="border: 1px solid #ddd; padding: 4px; text-align: center; width: 100px;">地図情報レベル</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 100px;">地形</th>
+                <th colspan="2" style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 200px;">地物</th>
+	 </tr>
+	 <tr>
+		<th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向の計測点間隔</th>
+		<th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向の計測点間隔</th>
+		<th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向のスポット長径</th>
+	 </tr>
+	 </thead>
+	 <tbody>
+         <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">250</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">330mm</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">25mm</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">50mm</td>
+         </tr>
+	 </tbody>
+	 <tbody>
+         <tr>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">500</td>             
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">330mm</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">50mm</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">100mm</td>
+         </tr>
+	 </tbody>
+	 <tbody>
+         <tr>
+                <td colspan="4" style="border: 1px solid #ddd; padding: 8px;">備考
+		<地物の計測条件は、放射方向の計測点間隔又は放射方向のスポット長径の
+		<span class="blank" onclick="this.classList.toggle('show')">いずれか</span>が満たされているものとする。</td>
+	 </tr>
+	 </tbody>
+        </table>
+	</div>
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">地上レーザー測量</div>
+        <div class="text">
+	第371条
+	<br>標定点の精度は、水平位置（標準偏差）が
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">0.1</span>メートル以内、標高（標準偏差）が
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">0.1</span>メートル以内を標準とする
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">地上レーザー測量</div>
+        <div class="text">
+	第374条
+	<br>地上レーザスキャナは、次の性能を有するものとする。
+	<br>一　地上レーザスキャナの距離計測方法は、タイム・オブ・フライト方式又は位相差方式とすること。
+	<br>二　スポット径が分かること。
+	<br>三　水平及び垂直方向の角度の計測間隔が分かること。
+	<br>四　地形、地物等とレーザ光がなす角を入射角とし、標準的な地形、地物等が入射角
+	<span class="blank" onclick="this.classList.toggle('show')">1.5</span>度以上で計測できること。
+        </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">地上レーザー測量</div>
+        <div class="text">
+	第376条
+	<br>地上レーザ計測は、地形、地物等に対する方向、距離及び反射強度を計測するものとする。
+	<br>2　計測の方向は、地形の
+	<span class="blank" onclick="this.classList.toggle('show')">低い方</span>から
+	<span class="blank" onclick="this.classList.toggle('show')">高い方</span>への向きを原則とする。
+	<br>9　同一箇所から複数回計測する場合は、それぞれ地上レーザスキャナの器械高を
+	<span class="blank" onclick="this.classList.toggle('show')">変えること</span>を原則とする。
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title"UAV写真点群測量</div>
+        <div class="text">
+	第415条
+	<br>標定点は、作業地域の形状及び比高が大きく変化するような箇所、撮影コースの設定、地表 面の状態等を考慮しつつ、次の各号のとおり配置するものとする。
+	<br>一　標定点は、作業地域を囲むように配置する点（以下「外側標定点」という。）及び作業地域内に配置する点（以下「内側標定点」という。）で構成する。
+	<br>二　外側標定点は、作業地域の外側に配置することを標準とする。
+	<br>三　内側標定点は、作業地域内に均等に配置することを標準とする。
+	<br>四　標定点の配置間隔は、作成するオリジナルデータの位置精度に応じて、以下の表を標準とする。ただし、外側標定点は
+	<span class="blank" onclick="this.classList.toggle('show')">3</span>点以上、内側標定点は
+	<span class="blank" onclick="this.classList.toggle('show')">1</span>点以上設置するものとする。
+	<br>2　検証点は、標定点とは別に、次の各号のとおり配置するものとする。
+	<br>一　検証点は、標定点からできるだけ離れた場所に、作業地域内に均等に配置することを標準とする。
+	<br>二　設置する検証点の数は、設置する標定点の総数の半数以上（１未満の端数があるときは、端数は切り上げる。）を標準とする。
+	<br>三　検証点は、平坦な場所又は傾斜が一様な場所に配置することを標準とする。
+	<br>3　標定点及び検証点の精度は、水平位置（標準偏差）が0.1メートル以内、標高（標準偏差）が0.1メートル以内を標準とする。
+	</div>
+    </div>
+
+</div>
+
+<div class="nav-bar">
+    <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
+    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
+    <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
+</div>
+
+<script>
+    var currentPage = 0;
+    var cards = document.getElementsByClassName('clause-card');
+    
+    function updateUI() {
+        var total = cards.length;
+        document.getElementById('total-pages').innerText = total;
+        document.getElementById('current-page').innerText = currentPage + 1;
+        document.getElementById('prevBtn').disabled = (currentPage === 0);
+        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+    }
+
+    function changePage(step) {
+        // すべての穴埋めをリセット
+        var allBlanks = document.getElementsByClassName('blank');
+        for (var j = 0; j < allBlanks.length; j++) {
+            allBlanks[j].classList.remove('show');
+        }
+
+        // 現在のカードを非表示にする
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('active');
+            cards[i].style.display = 'none';
+        }
+        
+        // ページ移動
+        currentPage += step;
+        if (currentPage < 0) currentPage = 0;
+        if (currentPage >= cards.length) currentPage = cards.length - 1;
+        
+        // 新しいカードを表示する
+        cards[currentPage].classList.add('active');
+        cards[currentPage].style.display = 'flex';
+        
+        updateUI();
+    }
+
+    function toggleLocal(el, groupClass) {
+        var parentCard = el.closest('.clause-card');
+        var targets = parentCard.getElementsByClassName(groupClass);
+        var isShow = el.classList.contains('show');
+        for (var i = 0; i < targets.length; i++) {
+            if (isShow) targets[i].classList.remove('show');
+            else targets[i].classList.add('show');
+        }
+    }
+
+    updateUI();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+</script>
+
+</body>
+</html>
