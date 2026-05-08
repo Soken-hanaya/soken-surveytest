@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>作業規程の準則 レベル等による水準測量</title>
+   
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+
+<style>
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: #f0f2f5; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+        }
+        
+        .header { 
+            background: #1a3e5e; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold; 
+            flex-shrink: 0; /* ヘッダーの高さを固定 */
+        }
+
+        #container { 
+            flex: 1; 
+            display: flex; 
+            align-items: flex-start; /* 中央寄せから上寄せに変更 */
+            justify-content: center; 
+            padding: 15px; 
+            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
+            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+        }
+
+        .clause-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 600px; 
+            /* min-heightを解除し、中身に合わせて伸びるように変更 */
+            margin-bottom: 20px; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            display: none; 
+            flex-direction: column; 
+            box-sizing: border-box;
+        }
+
+	.table-container {
+	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
+	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
+	}
+        
+	.back-btn {
+    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+    text-decoration: none;
+    position: absolute;
+    left: 15px;
+    font-size: 1.5rem;    /* サイズの調整 */
+    font-weight: bold;    /* 太くして見やすくする */
+}
+
+        .clause-card.active { display: flex; }
+
+        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+        .text { line-height: 2.3; font-size: 1.05rem; color: #333; word-wrap: break-word; }
+
+        .blank { 
+	display: inline-block; 
+	background: #cbd5e0; 
+	color: #cbd5e0; 
+	padding: 0 8px; 
+	border-radius: 4px; 
+	cursor: pointer; 
+	font-weight: bold; 
+	border-bottom: 2px solid #a0aec0; 
+	text-align:center;
+	}
+
+        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+
+        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+
+        .nav-bar { 
+            background: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid #ddd; 
+            flex-shrink: 0; /* ナビバーの高さを固定 */
+            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
+        }
+        
+        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
+        .nav-btn:disabled { background: #ccc; cursor: default; }
+        .page-info { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+
+	<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 レベル等による水準測量</span>
+	</div>
+
+<div id="container">
+<div class="clause-card active">
+        <div class="clause-title">第5節　観測</div>
+        <div class="text">
+	第63条(機器の点検及び調整)
+	<br>観測に使用する機器は、適宜、点検及び調整を行うものとし、観測による
+	<span class="blank" onclick="this.classList.toggle('show')">視準線</span>誤差の点検調整における読定単位及び許容範囲は、次表を標準とする。(表略)
+	<br>2 点検調整は、観測着手前に次の項目について行い、水準測量作業用電卓又は観測手簿に記録する。ただし、1級水準測量及び2級水準測量では、観測期間中おおむね
+	<span class="blank" onclick="this.classList.toggle('show')">10日</span>ごとに行うものとする。
+        </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第5節　観測</div>
+        <div class="text">
+	第64条(観測の実施)
+	観測は、水準路線図に基づき、次に定めるところにより行うものとする。
+	<br>2　直接水準測量
+	<br>一　観測は、標尺目盛及びレベルと後視又は前視標尺との距離（以下「視準距離」という。）を読定するものとする。
+	<br>イ　視準距離及び標尺目盛の読定単位は次表を標準とし、視準距離はメートル単位で読定するものとする。
+	<div class="table-container">
+	<table style="width: 100%; min-width: 500px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+            <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #ddd; padding: 4px; text-align: center; width: 80px;">項目＼区分</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 80px;">1級水準測量</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 80px;">2級水準測量</th>
+		<th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 80px;">3級水準測量</th>
+		<th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 80px;">4級水準測量</th>
+		<th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 80px;">簡易水準測量</th>
+		</tr>
+	</thead>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">視準距離</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">最大50m</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">最大60m</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">最大70m</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">最大70m</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">最大80m</td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">読定単位</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.1mm</td>
+		<td colspan="4" style="border: 1px solid #ddd; padding: 8px;text-align: center;">1mm</td>
+                </tr>
+	</tbody>
+	</tbody>
+        </table>
+	</div>
+	<br>三	 標尺は、2本1組とし、往路及び復路の観測において標尺を交換するものとし、測点数は偶数とする。
+	<br>四　1級水準測量においては、観測の開始時、終了時及び固定点到着時ごとに、気温を
+	<span class="blank" style="min-width:2em;" onclick="this.classList.toggle('show')">1</span>度単位で測定するものとする。
+        <br>七	1級水準測量においては、標尺の下方20センチメートル以下を読定しないものとする。
+	<br>八　1日の観測は、水準点で終わることを原則とする。ただし、やむを得ず固定点で終わる場合は、観測の再開時に固定点の異常の有無を点検できるような方法で行うものとする。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第5節　観測</div>
+        <div class="text">
+	第66条(検測)
+	<br>1級水準測量及び2級水準測量においては、既知点と隣接する他の既設点間の検測を、次の各号のとおり行うものとする。
+	<br>一　検測は
+	<span class="blank" onclick="this.classList.toggle('show')">片道</span>観測を原則とする。
+	<br>二　検測における結果と前回の観測高低差又は測量成果の高低差との較差の許容範囲は、次表を標準とする。
+	</div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">第6節　計算</div>
+        <div class="text">
+	第67条(要旨)
+	<br>この章において「計算」とは、新点の標高を求めるため、次に定めるところにより行うものとする。
+	<br>一　標尺補正計算及び
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">正規正標高</span>補正計算（楕円補正）は、1級水準測量及び2級水準測量について行う。ただし、1級水準測量においては、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">正規正標高</span>補正計算に代えて
+	<span class="blank" onclick="this.classList.toggle('show')">正標高</span>補正計算（実測の重力値による補正）を用いることができる。
+	また、2級水準測量における標尺補正計算は、水準点間の高低差が70メートル以上の場合に行うものとし、標尺補正量は、気温20度における標尺改正数を用いて計算するものとする。
+       </div>
+    </div>
+
+<div class="clause-card">
+        <div class="clause-title">直接水準測量の誤差とその消去法</div>
+        <div class="text">
+	レベルに関するもの
+	<div class="table-container">
+	<table style="width: 100%; min-width: 300px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+        <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 100px;">誤差の種類</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 200px;">消去又は小さくする方法</th>
+		</tr>
+	</thead>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">視準線誤差<br>(視準軸誤差)</span></td>
+		<td style="border: 1px solid #ddd; padding: 8px;">レベルと後視、前視標尺の視準距離を等しくする。</td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">鉛直軸誤差</span></td>
+		<td style="border: 1px solid #ddd; padding: 8px">遠望鏡と三脚の向きを同一の標尺に向けて整置する。<br>レベルは出来る限り両標尺を結ぶ直線状に整置する。</td>
+                </tr>
+	</tbody>
+        </table>
+	</div>
+	標尺に関するもの
+	<div class="table-container">
+	<table style="width: 100%; min-width: 300px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+            <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 100px;">誤差の種類</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 200px;">消去又は小さくする方法</th>
+		</tr>
+	</thead>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">標尺の零目盛り誤差</td>
+		<td style="border: 1px solid #ddd; padding: 8px;"><span class="blank" onclick="this.classList.toggle('show')">測点回数を偶数回とする。</span></td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">標尺目盛りの不正による誤差</td>
+		<td style="border: 1px solid #ddd; padding: 8px"><span class="blank" onclick="this.classList.toggle('show')">往復観測で標尺を入れ替える。</span></td>
+                </tr>
+	</tbody>
+        </table>
+	</div>
+	自然現象によるもの
+	<div class="table-container">
+	<table style="width: 100%; min-width: 300px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+            <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 100px;">誤差の種類</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 200px;">消去又は小さくする方法</th>
+		</tr>
+	</thead>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">球差による誤差<br>(地球が湾曲していることによる誤差)</td>
+		<td style="border: 1px solid #ddd; padding: 8px">レベルと前視･後視標尺との距離を等しくする。</td>
+                </tr>
+	</tbody>
+	<tbody>
+                <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">大気の屈折による誤差</td>
+		<td style="border: 1px solid #ddd; padding: 8px;">レベルと両標尺間の距離を等しくする。
+		<br><span class="blank" onclick="this.classList.toggle('show')">標尺目盛り20cm以下は読定しない。</span></td>
+                </tr>
+	</tbody>
+        </table>
+	</div>
+    </div>
+</div>
+
+</div>
+
+
+<div class="nav-bar">
+    <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
+    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
+    <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
+</div>
+
+<script>
+    var currentPage = 0;
+    var cards = document.getElementsByClassName('clause-card');
+    
+    function updateUI() {
+        var total = cards.length;
+        document.getElementById('total-pages').innerText = total;
+        document.getElementById('current-page').innerText = currentPage + 1;
+        document.getElementById('prevBtn').disabled = (currentPage === 0);
+        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+    }
+
+    function changePage(step) {
+        // すべての穴埋めをリセット
+        var allBlanks = document.getElementsByClassName('blank');
+        for (var j = 0; j < allBlanks.length; j++) {
+            allBlanks[j].classList.remove('show');
+        }
+
+        // 現在のカードを非表示にする
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('active');
+            cards[i].style.display = 'none';
+        }
+        
+        // ページ移動
+        currentPage += step;
+        if (currentPage < 0) currentPage = 0;
+        if (currentPage >= cards.length) currentPage = cards.length - 1;
+        
+        // 新しいカードを表示する
+        cards[currentPage].classList.add('active');
+        cards[currentPage].style.display = 'flex';
+        
+        updateUI();
+    }
+
+    function toggleLocal(el, groupClass) {
+        var parentCard = el.closest('.clause-card');
+        var targets = parentCard.getElementsByClassName(groupClass);
+        var isShow = el.classList.contains('show');
+        for (var i = 0; i < targets.length; i++) {
+            if (isShow) targets[i].classList.remove('show');
+            else targets[i].classList.add('show');
+        }
+    }
+
+    updateUI();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+</script>
+
+</body>
+</html>
