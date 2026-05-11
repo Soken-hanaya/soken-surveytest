@@ -162,7 +162,8 @@
 	<br>こうした測量に該当し、基盤地図情報項目が含まれる代表的な測量成果には以下のようなものがある。
 	<br>　
 	<span class="blank" onclick="this.classList.toggle('show')">都市計画</span>図、
-	<span class="blank" onclick="this.classList.toggle('show')">道路台帳</span>図、基準点成果表、1/25000地形図、水路測量標記事、河川基盤地図
+	<span class="blank" onclick="this.classList.toggle('show')">道路台帳</span>図、基準点成果表、1/25000地形図、
+	<br>　水路測量標記事、河川基盤地図
 	<br>(2)基盤地図情報は、次の制度が必要です。
 	<div class="table-container">
 	<table style="width: 100%; min-width: 360px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
@@ -195,20 +196,15 @@
 <div class="clause-card">
         <div class="clause-title">DSM,DEM</div>
         <div class="text">
-	航空レーザ―測量を行って得られる、木や建物を含む
-	<span class="blank" onclick="this.classList.toggle('show')">最も高い地点</span>の高さデータをDSM(Digital Surface Model)という。
-	<br>このDSMにフィルタリング処理を施し、木や建物を除いた
-	<span class="blank" onclick="this.classList.toggle('show')">地表面だけ</span>の高さデータをDEM(Digital Elevation Model)という。
-	<br>DEM≒DTM	
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">UAV写真点群測量</div>
-        <div class="text">
-	第427条
-	<br>「三次元形状復元計算」とは、撮影した数値写真及び標定点を用いて、数値写真の外部標定要素及び数値写真に撮像された地点（以下この章において「特徴点」という。）の位置座標を求め、地形、地物等の3次元形状を復元し、
-	<span class="blank" onclick="this.classList.toggle('show')">オリジナルデータ</span>を作成する作業をいう。
+	・数値表層モデル DSM(Digital Surface Model)
+	<br>　航空レーザ―測量を行って得られる、木や建物を含む
+	<span class="blank" onclick="this.classList.toggle('show')">最も高い地点</span>の高さデータをDSMという。
+	<br>・数値標高モデル DEM(Digital Elevation Model)
+	<br>　DSMにフィルタリング処理を施し、木や建物を除いた
+	<span class="blank" onclick="this.classList.toggle('show')">地表面だけ</span>の高さデータをDEMという。
+	<br>DTM≒DEM
+	<br>国土地理院からダウンロードできるDEMのメッシュ間隔は
+	<span class="blank" onclick="this.classList.toggle('show')">1m,5m,10m</span>の3種類
 	</div>
 </div>
 
