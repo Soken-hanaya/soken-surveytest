@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GIS･基盤地図情報</title>
+   
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+
+<style>
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: #f0f2f5; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+        }
+        
+        .header { 
+            background: #1a3e5e; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold; 
+            flex-shrink: 0; /* ヘッダーの高さを固定 */
+        }
+
+        #container { 
+            flex: 1; 
+            display: flex; 
+            align-items: flex-start; /* 中央寄せから上寄せに変更 */
+            justify-content: center; 
+            padding: 15px; 
+            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
+            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+        }
+
+        .clause-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 600px; 
+            /* min-heightを解除し、中身に合わせて伸びるように変更 */
+            margin-bottom: 20px; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            display: none; 
+            flex-direction: column; 
+            box-sizing: border-box;
+        }
+        
+	.table-container {
+	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
+	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
+	}
+
+	.back-btn {
+    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+    text-decoration: none;
+    position: absolute;
+    left: 15px;
+    font-size: 1.5rem;    /* サイズの調整 */
+    font-weight: bold;    /* 太くして見やすくする */
+}
+
+        .clause-card.active { display: flex; }
+
+        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+        .text { line-height: 2.3; font-size: 1.05rem; color: #333; word-wrap: break-word; }
+
+        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
+        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+
+        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+
+        .nav-bar { 
+            background: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid #ddd; 
+            flex-shrink: 0; /* ナビバーの高さを固定 */
+            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
+        }
+        
+        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
+        .nav-btn:disabled { background: #ccc; cursor: default; }
+        .page-info { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+
+	<div class="header"><a href="index.html" class="back-btn">＜</a><span>GIS･基盤地図情報</span>
+	</div>
+
+<div id="container">
+<div class="clause-card active">
+        <div class="clause-title">地理空間情報システム(GIS)とは</div>
+        <div class="text">
+	地理的位置を手がかりに、位置に関する情報を持ったデータ(空間データ)を総合的に管理・加工し、視覚的に表示し、高度な分析や迅速な判断を可能にする技術である。
+	<br>(簡単に)
+	<br>　コンピュータ上で様々な地理空間情報を重ね合わせて表示するためのシステムのこと
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">地理空間情報システム活用例</div>
+        <div class="text">
+	防災・減災
+	<br>　ハザードマップの作成、災害時の状況把握、避難計画策定
+	<br>インフラ
+	<br>　管路管理、都市計画
+	<br>その他
+	<br>　エリアマーケティング、ナビゲーション
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">基盤地図情報とは</div>
+        <div class="text">
+	地理空間情報活用推進基本法　第二条
+	<br>地理空間情報のうち、電子地図上における地理空間情報の位置を定めるための基準となる測量の基準点、海岸線、公共施設の境界線、行政区画その他の国土交通省令で定めるものの位置情報
+	(国土交通省令で定める基準に適合するものに限る。)であって
+	<span class="blank" onclick="this.classList.toggle('show')">電磁的方式</span>により記録されたものをいう。
+        </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">基盤地図情報の項目</div>
+        <div class="text">
+	基盤地図情報の項目としては、以下の13項目が定められています。
+	<br>1.測量の基準点
+	<br>2.海岸線
+	<br>3.公共施設の境界線(道路区域界)
+	<br>4.公共施設の境界線(河川区域界)
+	<br>5.行政区画の境界線及び代表点
+	<br>6.道路縁
+	<br>7.河川堤防の表法肩の法線
+	<br>8.軌道の中心線
+	<br>9.標高点
+	<br>10.水涯線
+	<br>11.建築物の外周線
+	<br>12.市町村の町若しくは字の境界線及び代表点
+	<br>13.街区の境界線及び代表点
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">基盤地図情報が満たすべき基準</div>
+        <div class="text">
+	(1)基盤地図情報は、次のいずれかの測量の成果であることが必要です。
+	<br>･測量法第4条に規定する基本測量
+	<br>･測量法第5条に規定する公共測量
+	<br>･水路業務法第9条第1項に規定する水路測量
+	<br>こうした測量に該当し、基盤地図情報項目が含まれる代表的な測量成果には以下のようなものがある。
+	<br>　
+	<span class="blank" onclick="this.classList.toggle('show')">都市計画</span>図、
+	<span class="blank" onclick="this.classList.toggle('show')">道路台帳</span>図、基準点成果表、1/25000地形図、水路測量標記事、河川基盤地図
+	<br>(2)基盤地図情報は、次の制度が必要です。
+	<div class="table-container">
+	<table style="width: 100%; min-width: 360px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+         <thead>
+         <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #ddd; padding: 4px; text-align: center; width: 120px;"></th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 120px;">都市計画区域内</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 120px;">都市計画区域外</th>
+	 </tr>
+	 </thead>
+	 <tbody>
+         <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">平面位置の誤差</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">2.5m以内</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">25m以内</td>
+         </tr>
+	 </tbody>
+	 <tbody>
+         <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">高さの誤差</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">1.0m以内</td>
+		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">5.0m以内</td>
+         </tr>
+	 </tbody>
+	</table>
+	</div>
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">DSM,DEM</div>
+        <div class="text">
+	航空レーザ―測量を行って得られる、木や建物を含む
+	<span class="blank" onclick="this.classList.toggle('show')">最も高い地点</span>の高さデータをDSM(Digital Surface Model)という。
+	<br>このDSMにフィルタリング処理を施し、木や建物を除いた
+	<span class="blank" onclick="this.classList.toggle('show')">地表面だけ</span>の高さデータをDEM(Digital Elevation Model)という。
+	<br>DEM≒DTM	
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">UAV写真点群測量</div>
+        <div class="text">
+	第427条
+	<br>「三次元形状復元計算」とは、撮影した数値写真及び標定点を用いて、数値写真の外部標定要素及び数値写真に撮像された地点（以下この章において「特徴点」という。）の位置座標を求め、地形、地物等の3次元形状を復元し、
+	<span class="blank" onclick="this.classList.toggle('show')">オリジナルデータ</span>を作成する作業をいう。
+	</div>
+</div>
+
+</div>
+<div class="nav-bar">
+    <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
+    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
+    <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
+</div>
+
+<script>
+    var currentPage = 0;
+    var cards = document.getElementsByClassName('clause-card');
+    
+    function updateUI() {
+        var total = cards.length;
+        document.getElementById('total-pages').innerText = total;
+        document.getElementById('current-page').innerText = currentPage + 1;
+        document.getElementById('prevBtn').disabled = (currentPage === 0);
+        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+    }
+
+    function changePage(step) {
+        // すべての穴埋めをリセット
+        var allBlanks = document.getElementsByClassName('blank');
+        for (var j = 0; j < allBlanks.length; j++) {
+            allBlanks[j].classList.remove('show');
+        }
+
+        // 現在のカードを非表示にする
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('active');
+            cards[i].style.display = 'none';
+        }
+        
+        // ページ移動
+        currentPage += step;
+        if (currentPage < 0) currentPage = 0;
+        if (currentPage >= cards.length) currentPage = cards.length - 1;
+        
+        // 新しいカードを表示する
+        cards[currentPage].classList.add('active');
+        cards[currentPage].style.display = 'flex';
+        
+        updateUI();
+    }
+
+    function toggleLocal(el, groupClass) {
+        var parentCard = el.closest('.clause-card');
+        var targets = parentCard.getElementsByClassName(groupClass);
+        var isShow = el.classList.contains('show');
+        for (var i = 0; i < targets.length; i++) {
+            if (isShow) targets[i].classList.remove('show');
+            else targets[i].classList.add('show');
+        }
+    }
+
+    updateUI();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+</script>
+
+</body>
+</html>
