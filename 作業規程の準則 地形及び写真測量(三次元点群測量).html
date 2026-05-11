@@ -164,7 +164,8 @@
         <div class="text">
 	第374条
 	<br>地上レーザスキャナは、次の性能を有するものとする。
-	<br>一　地上レーザスキャナの距離計測方法は、タイム・オブ・フライト方式又は位相差方式とすること。
+	<br>一　地上レーザスキャナの距離計測方法は、
+	<span class="blank" onclick="this.classList.toggle('show')">タイム・オブ・フライト</span>方式又は位相差方式とすること。
 	<br>二　スポット径が分かること。
 	<br>三　水平及び垂直方向の角度の計測間隔が分かること。
 	<br>四　地形、地物等とレーザ光がなす角を入射角とし、標準的な地形、地物等が入射角
@@ -180,6 +181,13 @@
 	<br>2　計測の方向は、地形の
 	<span class="blank" onclick="this.classList.toggle('show')">低い方</span>から
 	<span class="blank" onclick="this.classList.toggle('show')">高い方</span>への向きを原則とする。
+	<br>5　計測方法は、次の各号を原則とする。
+	<br>一　平面直角座標系で計測する場合は、器械点・後視点法を用いるものとする。
+	<br>二　平面直角座標系以外の座標系で計測する場合は、
+	<span class="blank" onclick="this.classList.toggle('show')">相似変換</span>法又は
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">後方交会</span>法を用いるものとする。
+	<br>6　器械点・後視点法及び
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">後方交会</span>法を用いる場合は、コンペンセータ及び求心器を備えた地上レーザスキャナを用いなければならない。
 	<br>9　同一箇所から複数回計測する場合は、それぞれ地上レーザスキャナの器械高を
 	<span class="blank" onclick="this.classList.toggle('show')">変えること</span>を原則とする。
 	</div>
@@ -283,7 +291,7 @@
 	<span class="blank" onclick="this.classList.toggle('show')">45</span>度以上とするとともに、必要な計測距離を満たすように定めることを標準とする。また、コース間重複度の確認においても同様とする。
 	<br>6　前項の計測距離は、使用するレーザスキャナの最大測距距離の
 	<span class="blank" onclick="this.classList.toggle('show')">80</span>%以下で計測を行うように定めることを標準とし、最大測距距離を超えないものとする。
-	<br>7　コース間重複度は、欠測が生じないこと及び第４６４条で行うコース間重複部における標高値の点検 に使用する箇所を確保することを踏まえて設定するものとし、
+	<br>7　コース間重複度は、欠測が生じないこと及び第464条で行うコース間重複部における標高値の点検 に使用する箇所を確保することを踏まえて設定するものとし、
 	<span class="blank" onclick="this.classList.toggle('show')">30</span>%以上とすることを標準とする。
 	</div>
 </div>
@@ -326,6 +334,35 @@
 	</div>
 </div>
 
+<div class="clause-card">
+        <div class="clause-title">車載写真レーザー測量</div>
+        <div class="text">
+	第484条
+	<br>車載写真レーザ測量システムは、車両、自車位置姿勢データ取得装置、レーザスキャナ、
+	<span class="blank" onclick="this.classList.toggle('show')">レーザスキャナ</span>、計測用カメラ又は参照用カメラ及び解析ソフトウェアで構成するものとする。
+	<br>一　自車位置姿勢データ取得装置は、GNSS測量機、
+	<span class="blank" onclick="this.classList.toggle('show')">IMU(慣性計測装置)</span>及び走行距離計等で構成されるもので、それらが適切に同期され、解析処理に必要な自車位置姿勢データを取得できるものとする。
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">車載写真レーザー測量</div>
+        <div class="text">
+	第500条
+	<br>5 固定局は次の号のとおりとする。
+	<br>一　固定局には田子規軍店を用いることを原則とする。
+	<br>二　新たに固定局を設置する場合は、1級基準点測量及び3級水準測量により水平位置及び標高値を求 めるものとする。
+	<br>三　固定局と取得区間との基線距離は
+	<span class="blank" onclick="this.classList.toggle('show')">10km</span>以内を原則とし、やむを得ない場合でも
+	<span class="blank" onclick="this.classList.toggle('show')">30km</span>を超えないものとする。
+	<br>第501条　移動取得は、移動取得計画に基づき、次の各号のデータを適切に取得するものとする。
+	<br>一 自車位置姿勢データ取得装置を用いて、次のとおりGNSS観測データ、IMUによる加速度、角速度データ等を取得する。
+	<br>　イ　固定局のGNSS観測データ取得間隔は、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1</span>秒以下とする。
+	<br>　ロ　固定局のGNSS観測データ取得間隔は、
+	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1</span>秒以下とする。
+	</div>
+</div>
 
 </div>
 <div class="nav-bar">
