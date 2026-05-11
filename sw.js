@@ -13,6 +13,7 @@ const urlsToCache = [
   '作業規程の準則 用地測量.html',
   'リモートセンシング.html',
   '地理情報標準プロファイル(JPGIS).html',
+  'GIS･基盤地図情報.html',
   'manifest.json',
   'sw.js'
 ];
