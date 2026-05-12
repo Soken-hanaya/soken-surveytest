@@ -14,6 +14,7 @@ const urlsToCache = [
   'リモートセンシング.html',
   '地理情報標準プロファイル(JPGIS).html',
   'GIS･基盤地図情報.html',
+  '地図投影法とか.html',
   'manifest.json',
   'sw.js'
 ];
