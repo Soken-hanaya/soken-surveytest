@@ -15,6 +15,8 @@ const urlsToCache = [
   '地理情報標準プロファイル(JPGIS).html',
   'GIS･基盤地図情報.html',
   '地図投影法とか.html',
+  '過去記述問題 必須.html',
+  '過去記述問題 選択No.2.html',
   'manifest.json',
   'sw.js'
 ];
