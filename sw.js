@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const urlsToCache = [
   'index.html',
   '測量法.html',
@@ -21,3 +22,28 @@ const urlsToCache = [
   'manifest.json',
   'sw.js'
 ];
+=======
+const urlsToCache = [
+  'index.html',
+  '測量法.html',
+  '公共測量の手続.html',
+  '作業規程の準則 総則.html',
+  '作業規程の準則 基準点測量.html',
+  '作業規程の準則 レベル等による水準測量.html',
+  '作業規程の準則 GNSS標高測量.html',
+  '作業規程の準則 地形及び写真測量.html',
+  '作業規程の準則 地形及び写真測量(三次元点群測量).html',
+  '作業規程の準則 路線測量.html',
+  '作業規程の準則 河川測量.html',
+  '作業規程の準則 用地測量.html',
+  'リモートセンシング.html',
+  '地理情報標準プロファイル(JPGIS).html',
+  'GIS･基盤地図情報.html',
+  '地図投影法とか.html',
+  '過去記述問題 必須.html',
+  '過去記述問題 選択No.2.html',
+  '過去記述問題 選択No.5.html',
+  'manifest.json',
+  'sw.js'
+];
+>>>>>>> b92760c (initial commit)
