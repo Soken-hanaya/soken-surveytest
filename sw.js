@@ -17,6 +17,7 @@ const urlsToCache = [
   '地図投影法とか.html',
   '過去記述問題 必須.html',
   '過去記述問題 選択No.2.html',
+  '過去記述問題 選択No.5.html',
   'manifest.json',
   'sw.js'
 ];
