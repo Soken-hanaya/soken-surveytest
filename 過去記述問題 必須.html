@@ -65,14 +65,24 @@
         .clause-card.active { display: flex; }
 
         .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+       
         .text { 
-	line-height: 2.0; /*行間*/
+	line-height: 1.8; /*行間*/
 	font-size: 0.95rem;  /*文字サイズ*/
 	color: #333; 
 	word-wrap: break-word; 
 	}
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
+        .blank { 
+        display: inline-block; 
+        background: #cbd5e0; 
+        color: #cbd5e0; 
+        padding: 0 8px; 
+        border-radius: 4px; 
+        cursor: pointer; 
+        font-weight: bold; 
+        border-bottom: 2px solid #a0aec0; }
+
         .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
 
         .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
@@ -233,11 +243,114 @@
         <div class="text">
 	Ｑ
 	<br>測量成果などは、あらかじめ測量計画機関が定める様式に従って提出する。測量計画機関の指示により、測量成果などをDVD-Rなどの電子媒体に格納して提出する場合、
-	測量成果などを格納した電子媒体に対して、測量作業機関が情報セキュリティ上特に行うべき具体的な事項
+	測量成果などを格納した電子媒体に対して、測量作業機関が情報セキュリティ上特に行うべき具体的な事項を二つ
 	<br>Ａ
 	<br><span class="blank" onclick="this.classList.toggle('show')">最新のデータにアップデートしたウィルスチェックソフトでチェックする。</span>
 	<br><span class="blank" onclick="this.classList.toggle('show')">電子媒体にデータを追記できないことを確認する。</span>
 	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R7 B-2</div>
+        <div class="text">
+	Ｑ
+	<br>滑落防止の事前対策について作業員の装備及び危険箇所把握の観点からそれぞれ一つづつ
+	<br>Ａ
+	<br>・作業員の装備
+    <br>激しい摩耗や傷等の劣化がない
+    <span class="blank" onclick="this.classList.toggle('show')">墜落制止用器具</span>などを装備させる。
+    <br>・危険個所の把握
+	<br>滑落の危険個所を把握するため
+    <span class="blank" onclick="this.classList.toggle('show')">危険予知活動</span>を実施する。
+	</div>
+</div>
+
+<div class="clause-card">
+    <div class="clause-title">R7 B-3</div>
+    <div class="text">
+    Ｑ
+    <br>車載写真レーザー測量において計測用カメラで撮影した写真に通行人が写っていた。撮影した写真も測量成果の一部として納品する予定であるが、
+    測量成果などを準備する段階で、個人情報漏洩の防止など個人の権利保護の為測量作業機関がとるべき対応を一つ
+    <br>Ａ
+    <br><span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">個人情報</span>と
+    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">個人情報</span>でないその他の情報を容易に
+    <span class="blank" onclick="this.classList.toggle('show')">分離可能</span>な形で整理する。
+    </div>
+</div>
+
+<div class="clause-card">
+    <div class="clause-title">R7 C-2</div>
+    <div class="text">
+    Ｑ
+    <br>測量法の目的を踏まえ、作業計画機関が作業規程を定めなければならないとしている理由。
+    <br>Ａ
+    <br>公共測量における標準的な作業方法などを定め、その
+    <span class="blank" onclick="this.classList.toggle('show')">規格</span>を統一するとともに、必要な
+    <span class="blank" onclick="this.classList.toggle('show')">精度</span>を確保するため。
+    </div>
+</div>
+
+<div class="clause-card">
+    <div class="clause-title">R7 C-3</div>
+    <div class="text">
+    Ｑ
+    <br>測量計画機関が公共測量を実施しようとしているときに、測量の重複を避けるために行うべきこととして作業規程のの準則に規定していることはなにか。
+    <br>Ａ
+    <br>作業地域における基本測量及び公共測量の
+    <span class="blank" onclick="this.classList.toggle('show')">実施状況</span>について調査し、利用できる
+    <span class="blank" onclick="this.classList.toggle('show')">測量成果</span>などの活用を図ること。
+    </div>
+</div>
+
+<div class="clause-card">
+    <div class="clause-title">R7 C-4</div>
+    <div class="text">
+    Ｑ
+    <br>公共測量で設置する測量標に表示しなければならない内容を二つ
+    <br>Ａ
+    <br><span class="blank" onclick="this.classList.toggle('show')">公共測量の測量標であること</span>
+    <br><span class="blank" onclick="this.classList.toggle('show')">測量計画機関の名称</span>
+    </div>
+</div>
+
+<div class="clause-card">
+    <div class="clause-title">R7 D-1</div>
+    <div class="text">
+    Ｑ
+    <br>測量法で定められている測量士と測量士補の役割の違いについて、公共測量の計画の観点から
+    <br>Ａ
+    <br>測量士は測量の
+    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">計画を作製</span>し、または実施することができ、測量士補は測量士の
+    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">作製した計画</span>に従い測量に従事するところが違う。
+    </div>
+</div>
+
+<div class="clause-card">
+    <div class="clause-title">R7 D-2</div>
+    <div class="text">
+    Ｑ
+    <br>二つの観点から測量技術者自らが実践できる活動   
+    <br>　観点1:新たな測量技術の業務への導入   
+    <br>　観点2:測量技術者の確保   
+    <br>Ａ
+    <br>観点1
+    <br>作業規程の準則に新たに導入された測量技術について，社内で勉強会を行う。
+    <br>観点2
+    <br>学生向けの測量業務のインターンシップを行い，社会にどのように役立っているかを実体験する機会を提供する。
+    </div>
+</div>
+
+<div class="clause-card">
+    <div class="clause-title">R7 D-3</div>
+    <div class="text">
+    Ｑ
+    <br>大規模な地震が発生した際に、測量技術者が災害の状況把握や復旧復興の際に担うことのできる業務の内容及びその業務がどのようにやくだつか
+    <br>Ａ
+    <br>業務の内容
+    <br>　地震により変化のあった基準点を迅速に再測し復旧する。
+    <br>どのように役立つか
+    <br>　復旧・復興の各種事業への早期の利用を可能とし，経済・社会活動の復帰に貢献する。
+    </div>
 </div>
 
 </div>
