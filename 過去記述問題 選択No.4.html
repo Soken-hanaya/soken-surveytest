@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>過去記述問題 選択No.4</title>
+   
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+
+<style>
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: #f0f2f5; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+        }
+        
+        .header { 
+            background: #1a3e5e; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold; 
+            flex-shrink: 0; /* ヘッダーの高さを固定 */
+        }
+
+        #container { 
+            flex: 1; 
+            display: flex; 
+            align-items: flex-start; /* 中央寄せから上寄せに変更 */
+            justify-content: center; 
+            padding: 15px; 
+            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
+            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+        }
+
+        .clause-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 600px; 
+            /* min-heightを解除し、中身に合わせて伸びるように変更 */
+            margin-bottom: 20px; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            display: none; 
+            flex-direction: column; 
+            box-sizing: border-box;
+        }
+
+	.back-btn {
+    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+    text-decoration: none;
+    position: absolute;
+    left: 15px;
+    font-size: 1.5rem;    /* サイズの調整 */
+    font-weight: bold;    /* 太くして見やすくする */
+}
+
+        .clause-card.active { display: flex; }
+
+        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+
+        .text { 
+	line-height: 1.8; /*行間*/
+	font-size: 0.95rem;  /*文字サイズ*/
+	color: #333; 
+	word-wrap: break-word; 
+	}
+
+       .blank { 
+        display: inline-block; 
+        background: #cbd5e0; 
+        color: #cbd5e0; 
+        padding: 0 8px; 
+        border-radius: 4px; 
+        cursor: pointer; 
+        font-weight: bold; 
+        border-bottom: 2px solid #a0aec0;
+        text-align: center;  
+        }    
+        
+        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+
+        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+
+        .nav-bar { 
+            background: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid #ddd; 
+            flex-shrink: 0; /* ナビバーの高さを固定 */
+            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
+        }
+        
+        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
+        .nav-btn:disabled { background: #ccc; cursor: default; }
+        .page-info { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+
+	<div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 選択No.4</span>
+	</div>
+
+<div id="container">
+<div class="clause-card active">
+    <div class="clause-title">R5 B-5</div>
+    <div class="text">
+	Ｑ
+	<br>地理院タイルは、あらかじめタイル状に分割したデータを配信する方式で提供している。広範囲で情報量の多い地図データの配信をこの方式で行うことの利点について、
+    データの提供側及びユーザー側のそれぞれの立場
+	<br>Ａ
+	<div class="table-container">
+	<table style=" min-width: 400px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+        <tbody>
+        <tr>
+            <td style="border: 1px solid #333; padding: 8px;text-align: center; width: 100px;">データの提供側</td>
+            <td style="border: 1px solid #333; padding: 8px;">
+            <span class="blank" style="width: 15em;" onclick="this.classList.toggle('show')">サーバへの負荷が小さい</span></td>
+		</tr>
+        </tbody>
+        <tbody>
+        <tr>
+            <td style="border: 1px solid #333; padding: 8px; text-align: center;">ユーザ側</td>
+            <td style="border: 1px solid #333; padding: 8px; ">
+            <span class="blank" style="width: 15em;" onclick="this.classList.toggle('show')">データの表示が速い</span></td>
+        </tr>
+		</body>
+    </table>    
+    </div>
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R5 C-2</div>
+        <div class="text">
+	Ｑ
+	<br>GISの｢オーバーレイ｣の機能の内容について
+	<br>Ａ
+	<br>複数の異なる
+    <span class="blank" onclick="this.classList.toggle('show')">地理空間情報</span>を
+    <span class="blank" onclick="this.classList.toggle('show')">重ね合わせて</span>表示する機能
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R6 A-4</div>
+        <div class="text">
+	Ｑ
+	<br>地図編集の技法のひとつである転位について、有形線と無形線が重複又は近接する場合における一般的な原則
+	<br>Ａ
+	<br><span style="color: #e74c3c;">河川</span>などの
+    <span style="color: #e74c3c;">有形線</span>と
+    <span style="color: #e74c3c;">行政界</span>などの
+    <span style="color: #e74c3c;">無形線</span>が重複又は近接する場合には
+    <span class="blank" onclick="this.classList.toggle('show')">無形線</span>を
+    <span style="color: #e74c3c;">転位</span>する。
+    </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R6 B-4</div>
+        <div class="text">
+	Ｑ
+	<br>ランベルト正角円錐図法は中緯度東西に広がる地域を表現する投影法として多く用いられている。その主な特徴
+	<br>Ａ
+	<br>
+    <span class="blank" onclick="this.classList.toggle('show')">極</span>を地図主点とし、
+    <span class="blank" onclick="this.classList.toggle('show')">中緯度付近</span>に
+    <span style="color: #e74c3c;">標準緯線</span>を設けると、その周辺に
+    <span style="color: #e74c3c;">東西方向</span>に
+    <span style="color: #e74c3c;">ひずみ</span>が小さい地域を確保することができる。
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R7 B-4</div>
+        <div class="text">
+	Ｑ
+	<br>GISを用いて、平面直角座標系で作成した地図データを地理院タイル状に重ねて表示しようとしたが、地図データが地理院タイル状で本来と異なる位置に表示された。
+    GISにデータを取り込む際、それぞれのデータを正しい位置に重ねて表示させるにはどのようにすればいいか
+	<br>Ａ
+	<br>GISにデータを取り込む際に、それぞれのデータの
+    <span class="blank" onclick="this.classList.toggle('show')">座標系</span>を合わせる。
+	</div>
+</div>
+
+</div>
+
+<div class="nav-bar">
+    <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
+    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
+    <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
+</div>
+
+<script>
+    var currentPage = 0;
+    var cards = document.getElementsByClassName('clause-card');
+    
+    function updateUI() {
+        var total = cards.length;
+        document.getElementById('total-pages').innerText = total;
+        document.getElementById('current-page').innerText = currentPage + 1;
+        document.getElementById('prevBtn').disabled = (currentPage === 0);
+        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+    }
+
+    function changePage(step) {
+        // すべての穴埋めをリセット
+        var allBlanks = document.getElementsByClassName('blank');
+        for (var j = 0; j < allBlanks.length; j++) {
+            allBlanks[j].classList.remove('show');
+        }
+
+        // 現在のカードを非表示にする
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('active');
+            cards[i].style.display = 'none';
+        }
+        
+        // ページ移動
+        currentPage += step;
+        if (currentPage < 0) currentPage = 0;
+        if (currentPage >= cards.length) currentPage = cards.length - 1;
+        
+        // 新しいカードを表示する
+        cards[currentPage].classList.add('active');
+        cards[currentPage].style.display = 'flex';
+        
+        updateUI();
+    }
+
+    function toggleLocal(el, groupClass) {
+        var parentCard = el.closest('.clause-card');
+        var targets = parentCard.getElementsByClassName(groupClass);
+        var isShow = el.classList.contains('show');
+        for (var i = 0; i < targets.length; i++) {
+            if (isShow) targets[i].classList.remove('show');
+            else targets[i].classList.add('show');
+        }
+    }
+
+    updateUI();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+</script>
+
+</body>
+</html>

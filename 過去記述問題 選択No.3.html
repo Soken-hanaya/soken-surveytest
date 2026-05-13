@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>過去記述問題 選択No.3</title>
+   
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+
+<style>
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background-color: #f0f2f5; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+        }
+        
+        .header { 
+            background: #1a3e5e; 
+            color: white; 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold; 
+            flex-shrink: 0; /* ヘッダーの高さを固定 */
+        }
+
+        #container { 
+            flex: 1; 
+            display: flex; 
+            align-items: flex-start; /* 中央寄せから上寄せに変更 */
+            justify-content: center; 
+            padding: 15px; 
+            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
+            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
+        }
+
+        .clause-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 600px; 
+            /* min-heightを解除し、中身に合わせて伸びるように変更 */
+            margin-bottom: 20px; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+            display: none; 
+            flex-direction: column; 
+            box-sizing: border-box;
+        }
+
+	.back-btn {
+    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+    text-decoration: none;
+    position: absolute;
+    left: 15px;
+    font-size: 1.5rem;    /* サイズの調整 */
+    font-weight: bold;    /* 太くして見やすくする */
+}
+
+        .clause-card.active { display: flex; }
+
+        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+
+        .text { 
+	line-height: 1.8; /*行間*/
+	font-size: 0.95rem;  /*文字サイズ*/
+	color: #333; 
+	word-wrap: break-word; 
+	}
+
+        .blank { 
+            display: inline-block; 
+            background: #cbd5e0; 
+            color: #cbd5e0; 
+            padding: 0 8px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            border-bottom: 2px solid #a0aec0;
+            text-align: center;  
+        }
+
+        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+
+        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+
+        .nav-bar { 
+            background: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-top: 1px solid #ddd; 
+            flex-shrink: 0; /* ナビバーの高さを固定 */
+            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
+        }
+        
+        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
+        .nav-btn:disabled { background: #ccc; cursor: default; }
+        .page-info { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+
+
+	<div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 選択No.3</span>
+	</div>
+
+<div id="container">
+<div class="clause-card active">
+        <div class="clause-title">R5 B-1</div>
+        <div class="text">
+	Ｑ
+	<br>A地区に新設された高速道路のインターチェンジとその周辺道路の工事は、地形の変化を伴わないもので、4年前に完成した。また、A地区ではそれ以外に大きな変化はなかった。
+	A地区において数値地形図データを整備するにあたり、測量の重複を排除する観点からどのような方法が考えられるか。
+    <br>Ａ
+	<br>インターチェンジとその周辺道路について、
+    <span class="blank" onclick="this.classList.toggle('show')">基盤地図情報</span>を用いて数値地形図データを修正する。
+    </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R5 B-2</div>
+        <div class="text">
+	Ｑ1
+	<br>トンネルを含む全長7kmの道路の数値地形図データを修正するに当たって、改めて測量する必要があり、TSと車載写真レーザー測量を検討した結果、現地作業日数の観点から
+    車載写真レーザー測量の利点について。
+	<br>Ａ1
+	<br>車載写真レーザー測量では、走行しながらデータを取得するため、TSによる測量より現地作業日数を短縮できる。
+	<br>Ｑ2
+    <br>また車載写真レーザー測量のトンネル区間などGNSS衛星からの電波が安定した受信が長時間にわたって期待できない区間について、移動取得計画を策定する際の
+    留意事項として考えられることを｢退避場所｣の語句を用いて
+    <br>Ａ2
+    <br><span class="blank" onclick="this.classList.toggle('show')">自車位置姿勢データ</span>取得装置の
+    <span class="blank" onclick="this.classList.toggle('show')">セルフキャリブレーション</span>が行える退避位置を確保する必要がある。
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R5 B-3</div>
+        <div class="text">
+	Ｑ
+	<br>航空レーザ―測量で得られる成果を用いて樹木の高さを推定する方法
+	<br>Ａ
+	<br><span class="blank" onclick="this.classList.toggle('show')">オリジナルデータ</span>と
+    <span class="blank" onclick="this.classList.toggle('show')">グラウンドデータ</span>から取得した
+    <span class="blank" onclick="this.classList.toggle('show')">高さ</span>の差分をとる。
+        </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R5 C-1</div>
+        <div class="text">
+	Ｑ
+	<br>写真地図を作製する上で重複度を大きくする利点
+	<br>Ａ
+	<br>建物や樹木の
+    <span class="blank" onclick="this.classList.toggle('show')">倒れこみ</span>により隠れてしまう部分を、極力減らすことができる。
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R6 A-2</div>
+        <div class="text">
+	Ｑ
+	<br>斜面に地上レーザースキャナを設置し、その斜面を計測する場合、観測精度を向上させるために、計測の方向は地上レーザースキャナを設置した地点より
+    高い方への向きを原則とする。観測精度が向上する理由
+	<br>Ａ
+	<br>点密度が
+    <span class="blank" onclick="this.classList.toggle('show')">大きく</span>なり、スポット長径が
+    <span class="blank" onclick="this.classList.toggle('show')">短く</span>なるため
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R6 D-4</div>
+        <div class="text">
+	Ｑ
+	<br>航空レーザ測量は樹高を推定することにも用いられるがその方法について
+	<br>Ａ
+	<br><span class="blank" onclick="this.classList.toggle('show')">ファーストパルス</span>と
+    <span class="blank" onclick="this.classList.toggle('show')">ラストパルス</span>から取得した高さの差分をとる。
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R7 B-2</div>
+        <div class="text">
+	Ｑ
+	<br>昼間でも樹木の下が薄暗い山林の内東西500m､南北200mの範囲において、地表面形状の把握を目的として、UAVを用いた三次元点群データの取得を計画している。
+    <br>UAVレーザ測量とUAV写真点群測量を比較し、より計測に適した測量技術とその理由。(法律上の制限や安全に関する内容以外で)
+	<br>Ａ
+	<br><span class="blank" style="min-width:9em;" onclick="this.classList.toggle('show')">UAVレーザー測量</span>
+    <br><span class="blank" onclick="this.classList.toggle('show')">写真には写らない樹木の下の地表面であっても、
+    レーザが樹木の隙間を通過することで測量が可能な場合があるため。</span>
+	</div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R7 B-3</div>
+        <div class="text">
+	Ｑ
+	<br>UAVレーザ測量において、標高差の高い傾斜地を含む範囲を対象に、等高度で複数コースの計測計画を作成する場合、コース間重複度30%以上を確保するために
+    特に気を付けるべき点、及び対応方法は何か
+	<br>Ａ
+	<br>傾斜地では、地表面の傾斜により
+    <span class="blank" onclick="this.classList.toggle('show')">対地高度</span>が減少することで
+    <span style="color: #e74c3c;">計測幅</span>が狭くなり、
+    <span style="color: #e74c3c;">コース間重複度</span>を確保できない場合がある。もっとも標高の
+    <span class="blank" onclick="this.classList.toggle('show')">高い地点</span>においてもコース間重複度を十分に確保できるよう、
+    <span class="blank" onclick="this.classList.toggle('show')">コース間隔</span>を
+    <span class="blank" onclick="this.classList.toggle('show')">狭くする</span>必要がある。
+    </div>
+</div>
+
+<div class="clause-card">
+        <div class="clause-title">R7 C-3</div>
+        <div class="text">
+	Ｑ
+	<br>車両の進行方向に対して左右の向きを変えられるレーザ測距装置が車両後方に1台のみ搭載されている車載写真レーザ測量システムを用いて、市街地を往復観測することにした。
+    この場合、観測できない箇所を減らすため、往路と復路ではレーザ測距装置の向きを変えることが望ましい。その理由を点群取得の観点で
+    <br>Ａ
+	<br>レーザの
+    <span style="color: #e74c3c;">照射方向</span>を変えることにより、
+    <span class="blank" onclick="this.classList.toggle('show')">地物の陰</span>となる箇所を減らして
+    <span style="color: #e74c3c;">観測</span>できる。
+	</div>
+</div>
+
+</div>
+
+<div class="nav-bar">
+    <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
+    <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
+    <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
+</div>
+
+<script>
+    var currentPage = 0;
+    var cards = document.getElementsByClassName('clause-card');
+    
+    function updateUI() {
+        var total = cards.length;
+        document.getElementById('total-pages').innerText = total;
+        document.getElementById('current-page').innerText = currentPage + 1;
+        document.getElementById('prevBtn').disabled = (currentPage === 0);
+        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+    }
+
+    function changePage(step) {
+        // すべての穴埋めをリセット
+        var allBlanks = document.getElementsByClassName('blank');
+        for (var j = 0; j < allBlanks.length; j++) {
+            allBlanks[j].classList.remove('show');
+        }
+
+        // 現在のカードを非表示にする
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('active');
+            cards[i].style.display = 'none';
+        }
+        
+        // ページ移動
+        currentPage += step;
+        if (currentPage < 0) currentPage = 0;
+        if (currentPage >= cards.length) currentPage = cards.length - 1;
+        
+        // 新しいカードを表示する
+        cards[currentPage].classList.add('active');
+        cards[currentPage].style.display = 'flex';
+        
+        updateUI();
+    }
+
+    function toggleLocal(el, groupClass) {
+        var parentCard = el.closest('.clause-card');
+        var targets = parentCard.getElementsByClassName(groupClass);
+        var isShow = el.classList.contains('show');
+        for (var i = 0; i < targets.length; i++) {
+            if (isShow) targets[i].classList.remove('show');
+            else targets[i].classList.add('show');
+        }
+    }
+
+    updateUI();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+</script>
+
+</body>
+</html>
