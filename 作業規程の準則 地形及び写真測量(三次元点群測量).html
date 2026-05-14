@@ -1,436 +1,548 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>作業規程の準則 地形及び写真測量(三次元点群測量)</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>作業規程の準則 地形及び写真測量(三次元点群測量)</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
-        
-	.table-container {
-	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
-	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
-	}
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
-        
-	.text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      /* 横方向にのみスクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+      padding-right: 2px;
+      /* ★右端の線が消えないように隙間を作る */
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 地形及び写真測量(三次元点群測量)</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 地形及び写真測量(三次元点群測量)</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">地上レーザー測量</div>
-        <div class="text">
-	第364条
-	<br>「地上レーザ測量」とは、地上レーザスキャナを用いて地形、地物等を計測し、取得したデータからオリジナルデータ等の三次元点群データ及び数値地形図データ等を作成する作業をいう。
-	<br>第368条
-	<br>数値地形図データの地図情報レベルは、250及び500を標準とし、数値図化の対象地物は目的に応じて設定するものとする。また、計測条件は地図情報レベルに応じて次表を標準とする。
-	<div class="table-container">
-	<table style="width: 100%; min-width: 400px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
-         <thead>
-         <tr style="background: #1a3e5e; color: white;">
-                <th rowspan="2"style="border: 1px solid #ddd; padding: 4px; text-align: center; width: 100px;">地図情報レベル</th>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">第2章&emsp;地上レーザー測量</div>
+      <div class="text">
+        第364条(要旨)
+        <br>｢地上レーザ測量｣とは、地上レーザスキャナを用いて地形、地物等を計測し、取得したデータから
+        <span class="blank" onclick="this.classList.toggle('show')">オリジナルデータ</span>等の三次元点群データ及び数値地形図データ等を作成する作業をいう。
+        <br>第368条(計測条件等)
+        <br>5&emsp;数値地形図データの地図情報レベルは、250及び500を標準とし、数値図化の対象地物は目的に応じて設定するものとする。また、計測条件は地図情報レベルに応じて次表を標準とする。
+        <div class="table-container">
+          <table
+            style="width: 100%; min-width: 400px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+            <thead>
+              <tr style="background: #1a3e5e; color: white;">
+                <th rowspan="2" style="border: 1px solid #ddd; padding: 4px; text-align: center; width: 100px;">地図情報レベル
+                </th>
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 100px;">地形</th>
                 <th colspan="2" style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 200px;">地物</th>
-	 </tr>
-	 <tr>
-		<th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向の計測点間隔</th>
-		<th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向の計測点間隔</th>
-		<th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向のスポット長径</th>
-	 </tr>
-	 </thead>
-	 <tbody>
-         <tr>
+              </tr>
+              <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向の計測点間隔</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向の計測点間隔</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">放射方向のスポット長径</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">250</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">330mm</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">25mm</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">50mm</td>
-         </tr>
-	 </tbody>
-	 <tbody>
-         <tr>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">500</td>             
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">330mm</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">50mm</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">100mm</td>
-         </tr>
-	 </tbody>
-	 <tbody>
-         <tr>
-                <td colspan="4" style="border: 1px solid #ddd; padding: 8px;">備考　地物の計測条件は、放射方向の計測点間隔又は放射方向のスポット長径の
-		<span class="blank" onclick="this.classList.toggle('show')">いずれか</span>が満たされているものとする。</td>
-	 </tr>
-	 </tbody>
-        </table>
-	</div>
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">地上レーザー測量</div>
-        <div class="text">
-	第371条
-	<br>標定点の精度は、水平位置（標準偏差）が
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">0.1</span>メートル以内、標高（標準偏差）が
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">0.1</span>メートル以内を標準とする
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">地上レーザー測量</div>
-        <div class="text">
-	第374条
-	<br>地上レーザスキャナは、次の性能を有するものとする。
-	<br>一　地上レーザスキャナの距離計測方法は、
-	<span class="blank" onclick="this.classList.toggle('show')">タイム・オブ・フライト</span>方式又は位相差方式とすること。
-	<br>二　スポット径が分かること。
-	<br>三　水平及び垂直方向の角度の計測間隔が分かること。
-	<br>四　地形、地物等とレーザ光がなす角を入射角とし、標準的な地形、地物等が入射角
-	<span class="blank" onclick="this.classList.toggle('show')">1.5</span>度以上で計測できること。
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">330mm</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">25mm</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">50mm</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">500</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">330mm</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">50mm</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">100mm</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td colspan="4" style="border: 1px solid #ddd; padding: 8px;">備考&emsp;地物の計測条件は、放射方向の計測点間隔又は放射方向のスポット長径の
+                  <span class="blank" onclick="this.classList.toggle('show')">いずれか</span>が満たされているものとする。
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-</div>
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">地上レーザー測量</div>
-        <div class="text">
-	第376条
-	<br>地上レーザ計測は、地形、地物等に対する方向、距離及び反射強度を計測するものとする。
-	<br>2　計測の方向は、地形の
-	<span class="blank" onclick="this.classList.toggle('show')">低い方</span>から
-	<span class="blank" onclick="this.classList.toggle('show')">高い方</span>への向きを原則とする。
-	<br>5　計測方法は、次の各号を原則とする。
-	<br>一　平面直角座標系で計測する場合は、器械点・後視点法を用いるものとする。
-	<br>二　平面直角座標系以外の座標系で計測する場合は、
-	<span class="blank" onclick="this.classList.toggle('show')">相似変換</span>法又は
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">後方交会</span>法を用いるものとする。
-	<br>6　器械点・後視点法及び
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">後方交会</span>法を用いる場合は、コンペンセータ及び求心器を備えた地上レーザスキャナを用いなければならない。
-	<br>9　同一箇所から複数回計測する場合は、それぞれ地上レーザスキャナの器械高を
-	<span class="blank" onclick="this.classList.toggle('show')">変えること</span>を原則とする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第2章&emsp;地上レーザー測量</div>
+      <div class="text">
+        第371条(標定点の精度)
+        <br>標定点の精度は、水平位置(標準偏差)が
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">0.1m</span>以内、標高（標準偏差）が
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">0.1m</span>以内を標準とする
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAV写真点群測量</div>
-        <div class="text">
-	第415条
-	<br>標定点は、作業地域の形状及び比高が大きく変化するような箇所、撮影コースの設定、地表面の状態等を考慮しつつ、次の各号のとおり配置するものとする。
-	<br>一　標定点は、作業地域を囲むように配置する点及び作業地域内に配置する点で構成する。
-	<br>二　外側標定点は、作業地域の外側に配置することを標準とする。
-	<br>三　内側標定点は、作業地域内に均等に配置することを標準とする。
-	<br>四　標定点の配置間隔は、作成するオリジナルデータの位置精度に応じて、以下の表を標準とする。ただし、外側標定点は
-	<span class="blank" onclick="this.classList.toggle('show')">3</span>点以上、内側標定点は
-	<span class="blank" onclick="this.classList.toggle('show')">1</span>点以上設置するものとする。
-	<br>五　計画時の作業地域内において最も標高の高い地点及び最も標高の低い地点には、標定点を設置する。
-	<br>2　検証点は、標定点とは別に、次の各号のとおり配置するものとする。
-	<br>一　検証点は、標定点からできるだけ離れた場所に、作業地域内に均等に配置することを標準とする。
-	<br>二　設置する検証点の数は、設置する標定点の総数の半数以上（１未満の端数があるときは、端数は切り上げる。）を標準とする。
-	<br>三　検証点は、平坦な場所又は傾斜が一様な場所に配置することを標準とする。
-	<br>3　標定点及び検証点の精度は、水平位置（標準偏差）が0.1メートル以内、標高（標準偏差）が0.1メートル以内を標準とする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第2章&emsp;地上レーザー測量</div>
+      <div class="text">
+        第374条(使用する地上レーザスキャナの性能)
+        <br>地上レーザスキャナは、次の性能を有するものとする。
+        <br>一&emsp;地上レーザスキャナの距離計測方法は、
+        <span class="blank" onclick="this.classList.toggle('show')">タイム・オブ・フライト</span>方式又は
+        <span class="blank" onclick="this.classList.toggle('show')">位相差</span>方式とすること。
+        <br>二&emsp;スポット径が分かること。
+        <br>三&emsp;水平及び垂直方向の角度の計測間隔が分かること。
+        <br>四&emsp;地形、地物等とレーザ光がなす角を入射角とし、標準的な地形、地物等が入射角
+        <span class="blank" onclick="this.classList.toggle('show')">1.5</span>度以上で計測できること。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAV写真点群測量</div>
-        <div class="text">
-	第421条
-	<br>撮影計画は、撮影区域ごとに、作成するオリジナルデータの位置精度、地上画素寸法、対地高度、使用機器、地形形状、土地被覆、気象条件等を考慮して立案し、撮影計画図としてまとめるものとする。
-	<br>2　撮影する数値写真の地上画素寸法は、作成するオリジナルデータの位置精度に応じて、次表を標準とする。
-	<div class="table-container">
-	<table style="width: 100%; min-width: 240px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
-         <thead>
-         <tr style="background: #1a3e5e; color: white;">
-                <th style="border: 1px solid #ddd; padding: 4px; text-align: center; width: 120px;">位置精度</th>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 120px;">地上画素寸法</th>
-	 </tr>
-	 </thead>
-	 <tbody>
-         <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.05m以内</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.01m以内</td>
-         </tr>
-	 </tbody>
-	 <tbody>
-         <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.10m以内</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.02m以内</td>
-         </tr>
-	 </tbody>
-	 <tbody>
-         <tr>
-                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.20m以内</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.03m以内</td>
-         </tr>
-	 </tbody>
-        </table>
-	</div>
-	4　撮影基準面は、撮影区域に対して一つを定めることを標準とする。ただし、
-	<span class="blank" onclick="this.classList.toggle('show')">高低差</span>の大きい地域にあっては、UAV運航の安全を考慮し、数コース単位に設定することができる。
-	<br>8　撮影後に実際の写真重複度を確認できる場合には、同一コース内の隣接数値写真との重複度が
-	<span class="blank" onclick="this.classList.toggle('show')">80</span>%以上、隣接コースの数値写真との重複度が
-	<span class="blank" onclick="this.classList.toggle('show')">60</span>%以上を確保できるよう撮影計画を立案することを標準とする。撮影後に写真重複度の確認が困難な場合には、同一コース内の隣接数値写真との重複度は
-	<span class="blank" onclick="this.classList.toggle('show')">90</span>%以上、隣接コースの数値写真との重複度は
-	<span class="blank" onclick="this.classList.toggle('show')">60</span>%以上として撮影 計画を立案するものとする。
-	<br>9　外側標定点を結ぶ範囲のさらに外側に、少なくとも
-	<span class="blank" onclick="this.classList.toggle('show')">1</span>枚以上の数値写真が撮影されるよう、撮影計画を立案するものとする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第2章&emsp;地上レーザー測量</div>
+      <div class="text">
+        第376条(方法)
+        <br>地上レーザ計測は、地形、地物等に対する方向、距離及び反射強度を計測するものとする。
+        <br>2&emsp;計測の方向は、地形の
+        <span class="blank" onclick="this.classList.toggle('show')">低い</span>方から
+        <span class="blank" onclick="this.classList.toggle('show')">高い</span>方への向きを原則とする。
+        <br>5&emsp;計測方法は、次の各号を原則とする。
+        <br>一&emsp;平面直角座標系で計測する場合は、器械点・後視点法を用いるものとする。
+        <br>二&emsp;平面直角座標系以外の座標系で計測する場合は、
+        <span class="blank" onclick="this.classList.toggle('show')">相似変換</span>法又は
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">後方交会</span>法を用いるものとする。
+        <br>6&emsp;器械点・後視点法及び
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">後方交会</span>法を用いる場合は、コンペンセータ及び求心器を備えた地上レーザスキャナを用いなければならない。
+        <br>9&emsp;同一箇所から複数回計測する場合は、それぞれ地上レーザスキャナの器械高を
+        <span class="blank" onclick="this.classList.toggle('show')">変えること</span>を原則とする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAV写真点群測量</div>
-        <div class="text">
-	第427条
-	<br>「三次元形状復元計算」とは、撮影した数値写真及び標定点を用いて、数値写真の外部標定要素及び数値写真に撮像された地点（以下この章において「特徴点」という。）の位置座標を求め、地形、地物等の3次元形状を復元し、
-	<span class="blank" onclick="this.classList.toggle('show')">オリジナルデータ</span>を作成する作業をいう。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第3章&emsp;UAV写真点群測量</div>
+      <div class="text">
+        第415条(標定点及び検証点の配置)
+        <br>標定点は、作業地域の形状及び比高が大きく変化するような箇所、撮影コースの設定、地表面の状態等を考慮しつつ、次の各号のとおり配置するものとする。
+        <br>一&emsp;標定点は、作業地域を
+        <span class="blank" onclick="this.classList.toggle('show')">囲むよう</span>に配置する点及び作業地域内に配置する点で構成する。
+        <br>二&emsp;外側標定点は、作業地域の外側に配置することを標準とする。
+        <br>三&emsp;内側標定点は、作業地域内に
+        <span class="blank" onclick="this.classList.toggle('show')">均等</span>に配置することを標準とする。
+        <br>四&emsp;標定点の配置間隔は、作成するオリジナルデータの位置精度に応じて、以下の表を標準とする。ただし、外側標定点は
+        <span class="blank" onclick="this.classList.toggle('show')">3</span>点以上、内側標定点は
+        <span class="blank" onclick="this.classList.toggle('show')">1</span>点以上設置するものとする。
+        <br>五&emsp;計画時の作業地域内において最も標高の高い地点及び最も標高の低い地点には、標定点を設置する。
+        <br>2&emsp;検証点は、標定点とは別に、次の各号のとおり配置するものとする。
+        <br>一&emsp;検証点は、標定点からできるだけ
+        <span class="blank" onclick="this.classList.toggle('show')">離れた</span>場所に、作業地域内に均等に配置することを標準とする。
+        <br>二&emsp;設置する検証点の数は、設置する標定点の総数の半数以上(1未満の端数があるときは、端数は切り上げる)を標準とする。
+        <br>三&emsp;検証点は、
+        <span class="blank" onclick="this.classList.toggle('show')">平坦</span>な場所又は
+        <span class="blank" onclick="this.classList.toggle('show')">傾斜</span>が一様な場所に配置することを標準とする。
+        <br>3&emsp;標定点及び検証点の精度は、水平位置（標準偏差）が0.1m以内、標高（標準偏差）が0.1m以内を標準とする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAVレーザー測量</div>
-        <div class="text">
-	第440条
-	<br>「UAVレーザ測量」とは、UAVに
-	<span class="blank" onclick="this.classList.toggle('show')">位置姿勢データ取得装置</span>及び
-	<span class="blank" onclick="this.classList.toggle('show')">レーザスキャナ</span>を搭載した計測・解析システム（以下「UAVレーザ測量システム」という。）を用いて
-	地形、地物等を計測し、 取得したデータからオリジナルデータ等の三次元点群データ及び数値地形図データ等を作成する作業をいう。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第3章&emsp;UAV写真点群測量</div>
+      <div class="text">
+        第421条(撮影計画)
+        <br>撮影計画は、撮影区域ごとに、作成するオリジナルデータの位置精度、地上画素寸法、対地高度、使用機器、地形形状、土地被覆、気象条件等を考慮して立案し、撮影計画図としてまとめるものとする。
+        <br>2&emsp;撮影する数値写真の地上画素寸法は、作成するオリジナルデータの位置精度に応じて、次表を標準とする。
+        <div class="table-container">
+          <div style="text-align: center;">
+            <table
+              style="min-width: 300px; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2; display: inline-table;">
+              <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                  <th style="border: 1px solid #ddd; padding: 4px; text-align: center; width: 150px;">位置精度</th>
+                  <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 150px;">地上画素寸法</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.05m以内</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.01m以内</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.10m以内</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.02m以内</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.20m以内</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">0.03m以内</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          4&emsp;撮影基準面は、撮影区域に対して一つを定めることを標準とする。ただし、
+          <span class="blank"
+            onclick="this.classList.toggle('show')">高低差</span>の大きい地域にあっては、UAV運航の安全を考慮し、数コース単位に設定することができる。
+          <br>8&emsp;撮影後に実際の写真重複度を確認できる場合には、同一コース内の隣接数値写真との重複度が
+          <span class="blank" onclick="this.classList.toggle('show')">80</span>%以上、隣接コースの数値写真との重複度が
+          <span class="blank"
+            onclick="this.classList.toggle('show')">60</span>%以上を確保できるよう撮影計画を立案することを標準とする。撮影後に写真重複度の確認が困難な場合には、同一コース内の隣接数値写真との重複度は
+          <span class="blank" onclick="this.classList.toggle('show')">90</span>%以上、隣接コースの数値写真との重複度は
+          <span class="blank" onclick="this.classList.toggle('show')">60</span>%以上として撮影 計画を立案するものとする。
+          <br>9&emsp;外側標定点を結ぶ範囲のさらに外側に、少なくとも
+          <span class="blank" onclick="this.classList.toggle('show')">1</span>枚以上の数値写真が撮影されるよう、撮影計画を立案するものとする。
+        </div>
+      </div>
+    </div>
 
+    <div class="clause-card">
+      <div class="clause-title">第3章&emsp;UAV写真点群測量</div>
+      <div class="text">
+        第427条(三次元形状復元計算)
+        <br>｢三次元形状復元計算｣とは、撮影した数値写真及び標定点を用いて、数値写真の外部標定要素及び数値写真に撮像された地点(以下この章において｢特徴点｣という)の位置座標を求め、地形、地物等の3次元形状を復元し、
+        <span class="blank" onclick="this.classList.toggle('show')">オリジナルデータ</span>を作成する作業をいう。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAVレーザー測量</div>
-        <div class="text">
-	第451条
-	<br>計測諸元は、精度試験の結果や、測量作業範囲の地形条件等を踏まえ、必要とする成果品を作成できるように設定するものとする。
-	<br>3　標準的な計測点間隔は、要求点間隔（要求点密度等を満たすために均等かつ最小限に計測する場合の点間隔）と定数（θ）を用いた次の式で求めることを標準とする。
-	計測点間隔＝<span class="blank" onclick="this.classList.toggle('show')">要求点間隔/θ</span>(θ：1.1～1.5)
-	<br>5　スキャン角度は、計測対象物へのレーザ光の入射角（地形、地物等とレーザ光がなす角）を
-	<span class="blank" onclick="this.classList.toggle('show')">45</span>度以上とするとともに、必要な計測距離を満たすように定めることを標準とする。また、コース間重複度の確認においても同様とする。
-	<br>6　前項の計測距離は、使用するレーザスキャナの最大測距距離の
-	<span class="blank" onclick="this.classList.toggle('show')">80</span>%以下で計測を行うように定めることを標準とし、最大測距距離を超えないものとする。
-	<br>7　コース間重複度は、欠測が生じないこと及び第464条で行うコース間重複部における標高値の点検 に使用する箇所を確保することを踏まえて設定するものとし、
-	<span class="blank" onclick="this.classList.toggle('show')">30</span>%以上とすることを標準とする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4章&emsp;UAVレーザー測量</div>
+      <div class="text">
+        第440条(要旨)
+        <br>｢UAVレーザ測量｣とは、UAVに
+        <span class="blank" onclick="this.classList.toggle('show')">位置姿勢データ取得装置</span>及び
+        <span class="blank"
+          onclick="this.classList.toggle('show')">レーザスキャナ</span>を搭載した計測・解析システム(以下｢UAVレーザ測量システム｣という)を用いて
+        地形、地物等を計測し、 取得したデータからオリジナルデータ等の三次元点群データ及び数値地形図データ等を作成する作業をいう。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAVレーザー測量</div>
-        <div class="text">
-	第454条
-	<br>UAVレーザ計測における位置の決定は、GNSSによる
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">キネマティック</span>法で行うものとし、 
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">キネマティック</span>解析で用いる固定局には、電子基準点を用いることを原則とする。
-	ただし、必要に応じて新たに固定局を設置することができるものとする。
-	<br>2　固定局は、計測地域から
-	<span class="blank" onclick="this.classList.toggle('show')">50</span>kmを超えない点を用いるものとする。
-	<br>3　新たに固定局を設置する場合は、１級基準点測量及び３級水準測量により位置及び標高を求めるものとする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4章&emsp;UAVレーザー測量</div>
+      <div class="text">
+        第448条(UAVレーザ測量システム)
+        <br>UAVレーザ測量システムは、GNSSアンテナ、GNSS受信機、
+        <span class="blank" onclick="this.classList.toggle('show')">IMU</span>(慣性計測装置)
+        及びレーザスキャナの各機器と、これらを搭載するUAV及び解析ソフトウェアから構成する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAVレーザー測量</div>
-        <div class="text">
-	第459条
-	<br>フィルタリング、数値図化等において画像による地物確認に用いるため、要求仕様に基づき
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">数値写真</span>を撮影する。ただし、
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">数値写真</span>の撮影は、計測範囲の状況等が変化しないよう、可能な限り計測と同時期に行うものとし、
-	レーザスキャナと同時搭載する機器の場合は同時撮影するものとする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4章&emsp;UAVレーザー測量</div>
+      <div class="text">
+        第451条(計測諸元)
+        <br>計測諸元は、精度試験の結果や、測量作業範囲の地形条件等を踏まえ、必要とする成果品を作成できるように設定するものとする。
+        <br>3&emsp;標準的な計測点間隔は、要求点間隔(要求点密度等を満たすために均等かつ最小限に計測する場合の点間隔)と定数(θ)を用いた次の式で求めることを標準とする。計測点間隔＝
+        <span class="blank" onclick="this.classList.toggle('show')">要求点間隔/θ</span>(θ：1.1～1.5)
+        <br>5&emsp;スキャン角度は、計測対象物へのレーザ光の入射角(地形、地物等とレーザ光がなす角)を
+        <span class="blank"
+          onclick="this.classList.toggle('show')">45</span>度以上とするとともに、必要な計測距離を満たすように定めることを標準とする。また、コース間重複度の確認においても同様とする。
+        <br>6&emsp;前項の計測距離は、使用するレーザスキャナの最大測距距離の
+        <span class="blank" onclick="this.classList.toggle('show')">80</span>%以下で計測を行うように定めることを標準とし、最大測距距離を超えないものとする。
+        <br>7&emsp;コース間重複度は、欠測が生じないこと及び第464条で行うコース間重複部における標高値の点検に使用する箇所を確保することを踏まえて設定するものとし、
+        <span class="blank" onclick="this.classList.toggle('show')">30</span>%以上とすることを標準とする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">UAVレーザー測量</div>
-        <div class="text">
-	第467条
-	<br>オリジナルデータの点検は、オリジナルデータと、オリジナルデータの作成とは別に実施する点検測量で得られるデータとの較差を求め、要求仕様を満たしているかを確認する。
-	<br>4　点検は、次の各号のいずれかの方法で行うことを標準とする。
-	<br>一　<span class="blank" onclick="this.classList.toggle('show')">検証点の設置</span>による点検
-	<br>二　<span class="blank" onclick="this.classList.toggle('show')">UAVレーザ測量</span>による点検
-	<br>三　<span class="blank" onclick="this.classList.toggle('show')">横断測量</span>による点検
-	<br>四　他の測量手法での三次元点群データによる点検
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4章&emsp;UAVレーザー測量</div>
+      <div class="text">
+        第454条(固定局の設置)
+        <br>UAVレーザ計測における位置の決定は、GNSSによる
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">キネマティック</span>法で行うものとし、
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">キネマティック</span>解析で用いる固定局には、
+        電子基準点を用いることを原則とする。ただし、必要に応じて新たに固定局を設置することができるものとする。
+        <br>2&emsp;固定局は、計測地域から
+        <span class="blank" onclick="this.classList.toggle('show')">50</span>kmを超えない点を用いるものとする。
+        <br>3&emsp;新たに固定局を設置する場合は、1級基準点測量及び3級水準測量により位置及び標高を求めるものとする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">車載写真レーザー測量</div>
-        <div class="text">
-	第484条
-	<br>車載写真レーザ測量システムは、車両、自車位置姿勢データ取得装置、レーザスキャナ、
-	<span class="blank" onclick="this.classList.toggle('show')">レーザスキャナ</span>、計測用カメラ又は参照用カメラ及び解析ソフトウェアで構成するものとする。
-	<br>一　自車位置姿勢データ取得装置は、GNSS測量機、
-	<span class="blank" onclick="this.classList.toggle('show')">IMU(慣性計測装置)</span>及び走行距離計等で構成されるもので、それらが適切に同期され、解析処理に必要な自車位置姿勢データを取得できるものとする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4章&emsp;UAVレーザー測量</div>
+      <div class="text">
+        第459条(数値写真の撮影)
+        <br>フィルタリング、数値図化等において画像による地物確認に用いるため、要求仕様に基づき
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">数値写真</span>を撮影する。ただし、
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">数値写真</span>の撮影は、計測範囲の状況等が変化しないよう、
+        可能な限り計測と同時期に行うものとし、レーザスキャナと同時搭載する機器の場合は同時撮影するものとする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">車載写真レーザー測量</div>
-        <div class="text">
-	第500条
-	<br>5 固定局は次の号のとおりとする。
-	<br>一　固定局には田子規軍店を用いることを原則とする。
-	<br>二　新たに固定局を設置する場合は、1級基準点測量及び3級水準測量により水平位置及び標高値を求 めるものとする。
-	<br>三　固定局と取得区間との基線距離は
-	<span class="blank" onclick="this.classList.toggle('show')">10km</span>以内を原則とし、やむを得ない場合でも
-	<span class="blank" onclick="this.classList.toggle('show')">30km</span>を超えないものとする。
-	<br>第501条　移動取得は、移動取得計画に基づき、次の各号のデータを適切に取得するものとする。
-	<br>一 自車位置姿勢データ取得装置を用いて、次のとおりGNSS観測データ、IMUによる加速度、角速度データ等を取得する。
-	<br>　イ　固定局のGNSS観測データ取得間隔は、
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1</span>秒以下とする。
-	<br>　ロ　固定局のGNSS観測データ取得間隔は、
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1</span>秒以下とする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4章&emsp;UAVレーザー測量</div>
+      <div class="text">
+        第467条(オリジナルデータの点検測量)
+        <br>オリジナルデータの点検は、オリジナルデータと、オリジナルデータの作成とは別に実施する点検測量で得られるデータとの較差を求め、要求仕様を満たしているかを確認する。
+        <br>4&emsp;点検は、次の各号のいずれかの方法で行うことを標準とする。
+        <br>一&emsp;<span class="blank" onclick="this.classList.toggle('show')">検証点の設置</span>による点検
+        <br>二&emsp;<span class="blank" onclick="this.classList.toggle('show')">UAVレーザ測量</span>による点検
+        <br>三&emsp;<span class="blank" onclick="this.classList.toggle('show')">横断測量</span>による点検
+        <br>四&emsp;他の測量手法での三次元点群データによる点検
+      </div>
+    </div>
 
-</div>
-<div class="nav-bar">
+    <div class="clause-card">
+      <div class="clause-title">第5章&emsp;車載写真レーザー測量</div>
+      <div class="text">
+        第491条(車載写真レーザ測量システム)
+        <br>車載写真レーザ測量システムは、車両、自車位置姿勢データ取得装置、
+        <span class="blank" onclick="this.classList.toggle('show')">レーザスキャナ</span>、計測用カメラ又は参照用カメラ及び解析ソフトウェアで構成するものとする。
+        <br>一&emsp;自車位置姿勢データ取得装置は、GNSS測量機、
+        <span class="blank" onclick="this.classList.toggle('show')">IMU</span>(慣性計測装置)及び走行距離計等で構成されるもので、
+        それらが適切に同期され、解析処理に必要な自車位置姿勢データを取得できるものとする。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第5章&emsp;車載写真レーザー測量</div>
+      <div class="text">
+        第500条(移動取得計画)
+        <br>3&emsp;取得区間は、数値写真及びレーザスキャンデータを取得する区間とし、次の各号に留意して決定するものとする。
+        <br>一&emsp;GNSS衛星からの電波の安定した受信が可能な取得区間が連続する場合には、一つの取得区間とすることができる。
+        <br>二&emsp;GNSS衛星からの電波の安定した受信が長時間にわたって期待できない箇所では、
+        <span class="blank" onclick="this.classList.toggle('show')">自車位置姿勢データ取得装置</span>の
+        <span class="blank" onclick="this.classList.toggle('show')">セルフキャリブレーション</span>が行える待避場所を確保するものとする。
+        <br>三&emsp;車両の走行が可能で、かつ数値図化が適切に行える幅員でなければならない。
+        <br>5&emsp;固定局は次の号のとおりとする。
+        <br>一&emsp;固定局には電子基準点を用いることを原則とする。
+        <br>二&emsp;新たに固定局を設置する場合は、1級基準点測量及び3級水準測量により水平位置及び標高値を求 めるものとする。
+        <br>三&emsp;固定局と取得区間との基線距離は
+        <span class="blank" onclick="this.classList.toggle('show')">10km</span>以内を原則とし、やむを得ない場合でも
+        <span class="blank" onclick="this.classList.toggle('show')">30km</span>を超えないものとする。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第5章&emsp;車載写真レーザー測量</div>
+      <div class="text">
+        第501条&emsp;移動取得は、移動取得計画に基づき、次の各号のデータを適切に取得するものとする。
+        <br>一&emsp;自車位置姿勢データ取得装置を用いて、次のとおりGNSS観測データ、IMUによる加速度、角速度データ等を取得する。
+        <br>&emsp;イ&emsp;固定局のGNSS観測データ取得間隔は、
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1</span>秒以下とする。
+        <br>&emsp;ロ&emsp;GNSS測量機のGNSS観測データ取得間隔は、
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1</span>秒以下とする。
+      </div>
+    </div>
+
+  </div>
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>

@@ -1,268 +1,359 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>作業規程の準則 地形及び写真測量</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>作業規程の準則 地形及び写真測量</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
-        
-	.table-container {
-	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
-	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
-	}
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
-        
-    .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      /* 横方向にのみスクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+      padding-right: 2px;
+      /* ★右端の線が消えないように隙間を作る */
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+      text-align: center;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 地形及び写真測量</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 地形及び写真測量</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">第108条　要旨</div>
-        <div class="text">
-	現地測量」とは、現地においてTS等又はGNSS測量機を用いて、又は併用して、地形、地物等を測定し、
-	<span class="blank" onclick="this.classList.toggle('show')">数値地形図</span>データを作成する作業をいう。
-	</div>
-</div>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">第1節&emsp;要旨</div>
+      <div class="text">
+        第108条(要旨)
+        <br>現地測量とは、現地においてTS等又はGNSS測量機を用いて、又は併用して、地形、地物等を測定し、
+        <span class="blank" onclick="this.classList.toggle('show')">数値地形図</span>データを作成する作業をいう。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">第109条　準拠する基準点</div>
-        <div class="text">
-	現地測量は、
-	<span class="blank" onclick="this.classList.toggle('show')">4</span>級基準点、
-	<span class="blank" onclick="this.classList.toggle('show')">簡易</span>水準点又はこれと同等以上の精度を有する基準点に基づいて実施するものとする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第1節&emsp;要旨</div>
+      <div class="text">
+        第109条(準拠する基準点)
+        <br>現地測量は、
+        <span class="blank" style="min-width: 2rem;" onclick="this.classList.toggle('show')">4</span>級基準点、
+        <span class="blank" onclick="this.classList.toggle('show')">簡易</span>水準点又はこれと同等以上の精度を有する基準点に基づいて実施するものとする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">第110条　数値地形図データの基図情報レベル</div>
-        <div class="text">
-	現地測量により作成する数値地形図データの地図情報レベルは、原則として
-	<span class="blank" onclick="this.classList.toggle('show')">1000</span>以下とし
-	<span class="blank" onclick="this.classList.toggle('show')">250、500及び1000</span>を標準とする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第1節&emsp;要旨</div>
+      <div class="text">
+        第110条(数値地形図データの基図情報レベル)
+        <br>現地測量により作成する数値地形図データの地図情報レベルは、原則として
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1000</span>以下とし
+        <span class="blank" onclick="this.classList.toggle('show')">250</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">500</span>及び
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">1000</span>を標準とする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">第118条　キネマティック法又はRTK法によるTS点の設置</div>
-        <div class="text">
-	<br>キネマティック法又はRTK法による地形、地物等の測定は、基準点又はTS点にGNSS測量機を整置し、
-	<span class="blank" onclick="this.classList.toggle('show')">放射法</span>により行うものとする。
-	<br>2　観測は、2セット行うものとする。セット内の観測回数及びデータ取得間隔等は、次項を標準とする。1セット目の観測値を採用値とし、観測終了後に再初期化をして、2セット目の観測を行い、2セット目を点検値とする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4節&emsp;細部測量</div>
+      <div class="text">
+        第118条(キネマティック法又はRTK法によるTS点の設置)
+        <br>キネマティック法又はRTK法による地形、地物等の測定は、基準点又はTS点にGNSS測量機を整置し、
+        <span class="blank" onclick="this.classList.toggle('show')">放射法</span>により行うものとする。
+        <br>2&emsp;観測は、2セット行うものとする。セット内の観測回数及びデータ取得間隔等は、次項を標準とする。1セット目の観測値を
+        <span class="blank" onclick="this.classList.toggle('show')">採用値</span>とし、観測終了後に再初期化をして、2セット目の観測を行い、2セット目を
+        <span class="blank" onclick="this.classList.toggle('show')">点検値</span>とする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">第119条　ネットワーク型RTK法によるTS点の設置</div>
-        <div class="text">
-	ネットワーク型ＲＴＫ法によるTS点の設置は、間接観測法又は単点観測法により行うものとする。
-	<br>4　単点観測法による場合は、作業地域周辺の既知点において単点観測法により、整合を確認するものとする。ただし、整合の確認及び方法は、次のとおりとする。
-	<br>一　整合の確認は、次のとおり行うものとする。
-	<br>イ　整合を確認する既知点は、作業地域の周辺を囲むように配置する。
-	<br>ロ　既知点数は、
-	<span class="blank" onclick="this.classList.toggle('show')">3</span>点以上を標準とする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4節&emsp;細部測量</div>
+      <div class="text">
+        第119条(ネットワーク型RTK法によるTS点の設置)
+        <br>ネットワーク型RTK法によるTS点の設置は、間接観測法又は単点観測法により行うものとする。
+        <br>4&emsp;単点観測法による場合は、作業地域周辺の既知点において単点観測法により、整合を確認するものとする。ただし、整合の確認及び方法は、次のとおりとする。
+        <br>一&emsp;整合の確認は、次のとおり行うものとする。
+        <br>イ&emsp;整合を確認する既知点は、作業地域の周辺を
+        <span class="blank" onclick="this.classList.toggle('show')">囲むよう</span>に配置する。
+        <br>ロ&emsp;既知点数は、
+        <span class="blank" onclick="this.classList.toggle('show')">3</span>点以上を標準とする。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">第121条　TS等を用いる地形、地物等の測定</div>
-        <div class="text">
-	TS等を用いる地形、地物等の測定は、基準点又はTS点にTS等を整置し、放射法等により行うものとする。
-	<br>3　基準点又はＴＳ点から地形、地物等の測定は次のとおりとする。
-	<br>一　地形は、地性線及び標高値を測定し、図形編集装置によって等高線描画を行うものとする。
-	<br>5　測定した座標値等には、その属性を表すために原則として、次項に示す分類コードを付すものとする
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4節&emsp;細部測量</div>
+      <div class="text">
+        第121条(TS等を用いる地形、地物等の測定)
+        <br>TS等を用いる地形、地物等の測定は、基準点又はTS点にTS等を整置し、放射法等により行うものとする。
+        <br>3&emsp;基準点又はTS点から地形、地物等の測定は次のとおりとする。
+        <br>一&emsp;地形は、
+        <span class="blank" onclick="this.classList.toggle('show')">地性線</span>及び
+        <span class="blank" onclick="this.classList.toggle('show')">標高値</span>を測定し、図形編集装置によって等高線描画を行うものとする。
+        <br>5&emsp;測定した座標値等には、その属性を表すために原則として、次項に示す
+        <span class="blank" onclick="this.classList.toggle('show')">分類コード</span>を付すものとする
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">第122条　キネマティック法又はRTK法による地形、地物等の測定</div>
-        <div class="text">
-	キネマティック法又はRTK法による地形、地物等の測定は、TS点の設置は、基準点にGNSS測量機を整置し、
-	<span class="blank" onclick="this.classList.toggle('show')">放射法</span>により行うものとする。
-	<br>3　観測は、1セット行うものとし、観測の使用衛星数、セット内の観測回数等は、次表を標準とする。
-	<div class="table-container">
-	<table style="width: 100%; min-width: 525px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
-                <thead>
-                <tr style="background: #1a3e5e; color: white;">
-                        <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 100px;">使用衛星数</th>
-                        <th style="border: 1px solid #333; padding: 8px;text-align: center;">観測回数</th>
-                        <th style="border: 1px solid #333; padding: 8px;text-align: center;">データ取得間隔</th>
-		</tr>
-                </thead>
-                <tbody>
-                <tr>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上</td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">FIX解を得てから10エポック以上</td>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">1秒(ただし､キネマティック法は5秒以下)</td>
-                </tr>
-		</body>
-                <tbody>
-                <tr>
-                        <td style="border: 1px solid #333; padding: 8px; text-align: center;">適用</td>
-                        <td colspan="2" style="border: 1px solid #333; padding: 8px;">GLONASS衛星を用いて観測する場合は、使用衛星数は
-			<span class="blank" onclick="this.classList.toggle('show')">6</span>衛星以上とする。ただし、GPS･準天頂衛星及びGLONASS衛星を、それぞれ
-			<span class="blank" onclick="this.classList.toggle('show')">2</span>衛星以上を用いること。</td>
-                </tr>
-		</body>
-	</table>
-	</div>
-	4　初期化を行う観測点では、次の方法で観測値の点検を行い、次の観測点に移動するものとする。
-	<br>二　1セットの観測終了後に再初期化を行い、2セット目の観測を行うものとする。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">第4節&emsp;細部測量</div>
+      <div class="text"> 
+        第122条(キネマティック法又はRTK法による地形、地物等の測定)
+        <br>キネマティック法又はRTK法による地形、地物等の測定は、TS点の設置は、基準点にGNSS測量機を整置し、
+        <span class="blank" onclick="this.classList.toggle('show')">放射法</span>により行うものとする。
+        <br>3&emsp;観測は、1セット行うものとし、観測の使用衛星数、セット内の観測回数等は、次表を標準とする。
+        <div class="table-container">
+          <table
+            style="width: 100%; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+            <thead>
+              <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 80px;">使用衛星数
+                </th>
+                <th style="border: 1px solid #333; padding: 8px;text-align: center;">観測回数</th>
+                <th style="border: 1px solid #333; padding: 8px;text-align: center;">データ取得間隔</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank"
+                    onclick="this.classList.toggle('show')">5</span>衛星以上</td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">FIX解を得てから10エポック以上
+                </td>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                  1秒<br>(ただし､キネマティック法は5秒以下)</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px; text-align: center;">適用</td>
+                <td colspan="2" style="border: 1px solid #333; padding: 8px;">GLONASS衛星を用いて観測する場合は、使用衛星数は
+                  <span class="blank"
+                    onclick="this.classList.toggle('show')">6</span>衛星以上とする。ただし、GPS･準天頂衛星及びGLONASS衛星を、それぞれ
+                  <span class="blank" onclick="this.classList.toggle('show')">2</span>衛星以上を用いること。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        4&emsp;初期化を行う観測点では、次の方法で観測値の点検を行い、次の観測点に移動するものとする。
+        <br>二&emsp;1セットの観測終了後に再初期化を行い、2セット目の観測を行うものとする。
+      </div>
+    </div>
 
-</div>
+  </div>
 
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
