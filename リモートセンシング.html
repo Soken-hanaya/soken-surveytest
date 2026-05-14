@@ -108,26 +108,27 @@
 
 <div id="container">
 <div class="clause-card active">
-        <div class="clause-title">合成開口レーダ(SAR)</div>
-        <div class="text">
-	人工衛星や航空機などに搭載したアンテナからマイクロ波を地表に向けて照射し、地表からの反射波を捉えることで、地表の形状や性質についての画像情報を取得する手法。
-	<br>照射するマイクロ波は可視光･近赤外線より波長が
+    <div class="clause-title">合成開口レーダ(SAR)</div>
+    <div class="text">
+	人工衛星や航空機などに搭載したアンテナから
+    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">マイクロ波</span>を地表に向けて照射し、地表からの反射波を捉えることで、地表の形状や性質についての画像情報を取得する手法。
+	<br>照射する<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">マイクロ波</span>は可視光･近赤外線より波長が
 	<span class="blank" onclick="this.classList.toggle('show')">長く</span>、雲や雨粒などを透過するため天候の影響をほとんど受けずに地表や海面の観測ができる。
-        </div>
+    </div>
 </div>
 
 <div class="clause-card">
-        <div class="clause-title">プッシュブルーム走査方式</div>
-        <div class="text">
+    <div class="clause-title">プッシュブルーム走査方式</div>
+    <div class="text">
 	衛星が軌道上を移動しながら、ラインセンサで連続的に
 	<span class="blank" onclick="this.classList.toggle('show')">帯状</span>の画像を撮影し、これらを積み重ねて2次元の画像を作成します。
-	<br>プッシュブルーム方式のようなラインセンサは、センサ取付け直下点の軌跡に対して両側に倒れ込むように写る。
+	<br><span class="blank" onclick="this.classList.toggle('show')">プッシュブルーム</span>方式のようなラインセンサは、センサ取付け直下点の軌跡に対して両側に倒れ込むように写る。
 	</div>
 </div>
 
 <div class="clause-card">
-        <div class="clause-title">熱赤外リモートセンシング</div>
-        <div class="text">
+    <div class="clause-title">熱赤外リモートセンシング</div>
+    <div class="text">
 	対象物からの
 	<span class="blank" onclick="this.classList.toggle('show')">熱放射</span>を観測する。
 	<br>夜間でも水面の温度や雲の分布を観測することができる。
@@ -135,45 +136,41 @@
 </div>
 
 <div class="clause-card">
-        <div class="clause-title">波長の特徴</div>
+        <div class="clause-title">波長の名前と特徴</div>
         <div class="text">
 	<div class="table-container">
 	<table style="width: 100%; min-width: 450px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
-         <thead>
-          <tr style="background: #1a3e5e; color: white;">
-                <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:25px ;">波長</th>
-		<th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:100px ;">名称</th>
-                <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:300px ;">特徴</th>
-	  </tr>
+        <thead>
+        <tr style="background: #1a3e5e; color: white;">
+            <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:25px ;">波長</th>
+		    <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:100px ;">名称</th>
+            <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:300px ;">特徴</th>
+	    </tr>
 	 </thead>
 	 <tbody>
-          <tr>
+        <tr>
 		<td rowspan="5" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">短<br>↑<br>↑<br><br><br><br><br>↓<br>↓<br>長</td>
 		<td style="border: 1px solid #333; padding: 8px;">紫外線</td>
 		<td style="border: 1px solid #333; padding: 8px;"></td>
-          </tr>
-
-	  <tr>
+        </tr>
+	    <tr>
 		<td style="border: 1px solid #333; padding: 8px;">可視光</td>
 		<td style="border: 1px solid #333; padding: 8px;">太陽光に多く含まれ、土からの反射率が高い。</td>
-	  </tr>
-
-	  <tr>
+	    </tr>
+	    <tr>
 		<td style="border: 1px solid #333; padding: 8px;">近赤外線</td>
 		<td style="border: 1px solid #333; padding: 8px;">太陽光に多く含まれ、
 		<span class="blank" onclick="this.classList.toggle('show')">植物</span>からの反射率が高い。</td>
-	  </tr>
-
-	  <tr>
+	    </tr>
+	    <tr>
 		<td style="border: 1px solid #333; padding: 8px;">熱赤外線</td>
 		<td style="border: 1px solid #333; padding: 8px;">地表面や大気が放射する光に多く含まれる。</td>
-	  </tr>
-
-	  <tr>
+	    </tr>
+	    <tr>
 		<td style="border: 1px solid #333; padding: 8px;">マイクロ波</td>
 		<td style="border: 1px solid #333; padding: 8px;">地表面や大気が放射する光に多く含まれる。<br>最も周波数の長いLバンドは
 		<span class="blank" onclick="this.classList.toggle('show')">地表面</span>で反射する。</td>
-	  </tr>
+	    </tr>
 	 </tbody>
 	</table>
 	</div>

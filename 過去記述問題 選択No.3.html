@@ -81,8 +81,7 @@
             border-radius: 4px; 
             cursor: pointer; 
             font-weight: bold; 
-            border-bottom: 2px solid #a0aec0;
-            text-align: center;  
+            border-bottom: 2px solid #a0aec0;  
         }
 
         .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
@@ -129,15 +128,17 @@
         <div class="text">
 	Ｑ1
 	<br>トンネルを含む全長7kmの道路の数値地形図データを修正するに当たって、改めて測量する必要があり、TSと車載写真レーザー測量を検討した結果、現地作業日数の観点から
-    車載写真レーザー測量の利点について。
+    車載写真レーザー測量の利点だと考えられること
 	<br>Ａ1
-	<br>車載写真レーザー測量では、走行しながらデータを取得するため、TSによる測量より現地作業日数を短縮できる。
+	<br>車載写真レーザー測量では、
+    <span class="blank" onclick="this.classList.toggle('show')">走行しながら</span>データを取得するため、TSによる測量より現地作業日数を短縮できる。
 	<br>Ｑ2
     <br>また車載写真レーザー測量のトンネル区間などGNSS衛星からの電波が安定した受信が長時間にわたって期待できない区間について、移動取得計画を策定する際の
-    留意事項として考えられることを｢退避場所｣の語句を用いて
+    留意事項として考えられること
     <br>Ａ2
     <br><span class="blank" onclick="this.classList.toggle('show')">自車位置姿勢データ</span>取得装置の
-    <span class="blank" onclick="this.classList.toggle('show')">セルフキャリブレーション</span>が行える退避位置を確保する必要がある。
+    <span class="blank" onclick="this.classList.toggle('show')">セルフキャリブレーション</span>が行える
+    <span style="color: red;">退避場所</span>を確保する必要がある。
 	</div>
 </div>
 
@@ -171,8 +172,9 @@
 	<br>斜面に地上レーザースキャナを設置し、その斜面を計測する場合、観測精度を向上させるために、計測の方向は地上レーザースキャナを設置した地点より
     高い方への向きを原則とする。観測精度が向上する理由
 	<br>Ａ
-	<br>点密度が
-    <span class="blank" onclick="this.classList.toggle('show')">大きく</span>なり、スポット長径が
+	<br><span style="color: red;">点密度</span>が
+    <span class="blank" onclick="this.classList.toggle('show')">大きく</span>なり、
+    <span style="color: red;">スポット長径</span>が
     <span class="blank" onclick="this.classList.toggle('show')">短く</span>なるため
 	</div>
 </div>
@@ -183,7 +185,7 @@
 	Ｑ
 	<br>航空レーザ測量は樹高を推定することにも用いられるがその方法について
 	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">ファーストパルス</span>と
+	<br><span style="color: red;">ファーストパルス</span>と
     <span class="blank" onclick="this.classList.toggle('show')">ラストパルス</span>から取得した高さの差分をとる。
 	</div>
 </div>
@@ -192,11 +194,11 @@
         <div class="clause-title">R7 B-2</div>
         <div class="text">
 	Ｑ
-	<br>昼間でも樹木の下が薄暗い山林の内東西500m､南北200mの範囲において、地表面形状の把握を目的として、UAVを用いた三次元点群データの取得を計画している。
+	<br>昼間でも樹木の下が薄暗い山林のうち東西500m､南北200mの範囲において、地表面形状の把握を目的として、UAVを用いた三次元点群データの取得を計画している。
     <br>UAVレーザ測量とUAV写真点群測量を比較し、より計測に適した測量技術とその理由。(法律上の制限や安全に関する内容以外で)
 	<br>Ａ
-	<br><span class="blank" style="min-width:9em;" onclick="this.classList.toggle('show')">UAVレーザー測量</span>
-    <br><span class="blank" onclick="this.classList.toggle('show')">写真には写らない樹木の下の地表面であっても、
+	<br>方法：<span class="blank" style="min-width:9em; text-align: center;" onclick="this.classList.toggle('show')">UAVレーザー測量</span>
+    <br>理由：<span class="blank" onclick="this.classList.toggle('show')">写真には写らない樹木の下の地表面であっても、
     レーザが樹木の隙間を通過することで測量が可能な場合があるため。</span>
 	</div>
 </div>
@@ -210,10 +212,10 @@
 	<br>Ａ
 	<br>傾斜地では、地表面の傾斜により
     <span class="blank" onclick="this.classList.toggle('show')">対地高度</span>が減少することで
-    <span style="color: #e74c3c;">計測幅</span>が狭くなり、
-    <span style="color: #e74c3c;">コース間重複度</span>を確保できない場合がある。もっとも標高の
-    <span class="blank" onclick="this.classList.toggle('show')">高い地点</span>においてもコース間重複度を十分に確保できるよう、
-    <span class="blank" onclick="this.classList.toggle('show')">コース間隔</span>を
+    <span style="color: red;">計測幅</span>が狭くなり、
+    <span style="color: red;">コース間重複度</span>を確保できない場合がある。最も標高の
+    <span class="blank" onclick="this.classList.toggle('show')">高い地点</span>においても
+    <span style="color: red;">コース間重複度</span>を十分に確保できるよう、コース間隔を
     <span class="blank" onclick="this.classList.toggle('show')">狭くする</span>必要がある。
     </div>
 </div>
@@ -226,9 +228,9 @@
     この場合、観測できない箇所を減らすため、往路と復路ではレーザ測距装置の向きを変えることが望ましい。その理由を点群取得の観点で
     <br>Ａ
 	<br>レーザの
-    <span style="color: #e74c3c;">照射方向</span>を変えることにより、
+    <span style="color: red;">照射方向</span>を変えることにより、
     <span class="blank" onclick="this.classList.toggle('show')">地物の陰</span>となる箇所を減らして
-    <span style="color: #e74c3c;">観測</span>できる。
+    <span style="color: red;">観測</span>できる。
 	</div>
 </div>
 

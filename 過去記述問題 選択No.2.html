@@ -73,7 +73,17 @@
 	word-wrap: break-word; 
 	}
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
+        .blank {
+             display: inline-block;
+             background: #cbd5e0; 
+             color: #cbd5e0; 
+             padding: 0 8px; 
+             border-radius: 4px; 
+             cursor: pointer; 
+             font-weight: bold; 
+             border-bottom: 2px solid #a0aec0;
+            }
+        
         .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
 
         .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
@@ -105,7 +115,7 @@
         <div class="clause-title">R5 A-2</div>
         <div class="text">
 	Ｑ
-	<br>平均図は後続の作業を開始する前に測量計画機関の承認を受けなければならない。その理由
+	<br>平均図は後続の作業を開始する前に測量計画機関の承認を受けなければならない。その理由は
 	<br>Ａ
 	<br><span class="blank" onclick="this.classList.toggle('show')">選点後</span>の作業に影響を及ぼすため、事前に、既定の条件を逸脱していないか、新点の
     <span class="blank" onclick="this.classList.toggle('show')">配点密度</span>が適切であるかを測量計画機関に確認してもらうため。
@@ -116,7 +126,8 @@
         <div class="clause-title">R5 A-3</div>
         <div class="text">
 	Ｑ
-	<br>基準点測量における位置正確度を検査するためのデータ品質評価方法について
+	<br>基準点測量成果は、JPGISに基づく製品仕様書が規定するデータ品質を満足しているか評価しなければならない、
+    基準点測量における位置正確度を検査するためのデータ品質評価方法について
 	<br>Ａ
 	<br>新点の
     <span class="blank" onclick="this.classList.toggle('show')">水平位置</span>及び
@@ -131,9 +142,11 @@
 	Ｑ
 	<br>電子基準点のみを既知点とする2級基準点測量を行う場合、セミ･ダイナミック補正を行わなければならない理由。
 	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">基線長</span>が長いので、
-    <span class="blank" onclick="this.classList.toggle('show')">元期</span>からの
-	<span class="blank" onclick="this.classList.toggle('show')">時間経過</span>による地殻変動の影響が生じ、周囲の基準点成果との間に
+	<br><span style="color: red;">基線長</span>が長いので、
+    <span style="color: red;">元期</span>からの
+	<span style="color: red;">時間経過</span>による
+    <span class="blank" onclick="this.classList.toggle('show')">地殻変動</span>の影響が生じ、周囲の
+    <span style="color: red;">基準点成果</span>との間に
 	<span class="blank" onclick="this.classList.toggle('show')">不整合</span>が生じる恐れがあるため。
         </div>
 </div>
@@ -145,8 +158,8 @@
 	<br>GNSS測量機を用いた1～3級基準点測量において、電子基準点のみを既知点をした場合に、電子基準点以外の既知点を含む場合に対し、制限が緩和される内容を二つ
     <br>例：1個の多角網における既知点数を2点以上に減らすことができる
 	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">路線長</span>の制限が適用されない
-	<br><span class="blank" onclick="this.classList.toggle('show')">既知点間の距離</span>の制限が適用されない
+	<br>・<span class="blank" onclick="this.classList.toggle('show')">路線長</span>の制限が適用されない
+	<br>・<span class="blank" onclick="this.classList.toggle('show')">既知点間の距離</span>の制限が適用されない
 	</div>
 </div>
 
@@ -156,8 +169,8 @@
 	Ｑ
 	<br>測量作業機関が、計画した現地作業の終了後速やかに行わなければならない精度管理の具体的な内容について
 	<br>Ａ
-	<br>測量計画機関より示された
-	<span class="blank" onclick="this.classList.toggle('show')">点検測量率</span>、
+	<br><span style="color: red;">測量計画機関</span>より示された
+	<span style="color: red;">点検測量率</span>、
 	<span class="blank" onclick="this.classList.toggle('show')">点検箇所</span>及び
 	<span class="blank" onclick="this.classList.toggle('show')">点検方法</span>に基づいて点検測量を行う。
 	</div>
@@ -169,10 +182,11 @@
 	Ｑ
 	<br>電子基準点のみを既知点としたGNSS測量機を用いた基準点測量における点検計算の方法を二つ
 	<br>Ａ
-	<br><span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">異なるセッション</span>の組み合わせによる
+	<br>・<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">異なるセッション</span>の組み合わせによる
     <span class="blank" onclick="this.classList.toggle('show')">最小辺数</span>の多角形の
     <span class="blank" onclick="this.classList.toggle('show')">環閉合差</span>を点検する。
-	<br><span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">異なるセッション</span>で重複する
+	<br>・<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">異なるセッション</span>で
+    <span class="blank" onclick="this.classList.toggle('show')">重複</span>する
     <span class="blank" onclick="this.classList.toggle('show')">基線ベクトル</span>の
     <span class="blank" onclick="this.classList.toggle('show')">較差</span>を比較点検する。
 	</div>
@@ -196,8 +210,8 @@
 	<br>地盤沈下調査では、ある水準点を不動として、この水準点との比較により地域内の水準点の沈下状況を調査する。この不動とする水準点を不動点という。
 	<br>地盤沈下の状況を正しく把握するためにどのような場所の水準点を不動点として選定すべきか。選定すべき場所の条件を二つ
 	<br>Ａ
-	<br>地盤沈下が起こっている<span class="blank" onclick="this.classList.toggle('show')">地域外</span>の場所
-	<br>地盤が<span class="blank" onclick="this.classList.toggle('show')">堅固</span>な場所
+	<br>・地盤沈下が起こっている<span class="blank" onclick="this.classList.toggle('show')">地域外</span>の場所
+	<br>・地盤が<span class="blank" onclick="this.classList.toggle('show')">堅固</span>な場所
 	</div>
 </div>
 
@@ -207,12 +221,12 @@
 	Ｑ
 	<br>地盤沈下の状況を正しく把握するために、使用するすべての水準点について現況調査で確認しなければならない主な確認事項を二つ
 	<br>Ａ
-	<br>使用する水準点が
+	<br>・使用する水準点が
     <span class="blank" onclick="this.classList.toggle('show')">亡失</span>、
     <span class="blank" onclick="this.classList.toggle('show')">傾斜</span>、
     <span class="blank" onclick="this.classList.toggle('show')">埋没</span>、
     <span class="blank" onclick="this.classList.toggle('show')">露出</span>、柱石き損、球分き損していないか
-	<br>使用する水準点が前回の観測以降に、他の機関により
+	<br>・使用する水準点が前回の観測以降に、他の機関により
     <span class="blank" onclick="this.classList.toggle('show')">移転改理</span>が行われていないか
 	</div>
 </div>
@@ -235,7 +249,7 @@
 	<br>地盤沈下調査で、調査地域が広範囲にわたることから、2班にわけて観測を行うこととなった。2班の観測路線は、ある水準点で交差している。
     この交差する水準点の観測において、地盤沈下調査の観点から計画作成に当たり留意するべき事項
 	<br>Ａ
-    <br>地盤沈下調査の観点から、2班の交差する水準点の観測をできる限り
+    <br><span style="color: red;">地盤沈下調査の観点から、</span>2班の交差する水準点の観測をできる限り
     <span class="blank" onclick="this.classList.toggle('show')">同一時期</span>に行う。
 	</div>
 </div>
@@ -248,8 +262,8 @@
     <br>例：土地所有者または管理者から立ち入りの許可を得られる場所に選点する。
     <br>　　作業の安全が確保される場所に新点を選点する。
 	<br>Ａ
-    <br><span class="blank" onclick="this.classList.toggle('show')">発見が容易な</span>場所に選点する。
-    <br><span class="blank" onclick="this.classList.toggle('show')">基準点間</span>の
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">発見が容易な</span>場所に選点する。
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">基準点間</span>の
     <span class="blank" onclick="this.classList.toggle('show')">視通</span>が確保できる場所に選点する。
 	</div>
 </div>
@@ -261,8 +275,10 @@
 	<br>TSによる基準点測量において、結合多角方式による多角網を形成する際に精度管理上考慮すべき事項を二つ
     <br>例：1個の多角網における既知点数
 	<br>Ａ
-    <br><span class="blank" onclick="this.classList.toggle('show')">単位多角形の辺数</span>
-    <br><span class="blank" onclick="this.classList.toggle('show')">路線辺数</span>
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">単位多角形の辺数</span>
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">路線の辺数</span>
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">節点間の距離</span>
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">路線長</span>
 	</div>
 </div>
 
@@ -273,8 +289,8 @@
 	<br>TSによる基準点測量の観測終了後、点検計算を行い、観測値の良否を判断するための点検路線を選定したい。点検路線の選定条件を二つ
     <br>例：路線長はなるべく短いものとする
 	<br>Ａ
-    <br><span class="blank" onclick="this.classList.toggle('show')">既知点と既知点</span>を結合させる。
-    <br><span class="blank" onclick="this.classList.toggle('show')">すべての既知点</span>を、
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">既知点と既知点</span>を結合させる。
+    <br>・<span class="blank" onclick="this.classList.toggle('show')">すべての既知点</span>を、
     <span class="blank" onclick="this.classList.toggle('show')">一つ以上</span>の点検路線で結合させる。 
 	</div>
 </div>
@@ -284,13 +300,14 @@
         <div class="text">
 	Ｑ
 	<br>電子基準点のみを既知点とする場合、点検計算において、既知点座標と基線解析結果を整合させるためには、使用する既知点の緯度、経度及び楕円対高はセミ･ダイナミック補正を適用した
-    今期座標としなければならない。
-    <br>セミ･ダイナミック補正を適用する理由
+    今期座標としなければならない。セミ･ダイナミック補正を適用する理由
 	<br>Ａ
-    <br>作業地域から
-    <span class="blank" onclick="this.classList.toggle('show')">既知点</span>までの距離が一般に長くなることから、
-    <span class="blank" onclick="this.classList.toggle('show')">地殻変動</span>による測量成果の
-    <span class="blank" onclick="this.classList.toggle('show')">不整合</span>が生じる可能性があるため。
+    <br><span class="blank" onclick="this.classList.toggle('show')">作業地域</span>から
+    <span style="color: red;">既知点</span>までの
+    <span style="color: red;">距離</span>が一般に
+    <span class="blank" onclick="this.classList.toggle('show')">長くなる</span>ことから、
+    <span style="color: red;">地殻変動</span>による測量成果の
+    <span style="color: red;">不整合</span>が生じる可能性があるため。
 	</div>
 </div>
 
@@ -298,13 +315,14 @@
         <div class="clause-title">R7 C-3</div>
         <div class="text">
 	Ｑ
-	<br>数年前に付近で自身が発生し、大きな地殻変動が生じた地域において、レベルによる水準測量で復旧測量を実施することとなった。
+	<br>数年前に付近で地震が発生し、大きな地殻変動が生じた地域において、レベルによる水準測量で復旧測量を実施することとなった。
     既知点を選定する際の留意点
 	<br>Ａ
-    <br>既知点として使用する水準点について、
+    <br><span style="color: red;">既知点</span>として使用する
+    <span class="blank" onclick="this.classList.toggle('show')">水準点</span>について、
     <span class="blank" onclick="this.classList.toggle('show')">地殻変動</span>の影響を踏まえた
-    <span class="blank" onclick="this.classList.toggle('show')">成果</span>の
-    <span class="blank" onclick="this.classList.toggle('show')">改定</span>が行われているかを確認する。
+    <span style="color: red;">成果</span>の
+    <span style="color: red;">改定</span>が行われているかを確認する。
 	</div>
 </div>
 

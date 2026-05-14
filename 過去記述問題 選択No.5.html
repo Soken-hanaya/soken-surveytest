@@ -147,7 +147,7 @@
         <div class="clause-title">R5 C-4</div>
         <div class="text">
 	Ｑ
-	<br>境界測量をネットワーク型RTK法による単点観測で行う場合、作業地域周辺の既知点において単点観測法により、整合を確認する必要がある。
+	<br>境界測量をネットワーク型RTK法による単点観測法で行う場合、作業地域周辺の既知点において単点観測法により、整合を確認する必要がある。
     整合の確認に用いる既知点の点数及び配置について
 	<br>Ａ
 	<br><span class="blank" onclick="this.classList.toggle('show')">作業地域の周辺を囲むよう</span>に、
@@ -159,12 +159,14 @@
         <div class="clause-title">R5 D-3</div>
         <div class="text">
 	Ｑ
-	<br>深浅測量において①水深の測定、②測深一又は船位の測定に用いる主な機器をそれぞれ二つ(レーザー測深機を除く)
+	<br>深浅測量において①水深の測定、②測深位置又は船位の測定に用いる主な機器をそれぞれ二つ(レーザー測深機を除く)
 	<br>Ａ
 	<br>①<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')" >音響測深機</span>
-	<br>　<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">ロッド</span>
+	<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">ロッド</span>
+    <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">レッド</span>
     <br>②<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">ワイヤーロープ</span>
-    <br>　<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">TS</span>
+    <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">TS</span>
+    <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">GNSS測量機</span>
 	</div>
 </div>
 
@@ -188,11 +190,11 @@
     <br>①境界点の間で視通が確保できる場合
     <br>②境界点の間で視通が確保できない場合
 	<br>Ａ
-	<br>①隣接する境界点間の距離を現地で測定し、境界測量の
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測結果</span>に基づき計算した境界点間の距離と比較を行う。
+	<br>①隣接する境界点間の距離を現地で測定し、
+    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">境界測量</span>の観測結果に基づき計算した境界点間の距離と比較を行う。
 	<br>②TSの
-    <span class="blank" onclick="this.classList.toggle('show')">対辺測定機能</span>を用いて境界点間の距離を測定し、境界測量の
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測結果</span>に基づき計算した境界点間の距離と比較を行う。
+    <span class="blank" onclick="this.classList.toggle('show')">対辺測定機能</span>を用いて境界点間の距離を測定し、
+    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">境界測量</span>の観測結果に基づき計算した境界点間の距離と比較を行う。
 	</div>
 </div>
 
@@ -202,9 +204,13 @@
 	Ｑ
 	<br>河心に対して測量標を設置する場合、測量標の位置を地図上で選定する方法
 	<br>Ａ
-	<br>河心の河口又は幹川への合流地点に設けた
-    <span class="blank" onclick="this.classList.toggle('show')">起点</span>から、河心に沿って
-    <span class="blank" onclick="this.classList.toggle('show')">200m</span>間隔を標準に、河心線の
+	<br><span style="color: red;">河心</span>の
+    <span class="blank" onclick="this.classList.toggle('show')">河口</span>又は
+    <span class="blank" onclick="this.classList.toggle('show')">幹川</span>への合流地点に設けた
+    <span style="color: red;">起点</span>から、
+    <span style="color: red;">河心</span>に沿って
+    <span class="blank" onclick="this.classList.toggle('show')">200m</span>
+    <span style="color: red;">間隔</span>を標準に、河心線の
     <span class="blank" onclick="this.classList.toggle('show')">接線</span>に対して
     <span class="blank" onclick="this.classList.toggle('show')">直角</span>方向の両岸の
     <span class="blank" onclick="this.classList.toggle('show')">堤防法肩</span>又は
@@ -218,9 +224,10 @@
 	Ｑ
 	<br>線形決定における点検測量の方法
 	<br>Ａ
-	<br>条件点間の距離を測定し、
+	<br><span style="color: red;">条件点間</span>の距離を測定し、
     <span class="blank" onclick="this.classList.toggle('show')">座標値</span>から求めた
-    <span class="blank" onclick="this.classList.toggle('show')">計算値</span>との比較により行う。
+    <span class="blank" onclick="this.classList.toggle('show')">計算値</span>との
+    <span style="color: red;">比較</span>により行う。
 	</div>
 </div>
 
@@ -228,12 +235,12 @@
         <div class="clause-title">R7 A-3</div>
         <div class="text">
 	Ｑ
-	<br>中心線測量で主要点に設置される杭には、必要に応じて引照点杭又は保護杭を設置することができる。そのうち引照点杭の設置目的
+	<br>中心線測量で主要点に設置される杭には、必要に応じて引照点杭又は保護杭を設置することができる。そのうち引照点杭の設置目的について
 	<br>Ａ
 	<br>役杭が
     <span class="blank" onclick="this.classList.toggle('show')">亡失</span>、
     <span class="blank" onclick="this.classList.toggle('show')">破損</span>又は
-    <span class="blank" onclick="this.classList.toggle('show')">移動</span>の恐れがある場合、
+    <span class="blank" onclick="this.classList.toggle('show')">移動</span>のおそれがある場合、
     <span class="blank" onclick="this.classList.toggle('show')">復元</span>を行えるようにするため
 	</div>
 </div>
@@ -244,15 +251,15 @@
 	Ｑ
 	<br>用地幅杭点間測量について、用地幅杭間の距離を直接測定できない場合、どのように精度を確認すればよいか。具体的な方法を二つ
 	<br>Ａ
-    <br>用地幅杭点の
+    <br>・用地幅杭点の
     <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>の決定に用いた
     既知点以外の既知点から別に求めた
     <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>の
     <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">較差</span>により確認する。
-    <br>TSの
+    <br>・TSの
     <span class="blank" onclick="this.classList.toggle('show')">対辺測定機能</span>を用いて
     <span class="blank" onclick="this.classList.toggle('show')">用地幅杭間距離</span>を測定し、
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>より求めた距離との
+    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>から求めた距離との
     <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">較差</span>により精度を確認する。
 	</div>
 </div>
@@ -263,8 +270,9 @@
 	Ｑ
 	<br>現地において関係権利者が立ち合いの上、一筆ごとの土地の境界を確認することとなった。関係権利者との立会時に実施するべき事項を一つ
 	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">土地境界確認書</span>を作成し、関係権利者全員に確認したことの
-    <span class="blank" onclick="this.classList.toggle('show')">署名</span>を求める。
+	<br><span style="color: red;">土地境界確認書</span>を作成し、
+    <span style="color: red;">関係権利者</span>全員に確認したことの
+    <span class="blank" onclick="this.classList.toggle('show')">署名</span>等を求める。
 	</div>
 </div>
 
