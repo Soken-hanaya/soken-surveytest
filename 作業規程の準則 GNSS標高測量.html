@@ -1,347 +1,490 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>作業規程の準則 GNSS標高測量</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>作業規程の準則 GNSS標高測量</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
-        
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-        .clause-card.active { display: flex; }
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える(#ffcc00 は鮮やかな黄色) */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 GNSS標高測量</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 GNSS標高測量</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">要旨　第74条</div>
-        <div class="text">
-	「GNSS標高測量」とは、既知点に基づき、GNSS測量機を用いて、新設する水準点の標高を定める作業をいう。
-	<br>2　GNSS標高測量は、
-	<span class="blank" onclick="this.classList.toggle('show')">3級水準測量</span>に区分するものとする。
-        </div>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">要旨&emsp;第74条</div>
+      <div class="text">
+        GNSS標高測量とは、既知点に基づき、GNSS測量機を用いて、新設する
+        <span class="blank" onclick="this.classList.toggle('show')">水準点</span>の標高を定める作業をいう。
+        <br>2&emsp;GNSS標高測量は、
+        <span class="blank" onclick="this.classList.toggle('show')">3級水準測量</span>に区分するものとする。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">要旨　第75条</div>
-        <div class="text">
-	既知点の種類、新点間の距離、既知点と新点間の距離及び既設点（３級水準点以上に限る）と新点間の距離は、次表を標準とする。
-	<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; line-height: 1.4; table-layout: fixed;">
-    <tbody>
-        <tr>
-            <td style="border: 1px solid #333; padding: 8px; width: 35%; background: #1a3e5e; color: white; text-align: center; font-weight: bold;">
-             項目　＼　区分
-            </td>
-            <td colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold; color: #1a3e5e;">
+    <div class="clause-card">
+      <div class="clause-title">要旨&emsp;第75条</div>
+      <div class="text">
+        既知点の種類、新点間の距離、既知点と新点間の距離及び既設点(3級水準点以上に限る)と新点間の距離は、次表を標準とする。
+        <table
+          style="width: 100%; border-collapse: collapse; font-size: 0.9rem; line-height: 1.4; table-layout: fixed;">
+          <tbody>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; width: 35%; background: #1a3e5e; color: white; text-align: center; font-weight: bold;">
+                項目&emsp;&emsp;＼&emsp;&emsp;区分
+              </td>
+              <td colspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold; color: #1a3e5e;">
                 3級水準測量
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center;">既知点の種類</td>
-            <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;">
-            <span class="blank" onclick="this.classList.toggle('show')">電子基準点</span>
-            </td>
-        </tr>
-	<tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center;">新点間の距離</td>
-		<td rowspan="3" colspan="2" style="border: 1px solid #333; padding: 15px; text-align: center; vertical-align: middle;">
-		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">6,000m</span>以上
-	</td>
-	</tr>
-        <tr>
-        	<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-size: 0.8rem;">既知点と新点間の距離</td>
-        </tr>
-        <tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-size: 0.8rem;">既設点と新点間の距離</td>
-	</tr>
-	<tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; vertical-align: middle;">備考</td>
-		<td colspan="2" style="border: 1px solid #333; padding: 10px; font-size: 0.8rem; line-height: 1.6;">
-		ただし、新点間距離、既知点と新点間又は既設点から新点までの距離が
-		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">6,000m</span>未満になる場合でも、
-		急峻な地形や河川などがあることにより両点間のレベル等による水準測量の観測距離が
-		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">6,000m</span>以上になることが明らかな場合は、
-		<span class="blank" onclick="this.classList.toggle('show')">計画機関</span>の承認を得ることにより実施できるものとする。
-        </td>
-	</tbody>
-	</table>
-	２　既知点とする電子基準点は、
-	<span class="blank" onclick="this.classList.toggle('show')">作業地域近傍</span>のものを使用するものとする
-	</div>
-    </div>
-
-<div class="clause-card">
-        <div class="clause-title">要旨　第76条</div>
-        <div class="text">
-	GNSS標高測量の作業方法は、次表を標準とする。
-	<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; line-height: 1.4; table-layout: fixed;">
-            <tbody>
-                <tr>
-                <td style="border: 1px solid #333; padding: 8px; width: 35%; background: #1a3e5e; color: white; text-align: center; font-weight: bold;">項目　＼　区分</td>
-                <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold; color: #1a3e5e;">3級水準測量</td>
-                </tr>
-                <tr>
-		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">測量方式</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">
-		<span class="blank" onclick="this.classList.toggle('show')">結合多角</span>方式</td>
-                </tr>
-		<tr>
-		<td style="border: 1px solid #333; padding: 8px; text-align: center;">地形の状況等によりやむを得ないときは、
-		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">単路線</span>方式とすることができる。</td>
-		</tr>
-		<tr>
-		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">既知点数</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">3点</span>以上</td>
-                </tr>
-		<tr>
-		<td style="border: 1px solid #333; padding: 8px; text-align: center;">
-		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">単路線</span>方式の場合は2点とすることができる。</td>
-		</tr>
-		<tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">路線の辺数</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">5辺以下</td>
-                </tr>
-		<tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">路線図形</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">新点は、外周路線に属する隣接既知点を結ぶ直線の内側に選点するものとする。ただし、地形の状況等によりやむを得ないときは、この限りでない。</td>
-                </tr>
-		<tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">観測楕円体比高</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">700ｍ以下を標準とし、700ｍを超える場合は日を変えて点検観測を行うものとする</td>
-                </tr>
-		<tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">偏心距離の制限(新点)</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">250m未満</td>
-                </tr>
-            </tbody>
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center;">
+                既知点の種類</td>
+              <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="blank" onclick="this.classList.toggle('show')">電子基準点</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center;">
+                新点間の距離</td>
+              <td rowspan="3" colspan="2"
+                style="border: 1px solid #333; padding: 15px; text-align: center; vertical-align: middle;">
+                <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">6,000m</span>以上
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-size: 0.8rem;">
+                既知点と新点間の距離</td>
+            </tr>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-size: 0.8rem;">
+                既設点と新点間の距離</td>
+            </tr>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; vertical-align: middle;">
+                備考</td>
+              <td colspan="2" style="border: 1px solid #333; padding: 10px; font-size: 0.8rem; line-height: 1.6;">
+                ただし、新点間距離、既知点と新点間又は既設点から新点までの距離が
+                <span class="num-label">1</span><span class="blank g1"
+                  onclick="toggleLocal(this, 'g1')">6,000m</span>未満になる場合でも、
+                急峻な地形や河川などがあることにより両点間のレベル等による水準測量の観測距離が
+                <span class="num-label">1</span><span class="blank g1"
+                  onclick="toggleLocal(this, 'g1')">6,000m</span>以上になることが明らかな場合は、
+                <span class="blank" onclick="this.classList.toggle('show')">計画機関</span>の承認を得ることにより実施できるものとする。
+              </td>
+          </tbody>
         </table>
-       </div>
+        2&emsp;既知点とする電子基準点は、
+        <span class="blank" onclick="this.classList.toggle('show')">作業地域近傍</span>のものを使用するものとする
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">観測　第89条</div>
-        <div class="text">
-	GNSS観測に当たり、計画機関の承認を得た平均図に基づき、観測図を作成するものとする。
-	<br>2　GNSS観測は、平均図等に基づき、第37条第2項第二号リ（1）に規定する
-	<span class="blank" onclick="this.classList.toggle('show')">スタティック法</span>により行う。
-	<br>一　GNSS観測の方法は、次表を標準とする。
-	<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; line-height: 1.4; table-layout: fixed;">
-            <tbody>
-                <tr>
-                <td  colspan="2" style="border: 1px solid #333; padding: 8px; width: 35%; background: #1a3e5e; color: white; text-align: center; font-weight: bold;">項目　＼　区分</td>
-                <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold; color: #1a3e5e; width:150px">3級水準測量</td>
-                </tr>
-                <tr>
-		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">観測時間</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">
-		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">5時間</span>以上</td>
-                </tr>
-		<tr>
-		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ取得間隔</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;"><span class="blank" onclick="this.classList.toggle('show')">30秒</span>以下</td>
-                </tr>
-		<tr>
-		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">最低高度角</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">
-		<span class="blank" onclick="this.classList.toggle('show')">15°</span>を標準</td>
-                </tr>
-		<tr>
-		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">アンテナ高測定単位</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">mm</td>
-                </tr>
-		<tr>
-		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">観測楕円体比高</td>
-                <td style="border: 1px solid #333; padding: 8px; text-align: center;">GPS･準天頂衛星</td>
-		<td style="border: 1px solid #333; padding: 8px; text-align: center;">
-		<span class="blank" onclick="this.classList.toggle('show')">5衛星</span>以上</td>
-                </tr>
-		<tr>
-		<td style="border: 1px solid #333; padding: 8px; text-align: center;">GPS･準天頂衛星及びGLONASS衛星</td>
-		<td style="border: 1px solid #333; padding: 8px; text-align: center;">
-		<span class="blank" onclick="this.classList.toggle('show')">6衛星</span>以上</td>
-                </tr>
-		<tr>
-		<td  colspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">摘要</td>
-                <td style="border: 1px solid #333; padding: 8px;">1.観測時間は連続した
-		<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">5時間</span>以上とする
-		<br>2.GNSS衛星の稼働状態、飛来情報等を考慮し、片寄った配置の使用は避けるものとする。
-		<br>3.GLONASS衛星を用いて観測する場合は、GPS･準天頂衛星及びGLONASS衛星を、それぞれ２衛星以上を用いること
-		<br>4.電子基準点の稼働状況を事前に確認するものとする。
-		<br>5.観測距離が 10km 以上の観測は、１級GNSS測量機により2周波で行う。10km未満の観測は2級以上の性能を有するGNSS測量機により行う。 ただし、1級GNSS測量機による場合は2周波で行うことができる。</td>
-                </tr>
-		<tr>
-            </tbody>
+    <div class="clause-card">
+      <div class="clause-title">要旨&emsp;第76条</div>
+      <div class="text">
+        GNSS標高測量の作業方法は、次表を標準とする。
+        <table
+          style="width: 100%; border-collapse: collapse; font-size: 0.85rem; line-height: 1.4; table-layout: fixed;">
+          <tbody>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; width: 35%; background: #1a3e5e; color: white; text-align: center; font-weight: bold;">
+                項目&emsp;&emsp;＼&emsp;&emsp;区分</td>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold; color: #1a3e5e;">
+                3級水準測量</td>
+            </tr>
+            <tr>
+              <td rowspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                測量方式</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="blank" onclick="this.classList.toggle('show')">結合多角</span>方式
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                地形の状況等によりやむを得ないときは、
+                <span class="num-label">1</span><span class="blank g1"
+                  onclick="toggleLocal(this, 'g1')">単路線</span>方式とすることができる。
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                既知点数</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="blank" onclick="this.classList.toggle('show')">3点</span>以上
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="num-label">1</span><span class="blank g1"
+                  onclick="toggleLocal(this, 'g1')">単路線</span>方式の場合は2点とすることができる。
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                路線の辺数</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                5辺以下</td>
+            </tr>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                路線図形</td>
+              <td style="border: 1px solid #333; padding: 8px; ">
+                新点は、外周路線に属する隣接既知点を結ぶ直線の内側に選点するものとする。ただし、地形の状況等によりやむを得ないときは、この限りでない。
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                観測楕円体比高</td>
+              <td style="border: 1px solid #333; padding: 8px; ">
+                700m以下を標準とし、700mを超える場合は日を変えて点検観測を行うものとする</td>
+            </tr>
+            <tr>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                偏心距離の制限(新点)</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                250m未満</td>
+            </tr>
+          </tbody>
         </table>
-       </div>
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">計算の方法等　第93条</div>
-        <div class="text">
-	3　GNSS観測における基線解析は次の各号にいより実施することを標準とする。
-	<br>二　GNSS衛星の軌道情報は、
-	<span class="blank" onclick="this.classList.toggle('show')">放送</span>暦を標準とする。
-	<br>三　基線解析では、原則として
-	<span class="blank" onclick="this.classList.toggle('show')">PCV</span>補正を行うものとする。
-	<br>四　気象要素の補正は、基線解析ソフトウェアで採用している標準大気によるものとする。
-	<br>五　基線解析は、基線長が10キロメートル以上の場合は2周波で行うものとし、基線長が10キロメートル未満の場合は1周波又は2周波で行うものとする。
-	<br>六　基線解析の固定点の緯度及び経度は、元期座標又は今期座標とする。以後の基線解析は、固定点の緯度及び経度を用いて求められた緯度及び経度を使用するものとする。
-	<br>七　基線解析の固定点の楕円体高は、成果表の標高及び第40条第二号に規定するジオイド高から求めた値（成果表の楕円体高も用いることができる。）とし、元期座標又は今期座標とする。以後の基線解析は、固定点の楕円体高を用いて求められた楕円体高を使用するものとする。
-	<br>八　基線解析に使用するＧＮＳＳ衛星の最低高度角は、観測時に設定した最低高度角とする。
-       </div>
+    <div class="clause-card">
+      <div class="clause-title">観測&emsp;第89条</div>
+      <div class="text">
+        GNSS観測に当たり、計画機関の承認を得た平均図に基づき、観測図を作成するものとする。
+        <br>2&emsp;GNSS観測は、平均図等に基づき、第37条第2項第二号リ(1)に規定する
+        <span class="blank" onclick="this.classList.toggle('show')">スタティック</span>法により行う。
+        <br>一&emsp;GNSS観測の方法は、次表を標準とする。
+        <table
+          style="width: 100%; border-collapse: collapse; font-size: 0.85rem; line-height: 1.4; table-layout: fixed;">
+          <tbody>
+            <tr>
+              <td colspan="2"
+                style="border: 1px solid #333; padding: 8px; width: 35%; background: #1a3e5e; color: white; text-align: center; font-weight: bold;">
+                項目&emsp;&emsp;＼&emsp;&emsp;区分</td>
+              <td
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold; color: #1a3e5e; width:150px">
+                3級水準測量</td>
+            </tr>
+            <tr>
+              <td colspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                観測時間</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">5時間</span>以上
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                データ取得間隔</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="blank" onclick="this.classList.toggle('show')">30秒</span>以下
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                最低高度角</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="blank" onclick="this.classList.toggle('show')">15°</span>を標準
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                アンテナ高測定単位</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                mm</td>
+            </tr>
+            <tr>
+              <td rowspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                使用衛星数</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                GPS･準天頂衛星</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="blank" onclick="this.classList.toggle('show')">5衛星</span>以上
+              </td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                GPS･準天頂衛星及びGLONASS衛星</td>
+              <td style="border: 1px solid #333; padding: 8px; text-align: center;">
+                <span class="blank" onclick="this.classList.toggle('show')">6衛星</span>以上
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"
+                style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                摘要</td>
+              <td style="border: 1px solid #333; padding: 8px;">1.観測時間は連続した
+                <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">5時間</span>以上とする
+                <br>2.GNSS衛星の稼働状態、飛来情報等を考慮し、片寄った配置の使用は避けるものとする。
+                <br>3.GLONASS衛星を用いて観測する場合は、GPS･準天頂衛星及びGLONASS衛星を、それぞれ2衛星以上を用いること
+                <br>4.電子基準点の稼働状況を事前に確認するものとする。
+                <br>5.観測距離が 10km
+                以上の観測は、1級GNSS測量機により2周波で行う。10km未満の観測は2級以上の性能を有するGNSS測量機により行う。
+                ただし、1級GNSS測量機による場合は2周波で行うことができる。
+              </td>
+            </tr>
+            <tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">計算の方法等&emsp;第93条</div>
+      <div class="text">
+        3&emsp;GNSS観測における基線解析は次の各号により実施することを標準とする。
+        <br>二&emsp;GNSS衛星の軌道情報は、
+        <span class="blank" onclick="this.classList.toggle('show')">放送</span>暦を標準とする。
+        <br>三&emsp;基線解析では、原則として
+        <span class="blank" onclick="this.classList.toggle('show')">PCV</span>補正を行うものとする。
+        <br>四&emsp;気象要素の補正は、基線解析ソフトウェアで採用している標準大気によるものとする。
+        <br>五&emsp;基線解析は、基線長が
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10km</span>以上の場合は2周波で行うものとし、基線長が
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10km</span>未満の場合は1周波又は2周波で行うものとする。
+        <br>六&emsp;基線解析の固定点の緯度及び経度は、元期座標又は今期座標とする。以後の基線解析は、固定点の緯度及び経度を用いて求められた緯度及び経度を使用するものとする。
+        <br>七&emsp;基線解析の固定点の楕円体高は、成果表の標高及び第40条第二号に規定するジオイド高から求めた値(成果表の楕円体高も用いることができる)とし、元期座標又は今期座標とする。以後の基線解析は、固定点の楕円体高を用いて求められた楕円体高を使用するものとする。
+        <br>八&emsp;基線解析に使用するGNSS衛星の最低高度角は、観測時に設定した最低高度角とする。(
+        <span class="blank" onclick="this.classList.toggle('show')">標準15°</span>)
+      </div>
     </div>
 
 
-</div>
+  </div>
 
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
