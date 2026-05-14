@@ -1,265 +1,341 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>作業規程の準則 河川測量</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>作業規程の準則 河川測量</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
-        
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-        .clause-card.active { display: flex; }
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
-        
-    .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 河川測量</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 河川測量</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">第3節　距離標設置測量</div>
-        <div class="text">
-	第663条(要旨)
-	<br>「距離標設置測量」とは、河心線の接線に対して直角方向の両岸の
-	<span class="blank" onclick="this.classList.toggle('show')">堤防法肩</span>又は
-	<span class="blank" onclick="this.classList.toggle('show')">法面</span>等に距離標を設置する作業をいう。
-        </div>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">第3節&emsp;距離標設置測量</div>
+      <div class="text">
+        第663条(要旨)
+        <br>｢距離標設置測量｣とは、河心線の接線に対して直角方向の両岸の
+        <span class="blank" onclick="this.classList.toggle('show')">堤防法肩</span>又は
+        <span class="blank" onclick="this.classList.toggle('show')">法面</span>等に距離標を設置する作業をいう。
+        <br>第664条(方法)
+        <br>距離標は、あらかじめ地形図上で位置を選定し、その座標値に基づいて、近傍の
+        <span class="blank" onclick="this.classList.toggle('show')">3</span>級基準点等から放射法等により設置するものとする。
+        <br>2&emsp;距離標設置間隔は、河川の河口又は幹川への合流点に設けた起点から、河心に沿って
+        <span class="blank" onclick="this.classList.toggle('show')">200</span>mを標準とする。
+        <br>3&emsp;距離標設置測量の観測は、次のとおり行うものとする。
+        <br>一&emsp;TS等を用いる放射法の場合は、第641条第2項第一号の規定を準用する。ただし、近傍に既知点がない場合は、3級基準点等を設置して既知点とすることができる。
+        <br>二&emsp;キネマティック法、RTK法又はネットワーク型RTK法による場合は、第640条第3項第二号 から第四号まで、第4項及び第5項の規定を準用する。
+        <br>4&emsp;単点観測法において、位置情報サービス事業者で算出された任意地点の補正データを使用する場合、その地点から距離標までの距離を
+        <span class="blank" onclick="this.classList.toggle('show')">3</span>km以内とする
+        <br>6&emsp;距離標の位置を示すため、
+        <span class="blank" onclick="this.classList.toggle('show')">点の記</span>を作成する。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第3節　距離標設置測量</div>
-        <div class="text">
-	第665条(要旨)
-	<br>「水準基標測量」とは、定期縦断測量の基準となる水準基標の標高を定める作業をいう。
-	<br>第664条(方法)
-	<br>距離標は、あらかじめ地形図上で位置を選定し、その座標値に基づいて、近傍の3級基準点等から放射法等により設置するものとする。
-	<br>2　距離標設置間隔は、河川の河口又は幹川への合流点に設けた起点から、河心に沿って
-	<span class="blank" onclick="this.classList.toggle('show')">200</span>メートルを標準とする。
-	<br>3　距離標設置測量の観測は、次のとおり行うものとする。
-	<br>一　TS等を用いる放射法の場合は、第641条第2項第一号の規定を準用する。ただし、近傍に既知点がない場合は、3級基準点等を設置して既知点とすることができる。
-	<br>二　キネマティック法、RTK法又はネットワーク型RTK法による場合は、第640条第3項第二号 から第四号まで、第4項及び第5項の規定を準用する。
-	<br>4　単点観測法において、位置情報サービス事業者で算出された任意地点の補正データを使用する場合、その地点から距離標までの距離を
-	<span class="blank" onclick="this.classList.toggle('show')">3</span>キロメートル以内とする
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第4節&emsp;水準基標測量</div>
+      <div class="text">
+        第665条(要旨)
+        <br>｢水準基標測量｣とは、定期縦断測量の基準となる水準基標の
+        <span class="blank" onclick="this.classList.toggle('show')">標高</span>を定める作業をいう。
+        <br>第666条(方法)
+        <br>水準基標測量は、
+        <span class="blank" onclick="this.classList.toggle('show')">2</span>級水準測量により行うものとする。
+        <br>水準基標は、水位標に近接した位置に設置するものとし、設置間隔は、
+        <span class="blank" onclick="this.classList.toggle('show')">5</span>kmから
+        <span class="blank" onclick="this.classList.toggle('show')">20</span>kmまでを標準とする。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第4節　水準基標測量</div>
-        <div class="text">
-	第666条(方法)
-	<br>水準基標測量は、
-	<span class="blank" onclick="this.classList.toggle('show')">2</span>級水準測量により行うものとする。
-	<br>水準基標は、水位標に近接した位置に設置するものとし、設置間隔は、
-	<span class="blank" onclick="this.classList.toggle('show')">5</span>キロメートルから
-	<span class="blank" onclick="this.classList.toggle('show')">20</span>キロメートルまでを標準とする。
-       </div>
+    <div class="clause-card">
+      <div class="clause-title">第5節&emsp;定期縦断測量</div>
+      <div class="text">
+        第667条(要旨)
+        <br>｢定期縦断測量｣とは、定期的に距離標等の縦断測量を実施して
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">縦断面図</span>データファイルを作成する作業をいう。
+        <br>第668条(方法)
+        <br>定期縦断測量は、左右両岸の距離標の標高並びに堤防の変化点の地盤及び主要な構造物について、距離標からの距離及び標高を測定するものとする。
+        <br>2&emsp;定期縦断測量は、原則として、観測の基準とする点は水準基標とし、観測の路線は、
+        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">水準基標</span>から出発し、他の
+        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">水準基標</span>に結合するものとする。
+        <br>3&emsp;定期縦断測量は、レベル等による水準測量により、平地においては
+        <span class="blank" onclick="this.classList.toggle('show')">3級</span>水準測量により行い、山地においては
+        <span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">4級</span>水準測量により行うものとする。ただし、地形、地物等の状況によっては、
+        <span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">4級</span>水準測量に代えて
+        <span class="blank" onclick="this.classList.toggle('show')">間接</span>水準測量により行うことができるものとし、その場合は第649条第8項の規定を準用する。
+        <br>(第649条第8項&nbsp;間接水準測量は、TSを用いた
+        <span class="blank" onclick="this.classList.toggle('show')">単観測昇降式</span>による往復観測)
+        <br>4&emsp;<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断面図</span>データファイルは、定期縦断測量の結果又は第4編の規定を準用して三次元点群データにより作成するものとする。
+        <br>5&emsp;<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断面図</span>データファイルには、測点、単距離、追加距離、
+        <span class="blank" onclick="this.classList.toggle('show')">計画河床高</span>、計画高水敷高、
+        <span class="blank" onclick="this.classList.toggle('show')">計画高水位</span>、計画堤防高、最低河床高、左岸堤防高、右岸堤防高、水準基標、水位標、各種構造物等の名称、位置、標高等のデータを格納する。
+        <br>6&emsp;<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断面図</span>データを図紙に出力する場合は、横の縮尺は
+        <span class="blank" onclick="this.classList.toggle('show')">1,000</span>分の1から<span class="blank" onclick="this.classList.toggle('show')">100,000</span>分の1まで、縦の縮尺は
+        <span class="blank" onclick="this.classList.toggle('show')">100</span>分の1から<span class="blank" onclick="this.classList.toggle('show')">200</span>分の1までを標準とする。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第5節　定期縦断測量</div>
-        <div class="text">
-	第667条(要旨)
-	<br>「定期縦断測量」とは、定期的に距離標等の縦断測量を実施して
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断面図</span>データファイルを作成する作業をいう。
-	<br>第668条(方法)
-	<br>定期縦断測量は、左右両岸の距離標の標高並びに堤防の変化点の地盤及び主要な構造物について、距離標からの距離及び標高を測定するものとする。
-	<br>2　定期縦断測量は、原則として、観測の基準とする点は水準基標とし、観測の路線は、水準基標から出発し、他の水準基標に結合するものとする。
-	<br>3　定期縦断測量は、レベル等による水準測量により、平地においては
-	<span class="blank" onclick="this.classList.toggle('show')">3級</span>水準測量により行い、山地においては
-	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">4級</span>水準測量により行うものとする。ただし、地形、地物等の状況によっては、
-	<span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">4級</span>水準測量に代えて
-	<span class="blank" onclick="this.classList.toggle('show')">間接水準</span>測量により行うことができるものとし、その場合は第649条第8項の規定を準用する。
-	<br>4　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断面図</span>データファイルは、定期縦断測量の結果又は第4編の規定を準用して三次元点群データにより作成するものとする。
-	<br>5　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断面図</span>データファイルには、測点、単距離、追加距離、計画河床高、計画高水敷高、計画高水位、計画堤防高、最低河床高、
-		左岸堤防高、右岸堤防高、水準基標、水位標、各種構造物等の名称、位置、標高等のデータを格納する。
-	<br>6　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">縦断面図</span>データを図紙に出力する場合は、横の縮尺は
-	<span class="blank" onclick="this.classList.toggle('show')">1,000</span>分の1から<span class="blank" onclick="this.classList.toggle('show')">100,000</span>分の1まで、縦の縮尺は
-	<span class="blank" onclick="this.classList.toggle('show')">100</span>分の1から<span class="blank" onclick="this.classList.toggle('show')">200</span>分の1までを標準とする。
-	</div>
-    </div>
-
-<div class="clause-card">
-        <div class="clause-title">第6節　定期横断測量</div>
-        <div class="text">
-	第669条(要旨)
-	<br>「定期横断測量」とは、定期的に左右距離標の視通線上の横断測量を実施して
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データファイルを作成する作業をいう。
-	<br>第670条(方法)
-	<br>定期横断測量は、左右距離標の視通線上の地形の変化点等について、距離標からの距離及び標高を測定するものとする。
-	<br>2　定期横断測量は、水際杭を境にして、陸部及び水部に分け、陸部については第2章第7節(路線測量 横断測量)の規定を準用し、水部については次節(深浅測量)の規定を準用する。
-	<br>3　陸部の測量範囲は、
-	<span class="blank" onclick="this.classList.toggle('show')">堤内20～50m</span>
-	<br>4　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データファイルは、定期横断測量の結果又は第4編の規定を準用して三次元点群データにより作成するものとする。
-	<br>5　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データファイルには、距離標及び水際杭の位置データを格納する。
-	<br>6　<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データを図紙に出力する場合は、横の縮尺は
-	<span class="blank" onclick="this.classList.toggle('show')">100</span>分の1から<span class="blank" onclick="this.classList.toggle('show')">1,000</span>分の1まで、縦の縮尺は
-	<span class="blank" onclick="this.classList.toggle('show')">100</span>分の1から<span class="blank" onclick="this.classList.toggle('show')">200</span>分の1までを標準とする。
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第6節&emsp;定期横断測量</div>
+      <div class="text">
+        第669条(要旨)
+        <br>｢定期横断測量｣とは、定期的に左右距離標の視通線上の横断測量を実施して
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データファイルを作成する作業をいう。
+        <br>第670条(方法)
+        <br>定期横断測量は、左右距離標の視通線上の地形の変化点等について、距離標からの距離及び標高を測定するものとする。
+        <br>2&emsp;定期横断測量は、水際杭を境にして、陸部及び水部に分け、陸部については第2章第7節(路線測量 横断測量)の規定を準用し、水部については次節(深浅測量)の規定を準用する。
+        <br>3&emsp;陸部の測量範囲は、
+        <span class="blank" onclick="this.classList.toggle('show')">堤内20～50m</span>
+        <br>4&emsp;<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データファイルは、定期横断測量の結果又は第4編の規定を準用して三次元点群データにより作成するものとする。
+        <br>5&emsp;<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データファイルには、距離標及び水際杭の位置データを格納する。
+        <br>6&emsp;<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>データを図紙に出力する場合は、横の縮尺は
+        <span class="blank" onclick="this.classList.toggle('show')">100</span>分の1から
+        <span class="blank" onclick="this.classList.toggle('show')">1,000</span>分の1まで、縦の縮尺は
+        <span class="blank" onclick="this.classList.toggle('show')">100</span>分の1から
+        <span class="blank" onclick="this.classList.toggle('show')">200</span>分の1までを標準とする。
+      </div>
     </div>
 
 
-<div class="clause-card">
-        <div class="clause-title">第7節　深浅測量</div>
-        <div class="text">
-	第671条(要旨)
-	<br>「深浅測量」とは、河川、貯水池、湖沼又は海岸において、水底部の地形を明らかにするため、水深、測深位置又は船位、水位又は潮位を測定し、
-	<span class="blank" onclick="this.classList.toggle('show')">横断面図</span>データファイルを作成する作業をいう。
-	<br>第672条(方法)
-	<br>水深の測定は、
-	<span class="blank" onclick="this.classList.toggle('show')">音響測深機</span>を用いて行うものとする。ただし、水深が浅い場合は、
-	<span class="blank" onclick="this.classList.toggle('show')">ロッド</span>又は
-	<span class="blank" onclick="this.classList.toggle('show')">レッド</span>を用い直接測定により行うものとする。
-	</div>
-   </div>
+    <div class="clause-card">
+      <div class="clause-title">第7節&emsp;深浅測量</div>
+      <div class="text">
+        第671条(要旨)
+        <br>｢深浅測量｣とは、河川、貯水池、湖沼又は海岸において、水底部の地形を明らかにするため、水深、測深位置又は船位、水位又は潮位を測定し、
+        <span class="blank" onclick="this.classList.toggle('show')">横断面図</span>データファイルを作成する作業をいう。
+        <br>第672条(方法)
+        <br>水深の測定は、
+        <span class="blank" onclick="this.classList.toggle('show')">音響測深機</span>を用いて行うものとする。ただし、水深が浅い場合は、
+        <span class="blank" onclick="this.classList.toggle('show')">ロッド</span>又は
+        <span class="blank" onclick="this.classList.toggle('show')">レッド</span>を用い直接測定により行うものとする。
+        <br>2&emsp;測深位置又は船位の測定は、
+        <span class="blank" onclick="this.classList.toggle('show')">ワイヤーロープ</span>、
+       <span class="blank" onclick="this.classList.toggle('show')">TS等</span>又は
+        <span class="blank" onclick="this.classList.toggle('show')">NSS測量機</span>のいずれかを用いて行うものとし、測点間隔は次表を標準とする。(表略)
+      </div>
+    </div>
 
 
-</div>
+  </div>
 
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
