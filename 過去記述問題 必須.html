@@ -1,482 +1,545 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>過去記述問題 必須</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>過去記述問題 必須</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
-       
-        .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 0.95rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .blank { 
-        display: inline-block; 
-        background: #cbd5e0; 
-        color: #cbd5e0; 
-        padding: 0 8px; 
-        border-radius: 4px; 
-        cursor: pointer; 
-        font-weight: bold; 
-        border-bottom: 2px solid #a0aec0; 
-        text-align: center;
-        }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 0.95rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+      text-align: center;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 8px;
+      margin-right: 1px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 必須</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 必須</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-    <div class="clause-title">R5 B-4</div>
-    <div class="text">
-    Ｑ
-    <br>公共測量でUAVを飛行させるにあたり、航空法及び航空法施行規則に定められた事項のうち、飛行前に確認すべきものを二つ
-    <br>Ａ
-    <br>・飛行する空域が
-    <span class="blank" onclick="this.classList.toggle('show')">人口集中地区</span>の上空等の飛行の禁止空域に該当するか否か
-    <br>・飛行に必要な
-    <span class="blank" onclick="this.classList.toggle('show')">気象情報</span>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">R5 B-4</div>
+      <div class="text">
+        Ｑ
+        <br>公共測量でUAVを飛行させるにあたり、航空法及び航空法施行規則に定められた事項のうち、飛行前に確認すべきものを二つ
+        <br>Ａ
+        <br>・飛行する空域が
+        <span class="blank" onclick="this.classList.toggle('show')">人口集中地区</span>の上空等の飛行の禁止空域に該当するか否か
+        <br>・飛行に必要な
+        <span class="blank" onclick="this.classList.toggle('show')">気象情報</span>
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">R5 C-2</div>
-    <div class="text">
-    Ｑ
-	<br>公共測量において作業規程に定めのない新しい測量技術を使用する場合、測量計画機関が行うべき事項
-	<br>Ａ
-	<br>使用する資料、機器、測量方法等により
-	<span style="color: red;">精度</span>が
-    <span class="blank" onclick="this.classList.toggle('show')">確保</span>できることを
-	<span style="color: red;">測量作業機関</span>からの
-	<span class="blank" onclick="this.classList.toggle('show')">検証結果</span>に基づき
-    <span style="color: red;">確認</span>するとともに、
-    <span style="color: red;">確認</span>にあたっては
-	<span style="color: red;">国土地理院の長</span>の
-	<span class="blank" onclick="this.classList.toggle('show')">意見</span>を求める。
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R5 C-3</div>
-        <div class="text">
-	Ｑ
-	<br>公共測量を実施した測量計画期間は、他社から公共測量の測量成果の使用承認申請があった場合、
-    測量法では二つの場合を除いて承認しなければならないとされている。その二つの場合とは。
-	<br>Ａ
-	<br>・申請手続が
-	<span class="blank" onclick="this.classList.toggle('show')">法令</span>に違反している場合
-	<br>・当該測量成果を使用することが、申請者が実施する
-	<span class="blank" onclick="this.classList.toggle('show')">測量の正確さ</span>を確保する上で適切でない場合
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R5 D-3</div>
-        <div class="text">
-	Ｑ
-	<br>測量作業機関は、公共測量を受注した際に測量計画機関から貸与される行政情報について適切な流出防止策をとらなければならない。
-    行政情報流出防止対策として遵守しなければならない基本的事項を二つ
-	<br>例：目的外使用の禁止
-    <br>Ａ
-	<br>・契約終了時等における行政情報の<span class="blank" onclick="this.classList.toggle('show')">返却</span>
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">セキュリティ対策</span>の施されていないパソコンの使用禁止
-        </div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R6 B-3</div>
-        <div class="text">
-	Ｑ
-	<br>交通量の多い道路上での水準測量実施に当たり、現地での測量中に作業員の交通事故を防止するため、作業機関が講ずるべき対策について二つ
-	<br>Ａ
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">交通誘導員の配置</span>
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">測量中を表示した看板の設置</span>
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R6 B-4</div>
-        <div class="text">
-	Ｑ
-	<br>作業機関は公共測量に当たっては、適切な工程管理を行わなければならない。作業が計画に対して遅延している場合、作業員への過度な負担をさけつつ、測量作業全体を工期内に完了させるため、
-	作業機関において工程を管理するものとして講ずるべき適切な措置
-	<br>Ａ
-	<br>測量作業の
-	<span class="blank" onclick="this.classList.toggle('show')">進捗状況</span>を適宜
-	<span class="blank" onclick="this.classList.toggle('show')">測量計画機関</span>に
-	<span style="color: red;">報告</span>し、作業員の増員などを行って、計画の
-    <span style="color: red;">見直し</span>を図る。
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R6 C-2</div>
-        <div class="text">
-	Ｑ
-	<br>作業規程に定めなければならない事項を四つ。記載する事項は測量法及び測量法施行規則で定める事項。
-    <br>このうち、測量計画機関の名称と作業規程の名称は除く
-	<br>Ａ
-	<br><span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">観測機械の種類</span>、
-    <span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">観測法</span>、
-    <span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">計算法</span>、
-    <span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">目的及び適用範囲</span>、
-    <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">測量</span>の基準、
-    <span class="blank" style="min-width: 4em;" onclick="this.classList.toggle('show')">作業計画</span>の作成の方法、
-    <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">精度管理</span>の方法、
-    <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">測量成果</span>の種類
+    <div class="clause-card">
+      <div class="clause-title">R5 C-2</div>
+      <div class="text">
+        Ｑ
+        <br>公共測量において作業規程に定めのない新しい測量技術を使用する場合、測量計画機関が行うべき事項
+        <br>Ａ
+        <br>使用する資料、機器、測量方法等により
+        <span style="color: red;">精度</span>が
+        <span class="blank" onclick="this.classList.toggle('show')">確保</span>できることを
+        <span style="color: red;">測量作業機関</span>からの
+        <span class="blank" onclick="this.classList.toggle('show')">検証結果</span>に基づき
+        <span style="color: red;">確認</span>するとともに、
+        <span style="color: red;">確認</span>にあたっては
+        <span style="color: red;">国土地理院の長</span>の
+        <span class="blank" onclick="this.classList.toggle('show')">意見</span>を求める。
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 C-3</div>
-        <div class="text">
-	Ｑ
-	<br>公共測量実施計画書を提出し、国土地理院の長の技術的助言を求める目的について(測量法第1条に示される目的に沿って)
-	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">測量</span>の重複を除き、
-	<span class="blank" onclick="this.classList.toggle('show')">正確さ</span>を確保するため
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R5 C-3</div>
+      <div class="text">
+        Ｑ
+        <br>公共測量を実施した測量計画期間は、他社から公共測量の測量成果の使用承認申請があった場合、
+        測量法では二つの場合を除いて承認しなければならないとされている。その二つの場合とは。
+        <br>Ａ
+        <br>・申請手続が
+        <span class="blank" onclick="this.classList.toggle('show')">法令</span>に違反している場合
+        <br>・当該測量成果を使用することが、申請者が実施する
+        <span class="blank" onclick="this.classList.toggle('show')">測量の正確さ</span>を確保する上で適切でない場合
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 C-5</div>
-        <div class="text">
-	Ｑ
-	<br>下記の国土地理院の長の技術的助言を受けた理由について
-	<div class="table-container">
-	<table style="width: 100%; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
-         <thead>
-         <tr>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 20px;">&emsp;</th>
-                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 120px;">測量方法</th>
+    <div class="clause-card">
+      <div class="clause-title">R5 D-3</div>
+      <div class="text">
+        Ｑ
+        <br>測量作業機関は、公共測量を受注した際に測量計画機関から貸与される行政情報について適切な流出防止策をとらなければならない。
+        行政情報流出防止対策として遵守しなければならない基本的事項を二つ
+        <br>例：目的外使用の禁止
+        <br>Ａ
+        <br>・契約終了時等における行政情報の<span class="blank" onclick="this.classList.toggle('show')">返却</span>
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">セキュリティ対策</span>の施されていないパソコンの使用禁止
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">R6 B-3</div>
+      <div class="text">
+        Ｑ
+        <br>交通量の多い道路上での水準測量実施に当たり、現地での測量中に作業員の交通事故を防止するため、作業機関が講ずるべき対策について二つ
+        <br>Ａ
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">交通誘導員の配置</span>
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">測量中を表示した看板の設置</span>
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">R6 B-4</div>
+      <div class="text">
+        Ｑ
+        <br>作業機関は公共測量に当たっては、適切な工程管理を行わなければならない。作業が計画に対して遅延している場合、作業員への過度な負担をさけつつ、測量作業全体を工期内に完了させるため、
+        作業機関において工程を管理するものとして講ずるべき適切な措置
+        <br>Ａ
+        <br>測量作業の
+        <span class="blank" onclick="this.classList.toggle('show')">進捗状況</span>を適宜
+        <span class="blank" onclick="this.classList.toggle('show')">測量計画機関</span>に
+        <span style="color: red;">報告</span>し、作業員の増員などを行って、計画の
+        <span style="color: red;">見直し</span>を図る。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">R6 C-2</div>
+      <div class="text">
+        Ｑ
+        <br>作業規程に定めなければならない事項を四つ。記載する事項は測量法及び測量法施行規則で定める事項。
+        <br>このうち、測量計画機関の名称と作業規程の名称は除く
+        <br>Ａ
+        <br><span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">観測機械の種類</span>、
+        <span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">観測法</span>、
+        <span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">計算法</span>、
+        <span class="blank" style="min-width: 8em;" onclick="this.classList.toggle('show')">目的及び適用範囲</span>、
+        <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">測量</span>の基準、
+        <span class="blank" style="min-width: 4em;" onclick="this.classList.toggle('show')">作業計画</span>の作成の方法、
+        <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">精度管理</span>の方法、
+        <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">測量成果</span>の種類
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">R6 C-3</div>
+      <div class="text">
+        Ｑ
+        <br>公共測量実施計画書を提出し、国土地理院の長の技術的助言を求める目的について(測量法第1条に示される目的に沿って)
+        <br>Ａ
+        <br><span class="blank" onclick="this.classList.toggle('show')">測量</span>の重複を除き、
+        <span class="blank" onclick="this.classList.toggle('show')">正確さ</span>を確保するため
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">R6 C-5</div>
+      <div class="text">
+        Ｑ
+        <br>下記の国土地理院の長の技術的助言を受けた理由について
+        <div class="table-container">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.75rem; line-height: 1.2;">
+            <thead>
+              <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 20px;">
+                  &emsp;</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: center; width: 120px;">測量方法
+                </th>
                 <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">技術的助言の一部</th>
-	 </tr>
-	 </thead>
-	 <tbody>
-         <tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">a</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">基準点測量</td>
-		<td style="border: 1px solid #ddd; padding: 8px;">GNSSスタティック測量を行う際には、PCV補正を実施されたい。</td>
-         </tr>
-	 </tbody>
-	 <tbody>
-         <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">基準点測量</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">GNSSスタティック測量を行う際には、PCV補正を実施されたい。</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">b</td>
-		<td style="border: 1px solid #ddd; padding: 8px;text-align: center;">空中写真撮影</td>
-		<td style="border: 1px solid #ddd; padding: 8px;">撮影は気象条件等が良好なときに実施されたい。</td>
-         </tr>
-	 </tbody>
-	</table>
-	</div>
-	Ａ
-	<br>a
-	<br><span class="blank" onclick="this.classList.toggle('show')">GNSS衛星から</span>の
-	<span style="color: red;">電波の入射角</span>に応じて
-	<span style="color: red;">受信位置</span>が
-    <span class="blank" onclick="this.classList.toggle('show')">変化</span>する影響を軽減するため。
-	<br>b
-	<br>
-	<span style="color: red;">太陽高度</span>が低いことによる
-    <span class="blank" onclick="this.classList.toggle('show')">構造物等の影</span>や，
-	<span style="color: red;">雲量</span>が多いことによる
-    <span class="blank" onclick="this.classList.toggle('show')">雲及びその影</span>が写らないようにするため。
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R6 D-2</div>
-        <div class="text">
-	Ｑ
-	<br>電子基準点のみを既知点とした3級基準点測量を行う場合に期待できる効果について
-	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">1級</span>及び
-    <span style="color: red;">2級基準点</span>の設置を省略でき、
-	<span class="blank" onclick="this.classList.toggle('show')">既知点</span>での
-    <span style="color: red;">観測作業</span>が不要なため作業時間の短縮により作業の効率化が期待できる。
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R6 D-4</div>
-        <div class="text">
-	Ｑ
-	<br>測量成果などは、あらかじめ測量計画機関が定める様式に従って提出する。測量計画機関の指示により、測量成果などをDVD-Rなどの電子媒体に格納して提出する場合、
-	測量成果などを格納した電子媒体に対して、測量作業機関が情報セキュリティ上特に行うべき具体的な事項を二つ
-	<br>Ａ
-	<br><span class="blank" style="text-align: left;" onclick="this.classList.toggle('show')">最新のデータにアップデートしたウィルスチェックソフトでチェックする。</span>
-	<br><span class="blank" onclick="this.classList.toggle('show')">電子媒体にデータを追記できないことを確認する。</span>
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">R7 B-2</div>
-        <div class="text">
-	Ｑ
-	<br>滑落防止の事前対策について作業員の装備及び危険箇所把握の観点からそれぞれ一つづつ
-	<br>Ａ
-	<br>・作業員の装備
-    <br>&emsp;激しい摩耗や傷等の劣化がない
-    <span class="blank" onclick="this.classList.toggle('show')">墜落制止用器具</span>などを装備させる。
-    <br>・危険個所把握
-	<br>&emsp;滑落の危険個所を把握するため
-    <span class="blank" onclick="this.classList.toggle('show')">危険予知活動</span>を実施する。
-	</div>
-</div>
-
-<div class="clause-card">
-    <div class="clause-title">R7 B-3</div>
-    <div class="text">
-    Ｑ
-    <br>車載写真レーザー測量において計測用カメラで撮影した写真に通行人が写っていた。撮影した写真も測量成果の一部として納品する予定であるが、
-    測量成果などを準備する段階で、個人情報漏洩の防止など個人の権利保護のために測量作業機関がとるべき対応を一つ
-    <br>Ａ
-    <br><span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">個人情報</span>と
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">個人情報</span>でないその他の情報を容易に
-    <span class="blank" onclick="this.classList.toggle('show')">分離可能</span>な形で整理する。
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">空中写真撮影</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">撮影は気象条件等が良好なときに実施されたい。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        Ａ
+        <br>a
+        <br><span class="blank" onclick="this.classList.toggle('show')">GNSS衛星から</span>の
+        <span style="color: red;">電波の入射角</span>に応じて
+        <span style="color: red;">受信位置</span>が
+        <span class="blank" onclick="this.classList.toggle('show')">変化</span>する影響を軽減するため。
+        <br>b
+        <br>
+        <span style="color: red;">太陽高度</span>が低いことによる
+        <span class="blank" onclick="this.classList.toggle('show')">構造物等の影</span>や，
+        <span style="color: red;">雲量</span>が多いことによる
+        <span class="blank" onclick="this.classList.toggle('show')">雲及びその影</span>が写らないようにするため。
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">R7 C-2</div>
-    <div class="text">
-    Ｑ
-    <br>測量法の目的を踏まえ、作業計画機関が作業規程を定めなければならないとしている理由。
-    <br>Ａ
-    <br>公共測量における標準的な
-    <span class="blank" onclick="this.classList.toggle('show')">作業方法</span>などを定め、その
-    <span class="blank" onclick="this.classList.toggle('show')">規格</span>を統一するとともに、必要な
-    <span class="blank" onclick="this.classList.toggle('show')">精度</span>を確保するため。
+    <div class="clause-card">
+      <div class="clause-title">R6 D-2</div>
+      <div class="text">
+        Ｑ
+        <br>電子基準点のみを既知点とした3級基準点測量を行う場合に期待できる効果について
+        <br>Ａ
+        <br><span class="blank" onclick="this.classList.toggle('show')">1級</span>及び
+        <span style="color: red;">2級基準点</span>の設置を省略でき、
+        <span class="blank" onclick="this.classList.toggle('show')">既知点</span>での
+        <span style="color: red;">観測作業</span>が不要なため作業時間の短縮により作業の効率化が期待できる。
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">R7 C-3</div>
-    <div class="text">
-    Ｑ
-    <br>測量計画機関が公共測量を実施しようとしているときに、測量の重複を避けるために行うべきこととして作業規程の準則に規定していることはなにか。
-    <br>Ａ
-    <br><span style="color: red;">作業地域における</span>
-    <span class="blank" onclick="this.classList.toggle('show')">基本測量及び公共測量</span>の
-    <span style="color: red;">実施状況</span>について調査し、利用できる
-    <span style="color: red;">測量成果</span>などの活用を図ること。
+    <div class="clause-card">
+      <div class="clause-title">R6 D-4</div>
+      <div class="text">
+        Ｑ
+        <br>測量成果などは、あらかじめ測量計画機関が定める様式に従って提出する。測量計画機関の指示により、測量成果などをDVD-Rなどの電子媒体に格納して提出する場合、
+        測量成果などを格納した電子媒体に対して、測量作業機関が情報セキュリティ上特に行うべき具体的な事項を二つ
+        <br>Ａ
+        <br><span class="blank" style="text-align: left;"
+          onclick="this.classList.toggle('show')">最新のデータにアップデートしたウィルスチェックソフトでチェックする。</span>
+        <br><span class="blank" onclick="this.classList.toggle('show')">電子媒体にデータを追記できないことを確認する。</span>
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">R7 C-4</div>
-    <div class="text">
-    Ｑ
-    <br>公共測量で設置する測量標に表示しなければならない内容を二つ
-    <br>Ａ
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">公共測量の測量標</span>であること
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">測量計画機関</span>の名称
+    <div class="clause-card">
+      <div class="clause-title">R7 B-2</div>
+      <div class="text">
+        Ｑ
+        <br>滑落防止の事前対策について作業員の装備及び危険箇所把握の観点からそれぞれ一つづつ
+        <br>Ａ
+        <br>・作業員の装備
+        <br>&emsp;激しい摩耗や傷等の劣化がない
+        <span class="blank" onclick="this.classList.toggle('show')">墜落制止用器具</span>などを装備させる。
+        <br>・危険個所把握
+        <br>&emsp;滑落の危険個所を把握するため
+        <span class="blank" onclick="this.classList.toggle('show')">危険予知活動</span>を実施する。
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">R7 C-5</div>
-    <div class="text">
-    Ｑ
-    <br>公共測量の測量成果及び測量標を有する測量計画機関が、当該測量成果及び測量標の使用申請があった場合において確認しなればならないことは何か
-    <br>例：申請手続きの記載内容が法令に違反していないか
-    <br>Ａ
-    <br><span class="blank" style="text-align: left;" onclick="this.classList.toggle('show')">当該測量成果を使用することが測量の正確さを確保する上で適切か</span>
+    <div class="clause-card">
+      <div class="clause-title">R7 B-3</div>
+      <div class="text">
+        Ｑ
+        <br>車載写真レーザー測量において計測用カメラで撮影した写真に通行人が写っていた。撮影した写真も測量成果の一部として納品する予定であるが、
+        測量成果などを準備する段階で、個人情報漏洩の防止など個人の権利保護のために測量作業機関がとるべき対応を一つ
+        <br>Ａ
+        <br><span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">個人情報</span>と
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">個人情報</span>でないその他の情報を容易に
+        <span class="blank" onclick="this.classList.toggle('show')">分離可能</span>な形で整理する。
+      </div>
     </div>
-</div>
 
-
-<div class="clause-card">
-    <div class="clause-title">R7 D-1</div>
-    <div class="text">
-    Ｑ
-    <br>測量法で定められている測量士と測量士補の役割の違いについて、公共測量の計画の観点から
-    <br>Ａ
-    <br>測量士は測量の
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">計画を作製</span>し、または実施することができ、測量士補は測量士の
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">作製した計画</span>に従い測量に従事するところが違う。
+    <div class="clause-card">
+      <div class="clause-title">R7 C-2</div>
+      <div class="text">
+        Ｑ
+        <br>測量法の目的を踏まえ、作業計画機関が作業規程を定めなければならないとしている理由。
+        <br>Ａ
+        <br>公共測量における標準的な
+        <span class="blank" onclick="this.classList.toggle('show')">作業方法</span>などを定め、その
+        <span class="blank" onclick="this.classList.toggle('show')">規格</span>を統一するとともに、必要な
+        <span class="blank" onclick="this.classList.toggle('show')">精度</span>を確保するため。
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">R7 D-2</div>
-    <div class="text">
-    Ｑ
-    <br>二つの観点から測量技術者自らが実践できる活動   
-    <br>&emsp;観点1:新たな測量技術の業務への導入   
-    <br>&emsp;観点2:測量技術者の確保   
-    <br>Ａ
-    <br>観点1
-    <br>作業規程の準則に新たに導入された測量技術について，社内で勉強会を行う。
-    <br>観点2
-    <br>学生向けの測量業務のインターンシップを行い，社会にどのように役立っているかを実体験する機会を提供する。
+    <div class="clause-card">
+      <div class="clause-title">R7 C-3</div>
+      <div class="text">
+        Ｑ
+        <br>測量計画機関が公共測量を実施しようとしているときに、測量の重複を避けるために行うべきこととして作業規程の準則に規定していることはなにか。
+        <br>Ａ
+        <br><span style="color: red;">作業地域における</span>
+        <span class="blank" onclick="this.classList.toggle('show')">基本測量及び公共測量</span>の
+        <span style="color: red;">実施状況</span>について調査し、利用できる
+        <span style="color: red;">測量成果</span>などの活用を図ること。
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">R7 D-3</div>
-    <div class="text">
-    Ｑ
-    <br>大規模な地震が発生した際に、測量技術者が災害の状況把握や復旧復興の際に担うことのできる業務の内容及びその業務がどのようにやくだつか
-    <br>Ａ
-    <br>業務の内容
-    <br>&emsp;地震により変化のあった
-    <span class="blank" onclick="this.classList.toggle('show')">基準点</span>を迅速に
-    <span class="blank" onclick="this.classList.toggle('show')">再測</span>し
-    <span class="blank" onclick="this.classList.toggle('show')">復旧</span>する。
-    <br>どのように役立つか
-    <br>&emsp;復旧・復興の各種事業への早期の利用を可能とし，経済・社会活動の復帰に貢献する。
+    <div class="clause-card">
+      <div class="clause-title">R7 C-4</div>
+      <div class="text">
+        Ｑ
+        <br>公共測量で設置する測量標に表示しなければならない内容を二つ
+        <br>Ａ
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">公共測量の測量標</span>であること
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">測量計画機関</span>の名称
+      </div>
     </div>
-</div>
 
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 C-5</div>
+      <div class="text">
+        Ｑ
+        <br>公共測量の測量成果及び測量標を有する測量計画機関が、当該測量成果及び測量標の使用申請があった場合において確認しなればならないことは何か
+        <br>例：申請手続きの記載内容が法令に違反していないか
+        <br>Ａ
+        <br><span class="blank" style="text-align: left;"
+          onclick="this.classList.toggle('show')">当該測量成果を使用することが測量の正確さを確保する上で適切か</span>
+      </div>
+    </div>
 
-<div class="nav-bar">
+
+    <div class="clause-card">
+      <div class="clause-title">R7 D-1</div>
+      <div class="text">
+        Ｑ
+        <br>測量法で定められている測量士と測量士補の役割の違いについて、公共測量の計画の観点から
+        <br>Ａ
+        <br>測量士は測量の
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">計画を作製</span>し、または実施することができ、測量士補は測量士の
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">作製した計画</span>に従い測量に従事するところが違う。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">R7 D-2</div>
+      <div class="text">
+        Ｑ
+        <br>二つの観点から測量技術者自らが実践できる活動
+        <br>&emsp;観点1:新たな測量技術の業務への導入
+        <br>&emsp;観点2:測量技術者の確保
+        <br>Ａ
+        <br>観点1
+        <br>作業規程の準則に新たに導入された測量技術について，社内で勉強会を行う。
+        <br>観点2
+        <br>学生向けの測量業務のインターンシップを行い，社会にどのように役立っているかを実体験する機会を提供する。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">R7 D-3</div>
+      <div class="text">
+        Ｑ
+        <br>大規模な地震が発生した際に、測量技術者が災害の状況把握や復旧復興の際に担うことのできる業務の内容及びその業務がどのようにやくだつか
+        <br>Ａ
+        <br>業務の内容
+        <br>&emsp;地震により変化のあった
+        <span class="blank" onclick="this.classList.toggle('show')">基準点</span>を迅速に
+        <span class="blank" onclick="this.classList.toggle('show')">再測</span>し
+        <span class="blank" onclick="this.classList.toggle('show')">復旧</span>する。
+        <br>どのように役立つか
+        <br>&emsp;復旧・復興の各種事業への早期の利用を可能とし，経済・社会活動の復帰に貢献する。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
