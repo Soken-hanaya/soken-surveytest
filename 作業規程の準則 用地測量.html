@@ -1,389 +1,462 @@
 !DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>作業規程の準則 用地測量</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>作業規程の準則 用地測量</title>
 
-    <style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0;
-            position: relative;
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        .back-btn {
-            color: #ffcc00;
-            text-decoration: none;
-            position: absolute;
-            left: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start;
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      position: relative;
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
-        
-        .clause-card.active { display: flex; }
+    .back-btn {
+      color: #ffcc00;
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            /* ★右端の線を守るための余白 */
-            padding-bottom: 5px;
-            margin: 10px 0;
-        }
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
 
-        /* ★右端の線が消えないよう table に margin-right を追加 */
-        table {
-            border-collapse: collapse;
-            margin-right: 2px; 
-        }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
-        
-    .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .clause-card.active {
+      display: flex;
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      /* ★右端の線を守るための余白 */
+      padding-bottom: 5px;
+      margin: 10px 0;
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    /* ★右端の線が消えないよう table に margin-right を追加 */
+    table {
+      border-collapse: collapse;
+      margin-right: 2px;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0;
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 8px;
+      margin-right: 1px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 用地測量</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>作業規程の準則 用地測量</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">第3節　資料調査</div>
-        <div class="text">
-	第684条
-	<br>資料調査は、作業計画に基づき、法務局等に備える地図、地図に準ずる図面、地積測量図等公共団体に備える地図等(以下「公図等」という)の転写並びに土地及び建物の登記記録の調査及び権利者確認調査に区分して行うものとする。
-	<br>第685条
-	<br>公図等の転写は、管轄法務局等に備える公図等に基づき
-	<span class="blank" onclick="this.classList.toggle('show')">公図等転写図</span>を作成する。 
-	<br>2　調査する区域が広範な場合は、
-	<span class="blank" onclick="this.classList.toggle('show')">公図等転写連続図</span>を作成する。
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">第3節&emsp;資料調査</div>
+      <div class="text">
+        第684条(方法)
+        <br>資料調査は、作業計画に基づき、法務局等に備える地図、地図に準ずる図面、地積測量図等公共団体に備える地図等(以下｢公図等｣という)の転写並びに土地及び建物の登記記録の調査及び
+        権利者確認調査に区分して行うものとする。
+        <br>第685条
+        <br>公図等の転写は、管轄法務局等に備える公図等に基づき
+        <span class="blank" onclick="this.classList.toggle('show')">公図等転写図</span>を作成する。
+        <br>2&emsp;調査する区域が広範な場合は、
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">公図等転写連続図</span>を作成する。
+        <br>
+        <br>*<span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">公図等転写連続図</span>の作成において，隣接する公図間の境界線が整合しない場合、
+        公図等に記載されているままに転写し作成する。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第3節&emsp;資料調査</div>
+      <div class="text">
+        第686条(土地登記記録の調査)
+        <br>土地の登記記録の調査は、管轄法務局等に備えられた土地の登記記録について
+        <span class="blank" onclick="this.classList.toggle('show')">登記事項証明書等</span>に基づき、
+        <span class="blank" onclick="this.classList.toggle('show')">土地調査表</span>を作成し行うものとする。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第3節&emsp;資料調査</div>
+      <div class="text">
+        第688条(権利者確認調査)
+        <br>権利者確認調査は、計画機関から貸与された資料等を基に
+        <span class="blank" onclick="this.classList.toggle('show')">権利者調査表</span>を作成し行うものとする。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第4節&emsp;復元測量</div>
+      <div class="text">
+        第689条(要旨)
+        <br>｢復元測量」とは、
+        <span class="blank" onclick="this.classList.toggle('show')">境界確認</span>に先立ち、地積測量図等に基づき境界杭の位置を確認し、
+        <span class="blank" onclick="this.classList.toggle('show')">亡失</span>等がある場合は復元するべき位置に仮杭(以下｢復元杭｣という)を設置する作業をいう。
+      </div>
+    </div>
+
+
+    <div class="clause-card">
+      <div class="clause-title">第5節&emsp;境界確認</div>
+      <div class="text">
+        第692条(方法)
+        <br>境界確認は、前節の
+        <span class="blank" onclick="this.classList.toggle('show')">復元測量の結果</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">公図等転写図</span>、
+        <span class="blank"
+          onclick="this.classList.toggle('show')">土地調査表</span>等に基づき、関係権利者立会いの上、境界点を確認し、標杭を設置することにより行うものとする。
+        <br>3&emsp;境界確認に当たっては、各関係権利者に対して、立会いを求める日を定め、事前に通知する。
+        <br>4&emsp;境界点に、既設の標識が設置されている場合は、関係権利者の
+        <span class="blank" onclick="this.classList.toggle('show')">同意</span>を得てそれを境界点とすることができる。
+        <br>5&emsp;境界確認が完了したときは、
+        <span class="blank" onclick="this.classList.toggle('show')">土地境界確認書</span>を作成し、関係権利者全員に確認したことの
+        <span class="blank" onclick="this.classList.toggle('show')">署名</span>等を求める。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第6節&emsp;境界測量</div>
+      <div class="text">
+        第693条(要旨)
+        <br>｢境界測｣」とは、現地において境界点を測定し、その
+        <span class="blank" onclick="this.classList.toggle('show')">座標値</span>を求める作業をいう。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第6節&emsp;境界測量</div>
+      <div class="text">
+        第694条(方法)
+        <br>境界測量は、近傍の4級基準点以上の基準点に基づき、
+        <span class="blank"
+          onclick="this.classList.toggle('show')">放射法</span>等により行うものとする。ただし、見通し障害等によりやむを得ない場合は、補助基準点を設置し、それに基づいて行うことができる。
+        <br>2&emsp;前項の観測は、測量地域の地形、地物等の状況を考慮し、次の通り行うものとする。
+        <br>一&emsp;TS等を用いる観測は、次表を標準とする。
+        <div class="table-container">
+          <div style="text-align: center;">
+            <table style="min-width: 360px; font-size: 0.75rem; line-height: 1.2; display: inline-table;">
+              <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">区分</th>
+                <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">水平角観測</th>
+                <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">鉛直角観測</th>
+                <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">距離測定</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">方法</td>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">0.5対回</td>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">0.5対回</td>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">2回測定</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">較差の許容範囲</td>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">－</td>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">－</td>
+                  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">5mm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        二&emsp;キネマティック法、RTK法又はネットワーク型RTK法による場合は、第640条第3項第二号、 第4項及び第5項の規定(路線測量)を準用する。
+        <br>三&emsp;前号において1セット目の観測終了後、再初期化を行い2セット目の観測を行う。ただし、境界点の座標値は、2セットの観測から求めた
+        <span class="blank" onclick="this.classList.toggle('show')">平均値</span>とする。
+        <br>3&emsp;補助基準点は、基準点から辺長100メートル以内、節点は
+        <span class="blank" onclick="this.classList.toggle('show')">1</span>点以内の開放多角測量により設置するものとし、観測の区分等は、次表を標準とする。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第3節　資料調査</div>
-        <div class="text">
-	第686条
-	<br>土地の登記記録の調査は、管轄法務局等に備えられた土地の登記記録について
-	<span class="blank" onclick="this.classList.toggle('show')">登記事項証明書等</span>に基づき、
-	<span class="blank" onclick="this.classList.toggle('show')">土地調査表</span>を作成し行うものとする。
-	</div>
-	</div>
-
-<div class="clause-card">
-        <div class="clause-title">第3節　資料調査</div>
-        <div class="text">
-	第688条
-	<br>権利者確認調査は、計画機関から貸与された資料等を基に
-	<span class="blank" onclick="this.classList.toggle('show')">権利者調査表</span>を作成し行うものとする。
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第6節&emsp;境界測量</div>
+      <div class="text">
+        第695条(用地境界仮杭設置)
+        <br>｢用地境界仮杭設置｣とは、用地幅杭の位置以外の境界線上等に、用地境界杭を設置する必要がある場合に、用地境界仮杭を設置する作業をいう。
+        <br>第696条(方法)
+        <br>用地境界仮杭設置は、交点計算等で求めた用地境界仮杭の座標値に基づいて、4級基準点以上の基準点から
+        <span class="blank" onclick="this.classList.toggle('show')">放射法</span>又は用地幅杭線及び境界線の交点を
+        <span class="blank" onclick="this.classList.toggle('show')">視通法</span>により行うものとする。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第4節　復元測量</div>
-        <div class="text">
-	第689条
-	<br>「復元測量」とは、
-	<span class="blank" onclick="this.classList.toggle('show')">境界確認</span>に先立ち、地積測量図等に基づき境界杭の位置を確認し、
-	<span class="blank" onclick="this.classList.toggle('show')">亡失</span>等がある場合は復元するべき位置に仮杭(以下「復元杭」という)を設置する作業をいう。
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第7節&emsp;境界点間測量</div>
+      <div class="text">
+        第698条(要旨)
+        <br>｢境界点間測量｣とは、境界測量等において隣接する
+        <span class="blank" onclick="this.classList.toggle('show')">境界点間</span>の距離を、TS等を用いて測定し精度を確認する作業をいう。
+      </div>
     </div>
 
-
-<div class="clause-card">
-        <div class="clause-title">第5節　境界確認</div>
-        <div class="text">
-	第692条
-	<br>境界確認は、前節の
-	<span class="blank" onclick="this.classList.toggle('show')">復元測量の結果</span>、
-	<span class="blank" onclick="this.classList.toggle('show')">公図等転写図</span>、
-	<span class="blank" onclick="this.classList.toggle('show')">土地調査表</span>等に基づき、関係権利者立会いの上、境界点を確認し、標杭を設置することにより行うものとする。
-	<br>3　境界確認に当たっては、各関係権利者に対して、立会いを求める日を定め、事前に通知する。
-	<br>4　境界点に、既設の標識が設置されている場合は、関係権利者の
-	<span class="blank" onclick="this.classList.toggle('show')">同意</span>を得てそれを境界点とすることができる。
-	<br>5　境界確認が完了したときは、
-	<span class="blank" onclick="this.classList.toggle('show')">土地境界確認書</span>を作成し、関係権利者全員に確認したことの
-	<span class="blank" onclick="this.classList.toggle('show')">署名</span>等を求める。
-       </div>
+    <div class="clause-card">
+      <div class="clause-title">第7節&emsp;境界点間測量</div>
+      <div class="text">
+        第699条(方法)
+        <br>境界点間測量は、次の測量を終了した時点で行うものとする。
+        <br>一&emsp;境界測量
+        <br>二&emsp;用地境界仮杭設置
+        <br>三&emsp;用地境界杭設置
+        <br>2&emsp;境界点間測量は、隣接する境界点間又は境界点と用地境界杭を設置した点(以下｢用地境界点」という)との距離を全辺について現地で測定し、第694条及び第696条の規定で計算した距離と比較を行うものとする。
+        <br>3&emsp;境界点間の距離が測定できない場合は、第640条第8項の規定を準用するものとする。
+        <br>*第640条8項
+        <br>&nbsp;条件点間の距離が測定できない場合は、条件点の座標値(採用値)とその条件点の座標値の決定に用いた
+        <span class="blank" onclick="this.classList.toggle('show')">既知点以外の既設点</span>から別に求めた条件点の座標値(点検値)との較差を比較する。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第6節　境界測量</div>
-        <div class="text">
-	第693条
-	<br>「境界測量」とは、現地において境界点を測定し、その
-	<span class="blank" onclick="this.classList.toggle('show')">座標値</span>を求める作業をいう。
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第7節&emsp;境界点間測量</div>
+      <div class="text">
+        第699条(方法)
+        <br>4&emsp;第2項及び第3項の較差の許容範囲は、次表を標準とする。
+        <div class="table-container">
+          <table style="min-width: 500px; font-size: 0.75rem; line-height: 1.2;">
+            <thead>
+              <tr style="background: #1a3e5e; color: white;">
+                <th style="border: 1px solid #ddd; padding: 8px; width: 100px;">距離＼区分</th>
+                <th style="border: 1px solid #ddd; padding: 8px; width: 100px;">山地</th>
+                <th style="border: 1px solid #ddd; padding: 8px; width: 100px;">平地</th>
+                <th style="border: 1px solid #ddd; padding: 8px; width: 200px;">備考</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+                  <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">20m</span>未満
+                </td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">10mm</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">20mm</td>
+                <td rowspan="2" style="border: 1px solid #ddd; padding: 8px; font-size: 0.7rem; color: #555;">
+                  点間距離が測定できる場合、Sは座標差から求めた距離とする。<br>点間距離が測定できない場合、Sは既知点又は既設点から用地境界点までの距離のうち短い方とする。</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+                  <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">20m</span>以上
+                </td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">S/2,000</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">S/1,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第6節　境界測量</div>
-        <div class="text">
-	第694条
-	<br>境界測量は、近傍の4級基準点以上の基準点に基づき、
-	<span class="blank" onclick="this.classList.toggle('show')">放射法</span>等により行うものとする。ただし、見通し障害等によりやむを得ない場合は、補助基準点を設置し、それに基づいて行うことができる。
-	<br>2　前項の観測は、測量地域の地形、地物等の状況を考慮し、次の通り行うものとする。
-	<br>一　TS等を用いる観測は、次表を標準とする。
-	<div class="table-container">
-                <table style="width: 100%; min-width: 400px; font-size: 0.75rem; line-height: 1.2;">
-                    <thead>
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">区分</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">水平角観測</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">鉛直角観測</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 100px;text-align: center;">距離測定</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">方法</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">0.5対回</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">0.5対回</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">2回測定</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">較差の許容範囲</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">－</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">－</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">5mm</td>
-                        </tr>
-                    </tbody>
-                </table>
-		</div>
-	二　キネマティック法、RTK法又はネットワーク型RTK法による場合は、第640条第3項第二号、 第4項及び第5項の規定(路線測量)を準用する。
-	<br>三　前号において1セット目の観測終了後、再初期化を行い2セット目の観測を行う。ただし、境界点の座標値は、2セットの観測から求めた
-	<span class="blank" onclick="this.classList.toggle('show')">平均値</span>とする。
-	<br>3　補助基準点は、基準点から辺長100メートル以内、節点は
-	<span class="blank" onclick="this.classList.toggle('show')">1</span>点以内の開放多角測量により設置するものとし、観測の区分等は、次表を標準とする。
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第8節&emsp;面積計算</div>
+      <div class="text">
+        第700条(要旨)
+        <br>｢面積計算｣とは、境界測量の成果に基づき、各筆等の取得用地及び残地の面積を算出し面積計算書を作成する作業をいう。
+        <br>第701条(方法)
+        <br>面積計算は、原則として
+        <span class="blank" onclick="this.classList.toggle('show')">座標法</span>により行うものとする。
+      </div>
     </div>
 
-<div class="clause-card">
-        <div class="clause-title">第6節　境界測量</div>
-        <div class="text">
-	第695条
-	<br>「用地境界仮杭設置」とは、用地幅杭の位置以外の境界線上等に、用地境界杭を設置する必要がある場合に、用地境界仮杭を設置する作業をいう。
-	<br>第696条
-	<br>用地境界仮杭設置は、交点計算等で求めた用地境界仮杭の座標値に基づいて、4級基準点以上の基準点から
-	<span class="blank" onclick="this.classList.toggle('show')">放射法</span>又は用地幅杭線及び境界線の交点を
-	<span class="blank" onclick="this.classList.toggle('show')">視通法</span>により行うものとする。
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第9節&emsp;用地実測図データファイルの作成</div>
+      <div class="text">
+        第702条(要旨)
+        <br>｢用地実測図データファイルの作成」とは、第1節から前節までの結果に基づき、用地実測図データを作成する作業をいう。
+        <br>第703条(作成)
+        <br>用地実測図データファイルは、境界点の
+        <span class="blank" onclick="this.classList.toggle('show')">座標値</span>等を用いて作成する。
+        <br>3&emsp;用地実測図データの地図情報レベルは、
+        <span class="blank" onclick="this.classList.toggle('show')">250</span>を標準とする。
+      </div>
     </div>
 
-
-<div class="clause-card">
-        <div class="clause-title">第7節　境界点間測量</div>
-        <div class="text">
-	第698条
-	<br>「境界点間測量」とは、境界測量等において隣接する
-	<span class="blank" onclick="this.classList.toggle('show')">境界点間</span>の距離を、TS等を用いて測定し精度を確認する作業をいう。
-	</div>
+    <div class="clause-card">
+      <div class="clause-title">第10節</div>
+      <div class="text">
+        第704条(要旨)
+        <br>｢
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">用地平面図</span>データファイルの作成」とは、第１節から前節までの結果に基づき、
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">用地平面図</span>データを作成する作業をいう。
+        <br><span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">用地平面図</span>データファイルは、用地実測図データの境界点の
+        <span class="blank" onclick="this.classList.toggle('show')">座標値</span>等の必要項目を抽出するとともに、現地において建物等の主要地物を測定し作成する。
+      </div>
     </div>
+  </div>
 
-<div class="clause-card">
-        <div class="clause-title">第7節　境界点間測量</div>
-        <div class="text">
-	第699条
-	<br>境界点間測量は、次の測量を終了した時点で行うものとする。
-	<br>一　境界測量
-	<br>二　用地境界仮杭設置
-	<br>三　用地境界杭設置
-	<br>2　境界点間測量は、隣接する境界点間又は境界点と用地境界杭を設置した点(以下「用地境界点」という)との距離を全辺について現地で測定し、第694条及び第696条の規定で計算した距離と比較を行うものとする。
-	<br>3　境界点間の距離が測定できない場合は、第640条第8項の規定を準用するものとする。
-	<br>第640条8項
-	条件点間の距離が測定できない場合は、条件点の座標値(採用値)とその条件点の座標値の決定に用いた
-	<span class="blank" onclick="this.classList.toggle('show')">既知点以外の既設点</span>から別に求めた条件点の座標値(点検値)との較差を比較する。
-	</div>
-    </div>
-
-<div class="clause-card">
-        <div class="clause-title">第7節　境界点間測量</div>
-        <div class="text">
-	第699条
-	<br>4　第2項及び第3項の較差の許容範囲は、次表を標準とする。
-	<div class="table-container">
-                <table style="min-width: 500px; font-size: 0.75rem; line-height: 1.2;">
-                    <thead>
-                        <tr style="background: #1a3e5e; color: white;">
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 100px;">距離＼区分</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 100px;">山地</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 100px;">平地</th>
-                            <th style="border: 1px solid #ddd; padding: 8px; width: 200px;">備考</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">20m未満</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">10mm</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">20mm</td>
-                            <td rowspan="2" style="border: 1px solid #ddd; padding: 8px; font-size: 0.7rem; color: #555;">
-                            点間距離が測定できる場合、Sは座標差から求めた距離とする。<br>点間距離が測定できない場合、Sは既知点又は既設点から用地境界点までの距離のうち短い方とする。</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">20m以上</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">S/2,000</td>
-                            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">S/1,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-		</div>
-	</div>
-    </div>
-
-<div class="clause-card">
-        <div class="clause-title">第8節　面積計算</div>
-        <div class="text">
-	第700条
-	<br>「面積計算」とは、境界測量の成果に基づき、各筆等の取得用地及び残地の面積を算出し面積計算書を作成する作業をいう。
-	<br>第701条
-	<br>面積計算は、原則として
-	<span class="blank" onclick="this.classList.toggle('show')">座標法</span>により行うものとする。
-	</div>
-    </div>
-
-<div class="clause-card">
-        <div class="clause-title">第9節　用地実測図データファイルの作成</div>
-        <div class="text">
-	第702条
-	<br>「用地実測図データファイルの作成」とは、第1節から前節までの結果に基づき、用地実測図データを作成する作業をいう。
-	<br>第703条
-	<br>用地実測図データファイルは、境界点の
-	<span class="blank" onclick="this.classList.toggle('show')">座標値</span>等を用いて作成する。
-	<br>3　用地実測図データの地図情報レベルは、
-	<span class="blank" onclick="this.classList.toggle('show')">250</span>を標準とする。
-	</div>
-    </div>
-
-<div class="clause-card">
-        <div class="clause-title">第10節</div>
-        <div class="text">
-	第704条
-	<br>「
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">用地平面図</span>データファイルの作成」とは、第１節から前節までの結果に基づき、
-	<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">用地平面図</span>データを作成する作業をいう。
-	<br><span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">用地平面図</span>データファイルは、用地実測図データの境界点の
-	<span class="blank" onclick="this.classList.toggle('show')">座標値</span>等の必要項目を抽出するとともに、現地において建物等の主要地物を測定し作成する。
-	</div>
-    </div>
-</div>
-
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total; // ここで自動カウント
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total; // ここで自動カウント
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        // ★次へを押したときに一番上に戻るようにする
-        document.getElementById('container').scrollTop = 0;
-        
-        updateUI();
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      // ★次へを押したときに一番上に戻るようにする
+      document.getElementById('container').scrollTop = 0;
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     // 初回実行
@@ -392,7 +465,8 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
-</script>
+  </script>
 
 </body>
+
 </html>
