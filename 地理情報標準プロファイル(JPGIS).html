@@ -1,382 +1,490 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>地理情報標準プロファイル(JPGIS)</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>地理情報標準プロファイル(JPGIS)</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.table-container {
-	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
-	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
-	}
-        
-	.back-btn {
-	color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-	text-decoration: none;
-	position: absolute;
-	left: 15px;
-	font-size: 1.5rem;    /* サイズの調整 */
-	font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      /* 横方向にのみスクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+      padding-right: 2px;
+      /* ★右端の線が消えないように隙間を作る */
+    }
 
-        .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える(#ffcc00 は鮮やかな黄色) */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-       
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 8px;
+      margin-right: 1px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-<div class="header"><a href="index.html" class="back-btn">＜</a><span>地理情報標準プロファイル(JPGIS)</span>
-</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>地理情報標準プロファイル(JPGIS)</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">地理空間情報の実用化(JPGIS化)でできること</div>
-        <div class="text">
-	JPGISは、GISの基盤となる空間データを、異なるシステム間で相互利用する際の互換性の確保を主な目的に、国際規格及び国内規格に準じて、
-	<span class="blank" onclick="this.classList.toggle('show')">データの設計</span>、
-	<span class="blank" onclick="this.classList.toggle('show')">品質</span>、
-	<span class="blank" onclick="this.classList.toggle('show')">記述方法</span>、
-	<span class="blank" onclick="this.classList.toggle('show')">仕様の書き方</span>等のルールを規定した実用標準です。
-	<br>そのため、JPGISの利用が進むことで、データの相互利用しやすい環境が整備され、異なる整備主体で整備されたデータの共用、
-	<span class="blank" onclick="this.classList.toggle('show')">システム依存性の低下</span>、
-	<span class="blank" onclick="this.classList.toggle('show')">重複投資の排除</span>等の効果を期待することができ、コスト削減や業務の効率化等が可能となり、
-	より効率的な情報社会の形成や安全・安心な社会の実現に寄与します。
-        </div>
-</div>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">地理空間情報の実用化(JPGIS化)でできること</div>
+      <div class="text">
+        JPGISは、GISの基盤となる空間データを、異なるシステム間で相互利用する際の互換性の確保を主な目的に、国際規格及び国内規格に準じて、
+        <span class="blank" onclick="this.classList.toggle('show')">データの設計</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">品質</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">記述</span>方法、
+        <span class="blank" onclick="this.classList.toggle('show')">仕様</span>の書き方等のルールを規定した実用標準です。
+        <br>そのため、JPGISの利用が進むことで、データの相互利用しやすい環境が整備され、異なる整備主体で整備されたデータの共用、
+        <span class="blank" onclick="this.classList.toggle('show')">システム依存性</span>の低下、
+        <span class="blank" onclick="this.classList.toggle('show')">重複投資</span>の排除等の効果を期待することができ、コスト削減や業務の効率化等が可能となり、
+        より効率的な情報社会の形成や安全・安心な社会の実現に寄与します。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">製品仕様書</div>
-        <div class="text">
-	データの定義・構造・品質・記録方法等を統一化された考え方や基準のもとで、利用目的に応じたデータ仕様を決めることができるJPGISでは、製品仕様書の作成について規定されています。
-	<br>製品仕様書は、いわばデータの設計図であり、データの利用目的に応じた要求事項や完成した製品の品質の程度、すなわち、「データの内容と構造」「データの交換標準形式」「データの品質保証」といったデータを作り、流通をさせるために必要な事項を記述することになっています。それにより、データ作成者は、製品仕様書に従ったデータを作ることができ、データ利用者は、データの詳細を知ることができます。
-	<br>つまり、製品仕様書は、データ作成者及びデータ利用者に対して、守らなければならないルールを規定しています。
-	<br>また、製品仕様書は、データ作成時には「発注仕様書」として、データ交換時には「説明書」として使用することができます。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">製品仕様書</div>
+      <div class="text">
+        データの定義・
+        <span class="blank" onclick="this.classList.toggle('show')">構造</span>・
+        <span class="blank" onclick="this.classList.toggle('show')">品質</span>・
+        <span class="blank" onclick="this.classList.toggle('show')">記録方法</span>等を統一化された考え方や基準のもとで、
+        利用目的に応じたデータ仕様を決めることができるJPGISでは、製品仕様書の作成について規定されています。
+        <br>製品仕様書は、いわばデータの設計図であり、データの利用目的に応じた要求事項や完成した製品の品質の程度、
+        すなわち、｢データの内容と構造｣｢データの交換標準形式｣｢データの品質保証｣といったデータを作り、流通をさせるために必要な事項を記述することになっています。
+        それにより、データ作成者は、製品仕様書に従ったデータを作ることができ、データ利用者は、データの詳細を知ることができます。
+        <br>つまり、製品仕様書は、データ作成者及びデータ利用者に対して、守らなければならないルールを規定しています。
+        <br>また、製品仕様書は、データ作成時には｢発注仕様書｣として、データ交換時には｢説明書｣として使用することができます。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">データ・ソフトウェアの標準化</div>
+      <div class="text">
+        相互運用性が確保されたデータを、さまざまなGISソフトで使うことができる
+        GISで利用する場合には、一般的には各々のシステムの内部形式に変換して使用し、データ交換時には標準の形式で交換します。
+        そうすることによって、データの相互運用性、正確性・迅速性、再利用性が向上します。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">データの品質表示</div>
+      <div class="text">
+        JPGISでは、データの品質をチェックするためのルールを定めています。JPGISで定められた品質チェックの方法にしたがって、データの品質がチェックされ、データは｢
+        <span class="blank" onclick="this.classList.toggle('show')">製品</span>｣として流通します。品質チェックの報告は、｢
+        <span class="blank" onclick="this.classList.toggle('show')">メタデータ</span>｣によって記述されます。
+        <br>地理空間情報の品質とは？
+        <br>地理空間情報の品質の良し悪しは、製品仕様書等により記された、必要とする地理空間情報の姿(論議領域と実際の地理空間情報との差異であり、実世界との比較ではありません。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">メタデータでの情報流通</div>
+      <div class="text">
+        作成された地理空間データに関する説明情報が共有化され、既存のデータを検索する際に利用できる。 メタデータとは、データそのものではなく、データ(製品)に関する説明情報です。
+        JPGISでは、メタデータを定めています。JPGISに準拠しているメタデータを使用することで、以下の2点が実現されます。
+        <br>・地理空間データの検索と取得の同時化
+        <br>&emsp;インターネット上の検索システム(=クリアリングハウス)に登録するメタデータにデータの入手先を記述することで、利用者がクリアリングハウスで欲しいデータの
+        有無を検索すると同時にオンラインでデータを入手することも可能になります。
+        <br>・地理空間データの品質の確保
+        <br>&emsp;メタデータに地理空間データの品質を明示することで、提供者にとっては利用者に対してデータの品質において責任を負うこととなり、利用者にとってはより安心してデータを利用することが可能になります。
+        <br>国土地理院では、JPGISに準拠したメタデータ記述形式として
+        <span class="blank" onclick="this.classList.toggle('show')">JMP2.0</span>を定めています。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">適用範囲</div>
+      <div class="text">
+        JPGISは異なる使用者、システム及び場所の間において
+        <span class="blank" onclick="this.classList.toggle('show')">地理空間</span>データを取得、処理、解析、アクセス、表現及び転送するための手法、
+        手段及びサービスを実現するために最低限必要となる基本的な要素を整理したものである。
+        <br>このプロファイルは，個別の
+        <span class="blank" onclick="this.classList.toggle('show')">地理空間</span>情報の分野ごとのアプリケーションを開発するための枠組みを提供しており，用途に応じ，
+        各要素の拡張規則を遵守した上で拡張プロファイルを作成して使用することもできる。
+      </div>
+    </div>
 
 
-<div class="clause-card">
-        <div class="clause-title">データ・ソフトウェアの標準化</div>
-        <div class="text">
-	相互運用性が確保されたデータを、さまざまなGISソフトで使うことができる GISで利用する場合には、一般的には各々のシステムの内部形式に変換して使用し、データ交換時には標準の形式で交換します。そうすることによって、データの相互運用性、正確性・迅速性、再利用性が向上します。
-       </div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">画像データ</div>
+      <div class="text">
+        JPGISでは画像データの形式を
+        <span class="blank" onclick="this.classList.toggle('show')">決めていません</span>。画像データは、一般的に使用されている形式を使用します。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">データの品質表示</div>
-        <div class="text">
-	JPGISでは、データの品質をチェックするためのルールを定めています。JPGISで定められた品質チェックの方法にしたがって、データの品質がチェックされ、データは「製品」として流通します。品質チェックの報告は、「メタデータ（※後述）」によって記述されます。 地理空間情報の品質とは？ 地理空間情報の品質の良し悪しは、製品仕様書等により記された、必要とする地理空間情報の姿（これを論議領域といいます。）と実際の地理空間情報との差異であり、実世界との比較ではありません。
-       </div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">メタデータでの情報流通</div>
-        <div class="text">
-	作成された地理空間データに関する説明情報が共有化され、既存のデータを検索する際に利用できる。 メタデータとは、データそのものではなく、データ（製品）に関する説明情報です。 JPGISでは、メタデータを定めています。 JPGISに準拠しているメタデータを使用することで、以下の2点が実現されます。
-	<br>地理空間データの検索と取得の同時化
-	<br>インターネット上の検索システム（=クリアリングハウス）に登録するメタデータにデータの入手先を記述することで、利用者がクリアリングハウスで欲しいデータの有無を検索すると同時にオンラインでデータを入手することも可能になります。
-	<br>地理空間データの品質の確保
-	<br>メタデータに地理空間データの品質を明示することで、提供者にとっては利用者に対してデータの品質において責任を負うこととなり、利用者にとってはより安心してデータを利用することが可能になります。
-	<br>国土地理院では、JPGISに準拠したメタデータ記述形式としてJMP2.0を定めています。JMPとは日本版メタデータプロファイル（ Japan Metadata Profile ）の略称で、そのバージョンが2.0であるものをJMP2.0といいます。
-       </div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">適用範囲</div>
-        <div class="text">
-	JPGISは，異なる使用者，システム及び場所の間において
-	<span class="blank" onclick="this.classList.toggle('show')">地理空間</span>データを取得，処理，解析，アクセス，表現及び転送するための手法，手段及びサービスを実現するために最低限必要となる
-	基本的な要素を整理したものである。
-	<br>このプロファイルは，個別の
-	<span class="blank" onclick="this.classList.toggle('show')">地理空間</span>情報の分野ごとのアプリケーションを開発するための枠組みを提供しており，用途に応じ，
-	各要素の拡張規則を遵守した上で拡張プロファイルを作成して使用することもできる。
-	</div>
-</div>
-
-
-<div class="clause-card">
-        <div class="clause-title">画像データ</div>
-        <div class="text">
-	JPGISでは画像データの形式を
-	<span class="blank" onclick="this.classList.toggle('show')">決めていません</span>。画像データは、一般的に使用されている形式を使用します。
-       </div>
-</div>
-
-
-<div class="clause-card">
-        <div class="clause-title">地理空間データ製品仕様書記載事項とJPJISの関係</div>
-        <div class="text">
-	表附11-1
-	<div class="table-container">
-	<table style="width: 100%; min-width: 400px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
-        <thead>
-                <tr style="background: #1a3e5e; color: white;">
+    <div class="clause-card">
+      <div class="clause-title">地理空間データ製品仕様書記載事項とJPJISの関係</div>
+      <div class="text">
+        表附11-1
+        <div class="table-container">
+          <table
+            style="width: 100%; min-width: 400px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
+            <thead>
+              <tr style="background: #1a3e5e; color: white;">
                 <th style="border: 1px solid #333; padding: 8px;">地理空間データ製品仕様書</th>
                 <th style="border: 1px solid #333; padding: 8px;">JPGIS</th>
-		</tr>
-	</thead>
-	<tbody>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">概欄</td>
-		<td style="border: 1px solid #333; padding: 8px;"></td>
-                </tr>
-	</tbody>
-	<tbody>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">適用範囲</td>
-		<td style="border: 1px solid #333; padding: 8px;"></td>
-                </tr>
-	</tbody>
-	<tbody>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ製品識別</td>
-		<td style="border: 1px solid #333; padding: 8px;"></td>
-	</tbody>
-	<tbody>
-                </tr>
-                <tr>
-		<th rowspan="6" style="border: 1px solid #333; padding: 10px; background: #f8f9fa; text-align: center; width: 120px;">データ内容及び構造</th>
-		<td style="border: 1px solid #333; padding: 8px;">6 応用スキーマのための規則</td>
-                </tr>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px;">7 空間スキーマ</td>
-                </tr>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px;">8 時間スキーマ</td>
-                </tr>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px;">9 被覆の幾何及び関数のためのスキーマー</td>
-                </tr>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px;">10 地理識別子による空間参照</td>
-                </tr>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px;">11 地物カタログ化法</td>
-                </tr>
-	</tbody>
-	<tbody>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">参照系</td>
-		<td style="border: 1px solid #333; padding: 8px;">附属書2(既定)参照系</td>
-                </tr>
-	</tbody>
-	<tbody>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ品質</td>
-		<td style="border: 1px solid #333; padding: 8px;">附属書3(既定)品質</td>
-                </tr>
-	</tbody>
-	<tbody>
-                <tr>
-		<td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">データ製品配布</td>
-		<td style="border: 1px solid #333; padding: 8px;">12 符号化</td>
-                </tr>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px;">付属書8(参考)
-		<span class="blank" onclick="this.classList.toggle('show')">XML</span>に基づく符号化規則
-		<br>付属書12(既定)地理マーク付け言語(
-		<span class="blank" onclick="this.classList.toggle('show')">GML</span>)</td>
-                </tr>
-	</tbody>
-	<tbody>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">メタデータ</td>
-		<td style="border: 1px solid #333; padding: 8px;">付属書4(既定)メタデータ</td>
-                </tr>
-	</tbody>
-	</table>
-	</div></div></div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  概欄</td>
+                <td style="border: 1px solid #333; padding: 8px;"></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  適用範囲</td>
+                <td style="border: 1px solid #333; padding: 8px;"></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  データ製品識別</td>
+                <td style="border: 1px solid #333; padding: 8px;"></td>
+            </tbody>
+            <tbody>
+              </tr>
+              <tr>
+                <th rowspan="6"
+                  style="border: 1px solid #333; padding: 10px; background: #f8f9fa; text-align: center; width: 120px;">
+                  データ内容及び構造</th>
+                <td style="border: 1px solid #333; padding: 8px;">6 応用スキーマのための規則</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px;">7 空間スキーマ</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px;">8 時間スキーマ</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px;">9 被覆の幾何及び関数のためのスキーマー</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px;">10 地理識別子による空間参照</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px;">11 地物カタログ化法</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  参照系</td>
+                <td style="border: 1px solid #333; padding: 8px;">附属書2(既定)参照系</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  データ品質</td>
+                <td style="border: 1px solid #333; padding: 8px;">附属書3(既定)品質</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td rowspan="2"
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  データ製品配布</td>
+                <td style="border: 1px solid #333; padding: 8px;">12 符号化</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #333; padding: 8px;">付属書8(参考)
+                  <span class="blank" onclick="this.classList.toggle('show')">XML</span>に基づく符号化規則
+                  <br>付属書12(既定)地理マーク付け言語(
+                  <span class="blank" onclick="this.classList.toggle('show')">GML</span>)
+                </td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  メタデータ</td>
+                <td style="border: 1px solid #333; padding: 8px;">付属書4(既定)メタデータ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">データ品質要素</div>
-        <div class="text">
-	データ品質要素は，地理空間データの特定の品質面を記述する構成要素であり，各種のカテゴリーに分けられている
-	<div class="table-container">
-	<table style="min-width: 300px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
-	<thead>
-		<tr style="background: #1a3e5e; color: white;">
-                <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 75px; ">要素</th>
-                <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 250px; ">内容</th>
-		</tr>
-	</thead>	
-	<tbody>
-                <tr>
-		<td style="border: 1px solid #333; padding: 8px;text-align: center;"><span class="blank" style="min-width:5em;"onclick="this.classList.toggle('show')">完全性</span></td>
-		<td style="border: 1px solid #333; padding: 8px;">地物，地物属性及び地物間関係の存在及び欠落</td>
+    <div class="clause-card">
+      <div class="clause-title">データ品質要素</div>
+      <div class="text">
+        データ品質要素は，地理空間データの特定の品質面を記述する構成要素であり，各種のカテゴリーに分けられている
+        <div class="table-container">
+          <div style="text-align: center;">
+            <table
+              style="min-width: 360px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed; display: inline-block;">
+              <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                  <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 80px; ">要素</th>
+                  <th style="border: 1px solid #333; padding: 8px;text-align: center; width: 280px; ">内容</th>
                 </tr>
-	</tbody>
-	<tbody>
+              </thead>
+              <tbody>
                 <tr>
-		<td style="border: 1px solid #333; padding: 8px;text-align: center;"><span class="blank" style="min-width:5em;"onclick="this.classList.toggle('show')">論理一貫性</span></td>
-		<td style="border: 1px solid #333; padding: 8px;">データの構造，属性及び関係に関する論理的規則の遵守の度合い</td>
+                  <td style="border: 1px solid #333; padding: 8px;">
+                    <span class="blank" style="min-width:5em;" onclick="this.classList.toggle('show')">完全性</span></td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">地物，地物属性及び地物間関係の存在及び欠落</td>
                 </tr>
-	</tbody>
-	<tbody>
+              </tbody>
+              <tbody>
                 <tr>
-		<td style="border: 1px solid #333; padding: 8px;text-align: center;"><span class="blank" style="min-width:5em;"onclick="this.classList.toggle('show')">位置正確度</span></dh>
-		<td style="border: 1px solid #333; padding: 8px;">空間参照系内の地物の位置の正確度として定義される。</td>
+                  <td style="border: 1px solid #333; padding: 8px;">
+                    <span class="blank" style="min-width:5em;" onclick="this.classList.toggle('show')">論理一貫性</span></td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">データの構造，属性及び関係に関する論理的規則の遵守の度合い</td>
                 </tr>
-	</tbody>
-	<tbody>
+              </tbody>
+              <tbody>
                 <tr>
-		<td style="border: 1px solid #333; padding: 8px;text-align: center;"><span class="blank" style="min-width:5em;"onclick="this.classList.toggle('show')">主題正確度</span></td>
-		<td style="border: 1px solid #333; padding: 8px;">定量的属性の正確度，非定量的属性，地物分類及び地物間関係の正しさとして定義される。</td>
+                  <td style="border: 1px solid #333; padding: 8px;">
+                    <span class="blank" style="min-width:5em;" onclick="this.classList.toggle('show')">位置正確度</span></dh>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">空間参照系内の地物の位置の正確度として定義される。</td>
                 </tr>
-	</tbody>
-	<tbody>
+              </tbody>
+              <tbody>
                 <tr>
-		<td style="border: 1px solid #333; padding: 8px; text-align: center ;"><span class="blank" style="min-width:5em;"onclick="this.classList.toggle('show')">時間品質</span></td>
-		<td style="border: 1px solid #333; padding: 8px;">地物の時間属性及び時間関係の品質として定義される。</td>
+                  <td style="border: 1px solid #333; padding: 8px;">
+                    <span class="blank" style="min-width:5em;" onclick="this.classList.toggle('show')">主題正確度</span></td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">定量的属性の正確度，非定量的属性，地物分類及び地物間関係の正しさとして定義される。</td>
                 </tr>
-	</tbody>
-	</table>
-	</div>
-	</div>
-</div>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid #333; padding: 8px;">
+                    <span class="blank" style="min-width:5em;" onclick="this.classList.toggle('show')">時間品質</span></td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">地物の時間属性及び時間関係の品質として定義される。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div>
 
-
-</div>
-
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">--</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>

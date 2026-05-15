@@ -1,237 +1,330 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>地図投影法とか</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>地図投影法とか</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
-        
-	.table-container {
-	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
-	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
-	}
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
-     
-    .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      /* 横方向にのみスクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+      padding-right: 2px;
+      /* ★右端の線が消えないように隙間を作る */
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 8px;
+      margin-right: 1px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>地図投影法とか</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>地図投影法とか</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">図形的性質による分類</div>
-        <div class="text">
-	<span class="blank" onclick="this.classList.toggle('show')">正角性</span>
-	<br>　地球上のあらゆる点において、その点で交わる2つの方向線のなす角が地図平面上でも正しく表示される。
-	<br><span class="blank" onclick="this.classList.toggle('show')">正積性</span>
-	<br>　地球上の任意の図形が地図平面上でも縮尺に応じて正しく表示される
-	<br><span class="blank" onclick="this.classList.toggle('show')">正距性</span>
-	<br>　地球上の特定の1点(又は2点)からの距離が地図上に正しく表される。
-	<br><span class="blank" onclick="this.classList.toggle('show')">正方位性</span>
-	<br>　地球上の特定の1点から他の点に向かう方位が正しく表される。方位図法は、その接点においてこの性質を持っている。
-	</div>
-</div>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">図形的性質による分類</div>
+      <div class="text">
+        <span class="blank" onclick="this.classList.toggle('show')">正角性</span>
+        <br>&emsp;地球上のあらゆる点において、その点で交わる2つの方向線のなす角が地図平面上でも正しく表示される。
+        <br><span class="blank" onclick="this.classList.toggle('show')">正積性</span>
+        <br>&emsp;地球上の任意の図形が地図平面上でも縮尺に応じて正しく表示される
+        <br><span class="blank" onclick="this.classList.toggle('show')">正距性</span>
+        <br>&emsp;地球上の特定の1点(又は2点)からの距離が地図上に正しく表される。
+        <br><span class="blank" onclick="this.classList.toggle('show')">正方位性</span>
+        <br>&emsp;地球上の特定の1点から他の点に向かう方位が正しく表される。方位図法は、その接点においてこの性質を持っている。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">特徴まとめ</div>
-        <div class="text">
-	･正角性と正積性は
-	<span class="blank" onclick="this.classList.toggle('show')">両立しない</span>ので、あらゆる地図投影法が正角性を持つか、正積性を持つか、いずれかも持たないかに分類される。
-	<br>･地球上の任意の2点間の距離が地図上に正しく表される地図投影法は
-	<span class="blank" onclick="this.classList.toggle('show')">存在しない</span>。
-	</div>
-</div>
-
-<div class="clause-card">
-        <div class="clause-title">主な地図に使われている地図投影法</div>
-        <div class="text">
-	平面直角座標系
-	<br><span class="blank" style="min-width:20em;" onclick="this.classList.toggle('show')">ガウスの等角投影法
-        <br>(＝ガウス・クリューゲル図法)</span>
-	<br>1/25000地形図
-	<br><span class="blank" style="min-width:20em;" onclick="this.classList.toggle('show')">ユニバーサル横メルカトル図法(UTM図法)</span>
-	<br>地理院地図(WED地図)
-	<br><span class="blank" style="min-width:20em;" onclick="this.classList.toggle('show')">メルカトル図法</span>
-        </div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">特徴まとめ</div>
+      <div class="text">
+        ･正角性と正積性は
+        <span class="blank"
+          onclick="this.classList.toggle('show')">両立しない</span>ので、あらゆる地図投影法が正角性を持つか、正積性を持つか、いずれかも持たないかに分類される。
+        <br>･地球上の任意の2点間の距離が地図上に正しく表される地図投影法は
+        <span class="blank" onclick="this.classList.toggle('show')">存在しない</span>。
+      </div>
+    </div>
 
 <div class="clause-card">
-        <div class="clause-title">平面直角座標系</div>
-        <div class="text">
-	･全国の座標系の数：<span class="blank" onclick="this.classList.toggle('show')">19</span>
-	<br>・座標系原点において子午線と一致する軸が
-	<span class="blank" onclick="this.classList.toggle('show')">X</span>軸、直交する軸が
-	<span class="blank" onclick="this.classList.toggle('show')">Y</span>軸。
-	<span class="blank" onclick="this.classList.toggle('show')">真北</span>に向かう値、
-	<span class="blank" onclick="this.classList.toggle('show')">真東</span>に向かう値、を正とする。
-	<br>・平面直角座標系で座標原点を通るX軸上の縮尺係数を0.9999とし、東西方向に約
-	<span class="blank" onclick="this.classList.toggle('show')">90</span>km離れた地点で縮尺係数が1.0000となる。
-	</div>
-</div>
+      <div class="clause-title">主な地図投影法と図形的性質による分類</div>
+      <div class="text">
+        ・正積図法
+        <br><span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">サンソン図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">モルワイデ図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">ランベルト正積図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">ボンヌ図法</span>
+        <br>・正角図法
+        <br><span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">メルカトル図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">ガウス・クリューゲル図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">ガウスの等角二重投影法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">ランベルトの正角円錐図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">平射図法</span>
+        <br>・正積でも正角でもない図法
+        <br><span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">ミラー図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">正距方位図法</span>
+        <span class="blank" style="min-width: 12rem;" onclick="this.classList.toggle('show')">心射図法</span>
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">ユニバーサル横メルカトル座標系(UTM座標系)</div>
-        <div class="text">
-	･地球全体を経度180°から東向きに
-	<span class="blank" onclick="this.classList.toggle('show')">6°</span>幅の
-	<span class="blank" onclick="this.classList.toggle('show')">60</span>ゾーンに分割し、各座標帯の中央子午線と赤道の交点を各座標帯における原点としている。
-	<br>・縮尺係数は中央子午線上で
-	<span class="blank" onclick="this.classList.toggle('show')">0.9996</span>、東西方向に約
-	<span class="blank" onclick="this.classList.toggle('show')">180</span>km離れた地点で1.0000となる。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">主な地図に使われている地図投影法</div>
+      <div class="text">
+        平面直角座標系
+        <br><span class="blank" style="min-width:20em;" onclick="this.classList.toggle('show')">ガウスの等角投影法
+          <br>(＝ガウス・クリューゲル図法)</span>
+        <br>1/25000地形図
+        <br><span class="blank" style="min-width:20em;"
+          onclick="this.classList.toggle('show')">ユニバーサル横メルカトル図法(UTM図法)</span>
+        <br>地理院地図(WED地図)
+        <br><span class="blank" style="min-width:20em;" onclick="this.classList.toggle('show')">メルカトル図法</span>
+      </div>
+    </div>
 
-</div>
+    <div class="clause-card">
+      <div class="clause-title">平面直角座標系</div>
+      <div class="text">
+        ･全国の座標系の数：<span class="blank" onclick="this.classList.toggle('show')">19</span>
+        <br>・座標系原点において子午線と一致する軸が
+        <span class="blank" onclick="this.classList.toggle('show')">X</span>軸、直交する軸が
+        <span class="blank" onclick="this.classList.toggle('show')">Y</span>軸。
+        <span class="blank" onclick="this.classList.toggle('show')">真北</span>に向かう値、
+        <span class="blank" onclick="this.classList.toggle('show')">真東</span>に向かう値、を正とする。
+        <br>・平面直角座標系で座標原点を通るX軸上の縮尺係数を0.9999とし、東西方向に約
+        <span class="blank" onclick="this.classList.toggle('show')">90</span>km離れた地点で縮尺係数が1.0000となる。
+      </div>
+    </div>
 
-<div class="nav-bar">
+    <div class="clause-card">
+      <div class="clause-title">ユニバーサル横メルカトル座標系(UTM座標系)</div>
+      <div class="text">
+        ･地球全体を経度180°から東向きに
+        <span class="blank" onclick="this.classList.toggle('show')">6°</span>幅の
+        <span class="blank" onclick="this.classList.toggle('show')">60</span>ゾーンに分割し、各座標帯の中央子午線と赤道の交点を各座標帯における原点としている。
+        <br>・縮尺係数は中央子午線上で
+        <span class="blank" onclick="this.classList.toggle('show')">0.9996</span>、東西方向に約
+        <span class="blank" onclick="this.classList.toggle('show')">180</span>km離れた地点で1.0000となる。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
