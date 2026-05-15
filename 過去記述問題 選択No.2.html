@@ -1,393 +1,450 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>過去記述問題 選択No.2</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>過去記述問題 選択No.2</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 0.95rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .clause-card.active {
+      display: flex;
+    }
 
-        .blank {
-             display: inline-block;
-             background: #cbd5e0; 
-             color: #cbd5e0; 
-             padding: 0 8px; 
-             border-radius: 4px; 
-             cursor: pointer; 
-             font-weight: bold; 
-             border-bottom: 2px solid #a0aec0;
-            }
-        
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 0.95rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 選択No.2</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 選択No.2</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">R5 A-2</div>
-        <div class="text">
-	Ｑ
-	<br>平均図は後続の作業を開始する前に測量計画機関の承認を受けなければならない。その理由は
-	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">選点後</span>の作業に影響を及ぼすため、事前に、既定の条件を逸脱していないか、新点の
-    <span class="blank" onclick="this.classList.toggle('show')">配点密度</span>が適切であるかを測量計画機関に確認してもらうため。
-	</div>
-</div>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">R5 A-2</div>
+      <div class="text">
+        Ｑ
+        <br>平均図は後続の作業を開始する前に測量計画機関の承認を受けなければならない。その理由は
+        <br>Ａ
+        <br><span class="blank" onclick="this.classList.toggle('show')">選点後</span>の作業に影響を及ぼすため、事前に、既定の条件を逸脱していないか、新点の
+        <span class="blank" onclick="this.classList.toggle('show')">配点密度</span>が適切であるかを測量計画機関に確認してもらうため。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R5 A-3</div>
-        <div class="text">
-	Ｑ
-	<br>基準点測量成果は、JPGISに基づく製品仕様書が規定するデータ品質を満足しているか評価しなければならない、
-    基準点測量における位置正確度を検査するためのデータ品質評価方法について
-	<br>Ａ
-	<br>新点の
-    <span class="blank" onclick="this.classList.toggle('show')">水平位置</span>及び
-    <span class="blank" onclick="this.classList.toggle('show')">標高</span>の
-    <span class="blank" onclick="this.classList.toggle('show')">標準偏差</span>を計算し、許容範囲内であるかを確認する。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R5 A-3</div>
+      <div class="text">
+        Ｑ
+        <br>基準点測量成果は、JPGISに基づく製品仕様書が規定するデータ品質を満足しているか評価しなければならない、
+        基準点測量における位置正確度を検査するためのデータ品質評価方法について
+        <br>Ａ
+        <br>新点の
+        <span class="blank" onclick="this.classList.toggle('show')">水平位置</span>及び
+        <span class="blank" onclick="this.classList.toggle('show')">標高</span>の
+        <span class="blank" onclick="this.classList.toggle('show')">標準偏差</span>を計算し、許容範囲内であるかを確認する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R5 C-3</div>
-        <div class="text">
-	Ｑ
-	<br>電子基準点のみを既知点とする2級基準点測量を行う場合、セミ･ダイナミック補正を行わなければならない理由。
-	<br>Ａ
-	<br><span style="color: red;">基線長</span>が長いので、
-    <span style="color: red;">元期</span>からの
-	<span style="color: red;">時間経過</span>による
-    <span class="blank" onclick="this.classList.toggle('show')">地殻変動</span>の影響が生じ、周囲の
-    <span style="color: red;">基準点成果</span>との間に
-	<span class="blank" onclick="this.classList.toggle('show')">不整合</span>が生じる恐れがあるため。
-        </div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R5 C-3</div>
+      <div class="text">
+        Ｑ
+        <br>電子基準点のみを既知点とする2級基準点測量を行う場合、セミ･ダイナミック補正を行わなければならない理由。
+        <br>Ａ
+        <br><span style="color: red;">基線長</span>が長いので、
+        <span style="color: red;">元期</span>からの
+        <span style="color: red;">時間経過</span>による
+        <span class="blank" onclick="this.classList.toggle('show')">地殻変動</span>の影響が生じ、周囲の
+        <span style="color: red;">基準点成果</span>との間に
+        <span class="blank" onclick="this.classList.toggle('show')">不整合</span>が生じる恐れがあるため。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 A-2</div>
-        <div class="text">
-	Ｑ
-	<br>GNSS測量機を用いた1～3級基準点測量において、電子基準点のみを既知点をした場合に、電子基準点以外の既知点を含む場合に対し、制限が緩和される内容を二つ
-    <br>例：1個の多角網における既知点数を2点以上に減らすことができる
-	<br>Ａ
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">路線長</span>の制限が適用されない
-	<br>・<span class="blank" onclick="this.classList.toggle('show')">既知点間の距離</span>の制限が適用されない
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 A-2</div>
+      <div class="text">
+        Ｑ
+        <br>GNSS測量機を用いた1～3級基準点測量において、電子基準点のみを既知点をした場合に、電子基準点以外の既知点を含む場合に対し、制限が緩和される内容を二つ
+        <br>例：1個の多角網における既知点数を2点以上に減らすことができる
+        <br>Ａ
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">路線長</span>の制限が適用されない
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">既知点間の距離</span>の制限が適用されない
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 B-2</div>
-        <div class="text">
-	Ｑ
-	<br>測量作業機関が、計画した現地作業の終了後速やかに行わなければならない精度管理の具体的な内容について
-	<br>Ａ
-	<br><span style="color: red;">測量計画機関</span>より示された
-	<span style="color: red;">点検測量率</span>、
-	<span class="blank" onclick="this.classList.toggle('show')">点検箇所</span>及び
-	<span class="blank" onclick="this.classList.toggle('show')">点検方法</span>に基づいて点検測量を行う。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 B-2</div>
+      <div class="text">
+        Ｑ
+        <br>測量作業機関が、計画した現地作業の終了後速やかに行わなければならない精度管理の具体的な内容について
+        <br>Ａ
+        <br><span style="color: red;">測量計画機関</span>より示された
+        <span style="color: red;">点検測量率</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">点検箇所</span>及び
+        <span class="blank" onclick="this.classList.toggle('show')">点検方法</span>に基づいて点検測量を行う。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 B-3</div>
-        <div class="text">
-	Ｑ
-	<br>電子基準点のみを既知点としたGNSS測量機を用いた基準点測量における点検計算の方法を二つ
-	<br>Ａ
-	<br>・<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">異なるセッション</span>の組み合わせによる
-    <span class="blank" onclick="this.classList.toggle('show')">最小辺数</span>の多角形の
-    <span class="blank" onclick="this.classList.toggle('show')">環閉合差</span>を点検する。
-	<br>・<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">異なるセッション</span>で
-    <span class="blank" onclick="this.classList.toggle('show')">重複</span>する
-    <span class="blank" onclick="this.classList.toggle('show')">基線ベクトル</span>の
-    <span class="blank" onclick="this.classList.toggle('show')">較差</span>を比較点検する。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 B-3</div>
+      <div class="text">
+        Ｑ
+        <br>電子基準点のみを既知点としたGNSS測量機を用いた基準点測量における点検計算の方法を二つ
+        <br>Ａ
+        <br>・<span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">異なるセッション</span>の組み合わせによる
+        <span class="blank" onclick="this.classList.toggle('show')">最小辺数</span>の多角形の
+        <span class="blank" onclick="this.classList.toggle('show')">環閉合差</span>を点検する。
+        <br>・<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">異なるセッション</span>で
+        <span class="blank" onclick="this.classList.toggle('show')">重複</span>する
+        <span class="blank" onclick="this.classList.toggle('show')">基線ベクトル</span>の
+        <span class="blank" onclick="this.classList.toggle('show')">較差</span>を比較点検する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 B-4</div>
-        <div class="text">
-	Ｑ
-	<br>観測に使用する機器を選定する際に必要な事項で、TSとGNSS測量機に共通する事項を一つ
-	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">測量機器検定基準</span>に基づく測定値の正当性を保証する
-    <span class="blank" onclick="this.classList.toggle('show')">検定</span>を行った機器を選定する。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 B-4</div>
+      <div class="text">
+        Ｑ
+        <br>観測に使用する機器を選定する際に必要な事項で、TSとGNSS測量機に共通する事項を一つ
+        <br>Ａ
+        <br><span class="blank" onclick="this.classList.toggle('show')">測量機器検定基準</span>に基づく測定値の正当性を保証する
+        <span class="blank" onclick="this.classList.toggle('show')">検定</span>を行った機器を選定する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 D-2</div>
-        <div class="text">
-	Ｑ
-	<br>地盤沈下調査では、ある水準点を不動として、この水準点との比較により地域内の水準点の沈下状況を調査する。この不動とする水準点を不動点という。
-	<br>地盤沈下の状況を正しく把握するためにどのような場所の水準点を不動点として選定すべきか。選定すべき場所の条件を二つ
-	<br>Ａ
-	<br>・地盤沈下が起こっている<span class="blank" onclick="this.classList.toggle('show')">地域外</span>の場所
-	<br>・地盤が<span class="blank" onclick="this.classList.toggle('show')">堅固</span>な場所
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 D-2</div>
+      <div class="text">
+        Ｑ
+        <br>地盤沈下調査では、ある水準点を不動として、この水準点との比較により地域内の水準点の沈下状況を調査する。この不動とする水準点を不動点という。
+        <br>地盤沈下の状況を正しく把握するためにどのような場所の水準点を不動点として選定すべきか。選定すべき場所の条件を二つ
+        <br>Ａ
+        <br>・地盤沈下が起こっている<span class="blank" onclick="this.classList.toggle('show')">地域外</span>の場所
+        <br>・地盤が<span class="blank" onclick="this.classList.toggle('show')">堅固</span>な場所
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 D-3</div>
-        <div class="text">
-	Ｑ
-	<br>地盤沈下の状況を正しく把握するために、使用するすべての水準点について現況調査で確認しなければならない主な確認事項を二つ
-	<br>Ａ
-	<br>・使用する水準点が
-    <span class="blank" onclick="this.classList.toggle('show')">亡失</span>、
-    <span class="blank" onclick="this.classList.toggle('show')">傾斜</span>、
-    <span class="blank" onclick="this.classList.toggle('show')">埋没</span>、
-    <span class="blank" onclick="this.classList.toggle('show')">露出</span>、柱石き損、球分き損していないか
-	<br>・使用する水準点が前回の観測以降に、他の機関により
-    <span class="blank" onclick="this.classList.toggle('show')">移転改理</span>が行われていないか
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 D-3</div>
+      <div class="text">
+        Ｑ
+        <br>地盤沈下の状況を正しく把握するために、使用するすべての水準点について現況調査で確認しなければならない主な確認事項を二つ
+        <br>Ａ
+        <br>・使用する水準点が
+        <span class="blank" onclick="this.classList.toggle('show')">亡失</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">傾斜</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">埋没</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">露出</span>、柱石き損、球分き損していないか
+        <br>・使用する水準点が前回の観測以降に、他の機関により
+        <span class="blank" onclick="this.classList.toggle('show')">移転改理</span>が行われていないか
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 D-4</div>
-        <div class="text">
-	Ｑ
-	<br>地盤沈下調査では、水準点の観測をできるだけ短期間で行い、最速の必要がある場合は、時間を置かずに速やかに行わなければならない。この理由
-	<br>Ａ
-    <br>観測中も地盤沈下は進行しており、観測期間が
-    <span class="blank" onclick="this.classList.toggle('show')">長くなると</span>、地盤沈下を正確に判断できなくなるため。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 D-4</div>
+      <div class="text">
+        Ｑ
+        <br>地盤沈下調査では、水準点の観測をできるだけ短期間で行い、最速の必要がある場合は、時間を置かずに速やかに行わなければならない。この理由
+        <br>Ａ
+        <br>観測中も地盤沈下は進行しており、観測期間が
+        <span class="blank" onclick="this.classList.toggle('show')">長くなると</span>、地盤沈下を正確に判断できなくなるため。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 D-5</div>
-        <div class="text">
-	Ｑ
-	<br>地盤沈下調査で、調査地域が広範囲にわたることから、2班にわけて観測を行うこととなった。2班の観測路線は、ある水準点で交差している。
-    この交差する水準点の観測において、地盤沈下調査の観点から計画作成に当たり留意するべき事項
-	<br>Ａ
-    <br><span style="color: red;">地盤沈下調査の観点から、</span>2班の交差する水準点の観測をできる限り
-    <span class="blank" onclick="this.classList.toggle('show')">同一時期</span>に行う。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 D-5</div>
+      <div class="text">
+        Ｑ
+        <br>地盤沈下調査で、調査地域が広範囲にわたることから、2班にわけて観測を行うこととなった。2班の観測路線は、ある水準点で交差している。
+        この交差する水準点の観測において、地盤沈下調査の観点から計画作成に当たり留意するべき事項
+        <br>Ａ
+        <br><span style="color: red;">地盤沈下調査の観点から、</span>2班の交差する水準点の観測をできる限り
+        <span class="blank" onclick="this.classList.toggle('show')">同一時期</span>に行う。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 A-2</div>
-        <div class="text">
-	Ｑ
-	<br>後続作業でTSによる4級基準点測量が予定されている。本作業で設置する新点(2級基準点)の選点に当たり、後続作業における利用を踏まえ、考慮すべき事項を二つ
-    <br>例：土地所有者または管理者から立ち入りの許可を得られる場所に選点する。
-    <br>　　作業の安全が確保される場所に新点を選点する。
-	<br>Ａ
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">発見が容易な</span>場所に選点する。
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">基準点間</span>の
-    <span class="blank" onclick="this.classList.toggle('show')">視通</span>が確保できる場所に選点する。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 A-2</div>
+      <div class="text">
+        Ｑ
+        <br>後続作業でTSによる4級基準点測量が予定されている。本作業で設置する新点(2級基準点)の選点に当たり、後続作業における利用を踏まえ、考慮すべき事項を二つ
+        <br>例：土地所有者または管理者から立ち入りの許可を得られる場所に選点する。
+        <br>　　作業の安全が確保される場所に新点を選点する。
+        <br>Ａ
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">発見が容易な</span>場所に選点する。
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">基準点間</span>の
+        <span class="blank" onclick="this.classList.toggle('show')">視通</span>が確保できる場所に選点する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 A-3</div>
-        <div class="text">
-	Ｑ
-	<br>TSによる基準点測量において、結合多角方式による多角網を形成する際に精度管理上考慮すべき事項を二つ
-    <br>例：1個の多角網における既知点数
-	<br>Ａ
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">単位多角形の辺数</span>
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">路線の辺数</span>
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">節点間の距離</span>
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">路線長</span>
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 A-3</div>
+      <div class="text">
+        Ｑ
+        <br>TSによる基準点測量において、結合多角方式による多角網を形成する際に精度管理上考慮すべき事項を二つ
+        <br>例：1個の多角網における既知点数
+        <br>Ａ
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">単位多角形の辺数</span>
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">路線の辺数</span>
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">節点間の距離</span>
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">路線長</span>
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 A-4</div>
-        <div class="text">
-	Ｑ
-	<br>TSによる基準点測量の観測終了後、点検計算を行い、観測値の良否を判断するための点検路線を選定したい。点検路線の選定条件を二つ
-    <br>例：路線長はなるべく短いものとする
-	<br>Ａ
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">既知点と既知点</span>を結合させる。
-    <br>・<span class="blank" onclick="this.classList.toggle('show')">すべての既知点</span>を、
-    <span class="blank" onclick="this.classList.toggle('show')">一つ以上</span>の点検路線で結合させる。 
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 A-4</div>
+      <div class="text">
+        Ｑ
+        <br>TSによる基準点測量の観測終了後、点検計算を行い、観測値の良否を判断するための点検路線を選定したい。点検路線の選定条件を二つ
+        <br>例：路線長はなるべく短いものとする
+        <br>Ａ
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">既知点と既知点</span>を結合させる。
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">すべての既知点</span>を、
+        <span class="blank" onclick="this.classList.toggle('show')">一つ以上</span>の点検路線で結合させる。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 B-4</div>
-        <div class="text">
-	Ｑ
-	<br>電子基準点のみを既知点とする場合、点検計算において、既知点座標と基線解析結果を整合させるためには、使用する既知点の緯度、経度及び楕円対高はセミ･ダイナミック補正を適用した
-    今期座標としなければならない。セミ･ダイナミック補正を適用する理由
-	<br>Ａ
-    <br><span class="blank" onclick="this.classList.toggle('show')">作業地域</span>から
-    <span style="color: red;">既知点</span>までの
-    <span style="color: red;">距離</span>が一般に
-    <span class="blank" onclick="this.classList.toggle('show')">長くなる</span>ことから、
-    <span style="color: red;">地殻変動</span>による測量成果の
-    <span style="color: red;">不整合</span>が生じる可能性があるため。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 B-4</div>
+      <div class="text">
+        Ｑ
+        <br>電子基準点のみを既知点とする場合、点検計算において、既知点座標と基線解析結果を整合させるためには、使用する既知点の緯度、経度及び楕円対高はセミ･ダイナミック補正を適用した
+        今期座標としなければならない。セミ･ダイナミック補正を適用する理由
+        <br>Ａ
+        <br><span class="blank" onclick="this.classList.toggle('show')">作業地域</span>から
+        <span style="color: red;">既知点</span>までの
+        <span style="color: red;">距離</span>が一般に
+        <span class="blank" onclick="this.classList.toggle('show')">長くなる</span>ことから、
+        <span style="color: red;">地殻変動</span>による測量成果の
+        <span style="color: red;">不整合</span>が生じる可能性があるため。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 C-3</div>
-        <div class="text">
-	Ｑ
-	<br>数年前に付近で地震が発生し、大きな地殻変動が生じた地域において、レベルによる水準測量で復旧測量を実施することとなった。
-    既知点を選定する際の留意点
-	<br>Ａ
-    <br><span style="color: red;">既知点</span>として使用する
-    <span class="blank" onclick="this.classList.toggle('show')">水準点</span>について、
-    <span class="blank" onclick="this.classList.toggle('show')">地殻変動</span>の影響を踏まえた
-    <span style="color: red;">成果</span>の
-    <span style="color: red;">改定</span>が行われているかを確認する。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 C-3</div>
+      <div class="text">
+        Ｑ
+        <br>数年前に付近で地震が発生し、大きな地殻変動が生じた地域において、レベルによる水準測量で復旧測量を実施することとなった。
+        既知点を選定する際の留意点
+        <br>Ａ
+        <br><span style="color: red;">既知点</span>として使用する
+        <span class="blank" onclick="this.classList.toggle('show')">水準点</span>について、
+        <span class="blank" onclick="this.classList.toggle('show')">地殻変動</span>の影響を踏まえた
+        <span style="color: red;">成果</span>の
+        <span style="color: red;">改定</span>が行われているかを確認する。
+      </div>
+    </div>
 
-</div>
+  </div>
 
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>

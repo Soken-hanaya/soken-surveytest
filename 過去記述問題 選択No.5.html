@@ -1,343 +1,403 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>過去記述問題 選択No.5</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>過去記述問題 選択No.5</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.back-btn {
-    color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-    text-decoration: none;
-    position: absolute;
-    left: 15px;
-    font-size: 1.5rem;    /* サイズの調整 */
-    font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 0.95rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .clause-card.active {
+      display: flex;
+    }
 
-        .blank {
-             display: inline-block;
-              background: #cbd5e0;
-              color: #cbd5e0;
-              padding: 0 8px;
-              border-radius: 4px;
-              cursor: pointer;
-              font-weight: bold;
-              border-bottom: 2px solid #a0aec0;
-              text-align: center; 
-            }
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
 
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 0.95rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+      text-align: center;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
 
 
-	<div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 選択No.5</span>
-	</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>過去記述問題 選択No.5</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-        <div class="clause-title">R5 A-3</div>
-        <div class="text">
-	Ｑ
-	<br>線形決定における条件点の観測の点検測量において、条件点間の距離が直接測定できず、TSの対辺測定機能による条件点間距離の測定もできない箇所がある
-    この場合、どのように点検測量を実施すればよいか。
-	<br>Ａ
-	<br>条件点の
-    <span class="blank" onclick="this.classList.toggle('show')">座標決定</span>に用いた既知点以外の既知点から求めた
-    <span class="blank" onclick="this.classList.toggle('show')">座標値</span>の較差により点検する。
-	</div>
-</div>
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">R5 A-3</div>
+      <div class="text">
+        Ｑ
+        <br>線形決定における条件点の観測の点検測量において、条件点間の距離が直接測定できず、TSの対辺測定機能による条件点間距離の測定もできない箇所がある
+        この場合、どのように点検測量を実施すればよいか。
+        <br>Ａ
+        <br>条件点の
+        <span class="blank" onclick="this.classList.toggle('show')">座標決定</span>に用いた
+        <span class="blank" onclick="this.classList.toggle('show')">既知点以外の既知点</span>から求めた
+        <span class="blank" onclick="this.classList.toggle('show')">座標値</span>の較差により点検する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R5 A-4</div>
-        <div class="text">
-	Ｑ
-	<br>横断測量における点検測量は、二つの方法で実施しなければならない。どのように実施するか二つの方法についてそれぞれ
-	<br>Ａ
-	<br>・点検測量率によって選択された横断面について、再度横断測量を実施して
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>を作成し、先に作成した
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>と重ね合わせ
-    <span class="blank" onclick="this.classList.toggle('show')">横断形状</span>を比較する。
-    <br>・点検測量率によって選択された横断面について、
-    <span class="blank" onclick="this.classList.toggle('show')">中心杭</span>と
-    <span class="blank" onclick="this.classList.toggle('show')">末端見通杭</span>の
-    <span class="blank" onclick="this.classList.toggle('show')">距離</span>及び
-    <span class="blank" onclick="this.classList.toggle('show')">標高</span>の測定値と点検測量値との比較を行う。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R5 A-4</div>
+      <div class="text">
+        Ｑ
+        <br>横断測量における点検測量は、二つの方法で実施しなければならない。どのように実施するか二つの方法についてそれぞれ
+        <br>Ａ
+        <br>・<span class="blank" onclick="this.classList.toggle('show')">点検測量率</span>によって選択された横断面について、再度横断測量を実施して
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>を作成し、先に作成した
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">横断面図</span>と重ね合わせ
+        <span class="blank" onclick="this.classList.toggle('show')">横断形状</span>を比較する。
+        <br>・点検測量率によって選択された横断面について、
+        <span class="blank" onclick="this.classList.toggle('show')">中心杭</span>と
+        <span class="blank" onclick="this.classList.toggle('show')">末端見通杭</span>の
+        <span class="blank" onclick="this.classList.toggle('show')">距離</span>及び
+        <span class="blank" onclick="this.classList.toggle('show')">標高</span>の測定値と点検測量値との比較を行う。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R5 C-4</div>
-        <div class="text">
-	Ｑ
-	<br>境界測量をネットワーク型RTK法による単点観測法で行う場合、作業地域周辺の既知点において単点観測法により、整合を確認する必要がある。
-    整合の確認に用いる既知点の点数及び配置について
-	<br>Ａ
-	<br><span class="blank" onclick="this.classList.toggle('show')">作業地域の周辺を囲むよう</span>に、
-    <span class="blank" onclick="this.classList.toggle('show')">3点以上</span>を標準として配点する。
-        </div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R5 C-4</div>
+      <div class="text">
+        Ｑ
+        <br>境界測量をネットワーク型RTK法による単点観測法で行う場合、作業地域周辺の既知点において単点観測法により、整合を確認する必要がある。
+        整合の確認に用いる既知点の点数及び配置について
+        <br>Ａ
+        <br>作業地域の
+        <span class="blank" onclick="this.classList.toggle('show')">周辺を囲むよう</span>に、
+        <span class="blank" onclick="this.classList.toggle('show')">3点以上</span>を標準として配点する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R5 D-3</div>
-        <div class="text">
-	Ｑ
-	<br>深浅測量において①水深の測定、②測深位置又は船位の測定に用いる主な機器をそれぞれ二つ(レーザー測深機を除く)
-	<br>Ａ
-	<br>①<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')" >音響測深機</span>
-	<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">ロッド</span>
-    <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">レッド</span>
-    <br>②<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">ワイヤーロープ</span>
-    <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">TS</span>
-    <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">GNSS測量機</span>
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R5 D-3</div>
+      <div class="text">
+        Ｑ
+        <br>深浅測量において①水深の測定、②測深位置又は船位の測定に用いる主な機器をそれぞれ二つ(レーザー測深機を除く)
+        <br>Ａ
+        <br>①<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">音響測深機</span>
+        <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">ロッド</span>
+        <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">レッド</span>
+        <br>②<span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">ワイヤーロープ</span>
+        <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">TS</span>
+        <span class="blank" style="min-width:8em;" onclick="this.classList.toggle('show')">GNSS測量機</span>
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 A-4</div>
-        <div class="text">
-	Ｑ
-	<br>直線部と円曲線部の間に緩和曲線を導入する理由は何か。自動車の交通の安全性･円滑性の観点から
-	<br>Ａ
-	<br>直線部から円曲線部に侵入する際の
-	<span class="blank" onclick="this.classList.toggle('show')">曲率</span>の急激な変化を防ぎ、
-	<span class="blank" onclick="this.classList.toggle('show')">急なハンドル操作</span>をせずに済むようにするため。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 A-4</div>
+      <div class="text">
+        Ｑ
+        <br>直線部と円曲線部の間に緩和曲線を導入する理由は何か。自動車の交通の安全性･円滑性の観点から
+        <br>Ａ
+        <br>直線部から円曲線部に侵入する際の
+        <span class="blank" onclick="this.classList.toggle('show')">曲率</span>の急激な変化を防ぎ、
+        <span class="blank" onclick="this.classList.toggle('show')">急なハンドル操作</span>をせずに済むようにするため。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 C-2</div>
-        <div class="text">
-	Ｑ
-	<br>境界測量実施後に行うTSを用いた境界点間測量について、以下に示す①②の場合、どのような方法で境界点間測量を行えばよいか。
-    <br>①境界点の間で視通が確保できる場合
-    <br>②境界点の間で視通が確保できない場合
-	<br>Ａ
-	<br>①隣接する境界点間の距離を現地で測定し、
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">境界測量</span>の観測結果に基づき計算した境界点間の距離と比較を行う。
-	<br>②TSの
-    <span class="blank" onclick="this.classList.toggle('show')">対辺測定機能</span>を用いて境界点間の距離を測定し、
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">境界測量</span>の観測結果に基づき計算した境界点間の距離と比較を行う。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 C-2</div>
+      <div class="text">
+        Ｑ
+        <br>境界測量実施後に行うTSを用いた境界点間測量について、以下に示す①②の場合、どのような方法で境界点間測量を行えばよいか。
+        <br>①境界点の間で視通が確保できる場合
+        <br>②境界点の間で視通が確保できない場合
+        <br>Ａ
+        <br>①隣接する境界点間の距離を現地で測定し、
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">境界測量</span>の観測結果に基づき計算した境界点間の距離と比較を行う。
+        <br>②TSの
+        <span class="blank" onclick="this.classList.toggle('show')">対辺測定機能</span>を用いて境界点間の距離を測定し、
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">境界測量</span>の観測結果に基づき計算した境界点間の距離と比較を行う。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R6 D-1</div>
-        <div class="text">
-	Ｑ
-	<br>河心に対して測量標を設置する場合、測量標の位置を地図上で選定する方法
-	<br>Ａ
-	<br><span style="color: red;">河心</span>の
-    <span class="blank" onclick="this.classList.toggle('show')">河口</span>又は
-    <span class="blank" onclick="this.classList.toggle('show')">幹川</span>への合流地点に設けた
-    <span style="color: red;">起点</span>から、
-    <span style="color: red;">河心</span>に沿って
-    <span class="blank" onclick="this.classList.toggle('show')">200m</span>
-    <span style="color: red;">間隔</span>を標準に、河心線の
-    <span class="blank" onclick="this.classList.toggle('show')">接線</span>に対して
-    <span class="blank" onclick="this.classList.toggle('show')">直角</span>方向の両岸の
-    <span class="blank" onclick="this.classList.toggle('show')">堤防法肩</span>又は
-    <span class="blank" onclick="this.classList.toggle('show')">法面</span>等に選定する。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R6 D-1</div>
+      <div class="text">
+        Ｑ
+        <br>河心に対して測量標を設置する場合、測量標の位置を地図上で選定する方法
+        <br>Ａ
+        <br><span style="color: red;">河心</span>の
+        <span class="blank" onclick="this.classList.toggle('show')">河口</span>又は
+        <span class="blank" onclick="this.classList.toggle('show')">幹川</span>への合流地点に設けた
+        <span style="color: red;">起点</span>から、
+        <span style="color: red;">河心</span>に沿って
+        <span class="blank" onclick="this.classList.toggle('show')">200m</span>
+        <span style="color: red;">間隔</span>を標準に、河心線の
+        <span class="blank" onclick="this.classList.toggle('show')">接線</span>に対して
+        <span class="blank" onclick="this.classList.toggle('show')">直角</span>方向の両岸の
+        <span class="blank" onclick="this.classList.toggle('show')">堤防法肩</span>又は
+        <span class="blank" onclick="this.classList.toggle('show')">法面</span>等に選定する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 A-2</div>
-        <div class="text">
-	Ｑ
-	<br>線形決定における点検測量の方法
-	<br>Ａ
-	<br><span style="color: red;">条件点間</span>の距離を測定し、
-    <span class="blank" onclick="this.classList.toggle('show')">座標値</span>から求めた
-    <span class="blank" onclick="this.classList.toggle('show')">計算値</span>との
-    <span style="color: red;">比較</span>により行う。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 A-2</div>
+      <div class="text">
+        Ｑ
+        <br>線形決定における点検測量の方法
+        <br>Ａ
+        <br><span style="color: red;">条件点間</span>の距離を測定し、
+        <span class="blank" onclick="this.classList.toggle('show')">座標値</span>から求めた
+        <span class="blank" onclick="this.classList.toggle('show')">計算値</span>との
+        <span style="color: red;">比較</span>により行う。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 A-3</div>
-        <div class="text">
-	Ｑ
-	<br>中心線測量で主要点に設置される杭には、必要に応じて引照点杭又は保護杭を設置することができる。そのうち引照点杭の設置目的について
-	<br>Ａ
-	<br>役杭が
-    <span class="blank" onclick="this.classList.toggle('show')">亡失</span>、
-    <span class="blank" onclick="this.classList.toggle('show')">破損</span>又は
-    <span class="blank" onclick="this.classList.toggle('show')">移動</span>のおそれがある場合、
-    <span class="blank" onclick="this.classList.toggle('show')">復元</span>を行えるようにするため
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 A-3</div>
+      <div class="text">
+        Ｑ
+        <br>中心線測量で主要点に設置される杭には、必要に応じて引照点杭又は保護杭を設置することができる。そのうち引照点杭の設置目的について
+        <br>Ａ
+        <br>役杭が
+        <span class="blank" onclick="this.classList.toggle('show')">亡失</span>、
+        <span class="blank" onclick="this.classList.toggle('show')">破損</span>又は
+        <span class="blank" onclick="this.classList.toggle('show')">移動</span>のおそれがある場合、
+        <span class="blank" onclick="this.classList.toggle('show')">復元</span>を行えるようにするため
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 A-4</div>
-        <div class="text">
-	Ｑ
-	<br>用地幅杭点間測量について、用地幅杭間の距離を直接測定できない場合、どのように精度を確認すればよいか。具体的な方法を二つ
-	<br>Ａ
-    <br>・用地幅杭点の
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>の決定に用いた
-    既知点以外の既知点から別に求めた
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>の
-    <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">較差</span>により確認する。
-    <br>・TSの
-    <span class="blank" onclick="this.classList.toggle('show')">対辺測定機能</span>を用いて
-    <span class="blank" onclick="this.classList.toggle('show')">用地幅杭間距離</span>を測定し、
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>から求めた距離との
-    <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">較差</span>により精度を確認する。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 A-4</div>
+      <div class="text">
+        Ｑ
+        <br>用地幅杭点間測量について、用地幅杭間の距離を直接測定できない場合、どのように精度を確認すればよいか。具体的な方法を二つ
+        <br>Ａ
+        <br>・用地幅杭点の
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>の決定に用いた
+        既知点以外の既知点から別に求めた
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>の
+        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">較差</span>により確認する。
+        <br>・TSの
+        <span class="blank" onclick="this.classList.toggle('show')">対辺測定機能</span>を用いて
+        <span class="blank" onclick="this.classList.toggle('show')">用地幅杭間距離</span>を測定し、
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">座標値</span>から求めた距離との
+        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">較差</span>により精度を確認する。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">R7 C-3</div>
-        <div class="text">
-	Ｑ
-	<br>現地において関係権利者が立ち合いの上、一筆ごとの土地の境界を確認することとなった。関係権利者との立会時に実施するべき事項を一つ
-	<br>Ａ
-	<br><span style="color: red;">土地境界確認書</span>を作成し、
-    <span style="color: red;">関係権利者</span>全員に確認したことの
-    <span class="blank" onclick="this.classList.toggle('show')">署名</span>等を求める。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">R7 C-3</div>
+      <div class="text">
+        Ｑ
+        <br>現地において関係権利者が立ち合いの上、一筆ごとの土地の境界を確認することとなった。関係権利者との立会時に実施するべき事項を一つ
+        <br>Ａ
+        <br><span style="color: red;">土地境界確認書</span>を作成し、
+        <span style="color: red;">関係権利者</span>全員に確認したことの
+        <span class="blank" onclick="this.classList.toggle('show')">署名</span>等を求める。
+      </div>
+    </div>
 
-</div>
+  </div>
 
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">4</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
