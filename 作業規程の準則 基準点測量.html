@@ -121,15 +121,15 @@
 
     .num-label {
       display: inline-block;
-      width: 22px;
-      height: 22px;
-      line-height: 22px;
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
       background: #3498db;
       color: white;
       border-radius: 50%;
       text-align: center;
-      font-size: 11px;
-      margin-right: 5px;
+      font-size: 8px;
+      margin-right: 1px;
       flex-shrink: 0;
     }
 
@@ -196,23 +196,31 @@
             <tbody>
               <tr>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">既知点の種類</td>
-                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1級基準点</td>
-                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1～2級基準点</td>
-                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1～2級基準点</td>
-                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1～3級基準点</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
+                  電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1級基準点</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
+                  電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1～2級基準点</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
+                  電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1～2級基準点</td>
+                <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
+                  電子基準点<br>電子基準点付属標<br>一～四等三角点<br>1～3級基準点</td>
               </tr>
             </tbody>
             <tbody>
               <tr>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">既知点間距離(m)</td>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
-                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">4,000</span></td>
+                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">4,000</span>
+                </td>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
-                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">2,000</span></td>
+                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">2,000</span>
+                </td>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
-                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">1,500</span></td>
+                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">1,500</span>
+                </td>
                 <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">
-                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">500</span></td>
+                  <span class="blank" style="min-width: 5em;" onclick="this.classList.toggle('show')">500</span>
+                </td>
               </tr>
             </tbody>
             <tbody>
@@ -246,8 +254,10 @@
         第23条(基準点測量の方式)
         <br>基準点測量は、次の方式を標準とする。
         <br>一&emsp;1級基準点測量及び2級基準点測量は、原則として、
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">結合多角</span>方式により行うものとする。ただし、やむを得ない場合に限り
-        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">単路線</span>方式により行うことができる。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">結合多角</span>方式により行うものとする。ただし、やむを得ない場合に限り
+        <span class="num-label">2</span><span class="blank g2"
+          onclick="toggleLocal(this, 'g2')">単路線</span>方式により行うことができる。
         <br>二&emsp;3級基準点測量及び4級基準点測量は、
         <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">結合多角</span>方式又は
         <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">単路線</span>方式により行うものとする。
@@ -273,7 +283,9 @@
             </thead>
             <tbody>
               <tr>
-                <td rowspan="2" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;"> 1個の多角網における既知点数</td>
+                <td rowspan="2"
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  1個の多角網における既知点数</td>
                 <td style="border: 1px solid #333; padding: 8px; background: #f8f9fa;font-weight: bold;">多角網</td>
                 <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;">2 + (新点数 / 5) 以上</td>
                 <td colspan="2" style="border: 1px solid #333; padding: 8px; text-align: center;">3点以上</td>
@@ -387,7 +399,7 @@
         <br>・測量地域に、なるべく
         <span class="blank" onclick="this.classList.toggle('show')">等密度</span>になるよう選点する。
         <br>・観測に
-        <span class="blank" onclick="this.classList.toggle('show')">支障がない場所</span>に選点する。
+        <span class="blank" onclick="this.classList.toggle('show')">支障がない</span>場所に選点する。
       </div>
     </div>
 
@@ -413,7 +425,8 @@
           onclick="toggleLocal(this, 'g1')">選点図</span>に基づいて作成し、計画機関の
         <span class="blank" onclick="this.classList.toggle('show')">承認</span>を得るものとする。
         <br><span style="font-size:0.8rem;">*承認を得る理由(R5 PM記述)
-          <br> 選点後の作業に影響を及ぼすため、事前に規定の条件を逸脱していないか、新点の配点密度が適切であるかを測量計画機関に確認してもらうため。</span>
+          <br> 選点後の作業に影響を及ぼすため、事前に規定の条件を逸脱していないか、新点の
+          <span class="blank" onclick="this.classList.toggle('show')">配点密度</span>が適切であるかを測量計画機関に確認してもらうため。</span>
       </div>
     </div>
 
@@ -428,17 +441,13 @@
         <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">永久標識</span>については、
         <span class="blank" onclick="this.classList.toggle('show')">写真等</span>により記録するものとする。
         <br>5&emsp;3級基準点及び4級基準点には、標杭又は標鋲を用いることができる。
-      </div>
-    </div>
-
-    <div class="clause-card">
-      <div class="clause-title">第4節&emsp;測量標の設置</div>
-      <div class="text">
-        第33条
-        <br>設置した永久標識については、
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">点の記</span>を作成するものとする。
-        <br>2&emsp;電子基準点のみを既知点として設置した永久標識は、
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">点の記</span>の備考欄に
+        <br>第33条
+        <br>設置した
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">永久標識</span>については、
+        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">点の記</span>を作成するものとする。
+        <br>2&emsp;電子基準点のみを既知点として設置した
+        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">永久標識</span>は、
+        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">点の記</span>の備考欄に
         ｢電子基準点のみを既知点とした基準点｣と記入するものとする。
       </div>
     </div>
@@ -450,7 +459,8 @@
         <br>観測に当たり、計画機関の承認を得た平均図に基づき、
         <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測図</span>を作成するものとする。
         <br>2&emsp;観測は、
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">観測図</span>又は平均図に基づき、次に定めるところにより行うものとする。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">観測図</span>又は平均図に基づき、次に定めるところにより行うものとする。
         <br>一 TS等観測の方法は、次表(略)のとおりとする。ただし、水平角観測において、目盛変更が不可能な機器は、1対回の繰り返し観測を行うものとする。
         <br>イ&emsp;器械高、反射鏡高及び目標高は、mm位まで測定するものとする。
         <br>ロ&emsp;TSを使用する場合は、水平角観測、鉛直角観測及び距離測定は、1視準で同時に行うことを原則とするものとする。
@@ -459,12 +469,14 @@
         <br>ニ&emsp;鉛直角観測は、1視準
         <span class="blank" onclick="this.classList.toggle('show')">1</span>読定、望遠鏡正及び反の観測を1対回とする。
         <br>ホ&emsp;距離測定は、1視準
-        <span class="blank" onclick="this.classList.toggle('show')">2</span>読定を1セットとする。(1～4級基準点測量で2セット行う)
+        <span class="blank" onclick="this.classList.toggle('show')">2</span>読定を1セットとする。(1～4級基準点測量で
+        <span class="blank" onclick="this.classList.toggle('show')">2</span>セット行う)
         <br>ヘ&emsp;距離測定の気象補正に使用する気温及び気圧の測定は、次のとおり行うものとする。
         <br>&emsp;(1)TS又は測距儀を整置した観測点で行うものとする。ただし、3級基準点測量及び4級基準点測量においては、気圧の測定を行わず、標準大気圧を用いて気象補正を行うことができる。
         <br>&emsp;(2)気温及び気圧の測定は、距離測定の開始直前又は終了直後に行うものとする。
         <br>&emsp;(3)観測点と反射鏡を整置した反射点の標高差が
-        <span class="blank" onclick="this.classList.toggle('show')">400m</span>以上のときは、観測点及び反射点の気温及び気圧を測定するものとする。ただし、反射点の気温及び気圧は、計算により求めることができる。
+        <span class="blank"
+          onclick="this.classList.toggle('show')">400m</span>以上のときは、観測点及び反射点の気温及び気圧を測定するものとする。ただし、反射点の気温及び気圧は、計算により求めることができる。
         <br>ト&emsp;水平角観測において、対回内の観測方向数は、
         <span class="blank" onclick="this.classList.toggle('show')">5</span>方向以下とする。
       </div>
@@ -474,13 +486,15 @@
       <div class="clause-title">第5節&emsp;観測</div>
       <div class="text">
         第37条(観測の実施)
-        二&emsp;GNSS観測の方法は、次により行うものとする。
         <br>イ&emsp;観測距離が
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10</span>km以上の観測は、1級GNSS測量機により2周波で行う。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">10</span>km以上の観測は、1級GNSS測量機により2周波で行う。
         ただし、2級GNSS測量機を使用する場合には、観測距離を
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10</span>km未満になるよう節点を設け行うことができる。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">10</span>km未満になるよう節点を設け行うことができる。
         <br>ロ&emsp;観測距離が
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">10</span>km未満の観測は、2級以上の性能を有するGNSS測量機により1周波で行う。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">10</span>km未満の観測は、2級以上の性能を有するGNSS測量機により1周波で行う。
         ただし、1級GNSS測量機による場合は2周波で行うことができる。
         <br>ハ&emsp;GNSS観測の方法は次表を標準とする。
         <div class="table-container">
@@ -586,41 +600,48 @@
                   style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
                   GPS･準天頂衛星</td>
                 <td style="border: 1px solid #333; padding: 8px;text-align: center;">
-                  <span class="blank" onclick="this.classList.toggle('show')">4</span>衛星以上</td>
+                  <span class="blank" onclick="this.classList.toggle('show')">4</span>衛星以上
+                </td>
                 <td style="border: 1px solid #333; padding: 8px;text-align: center;">
-                  <span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上</td>
+                  <span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上
+                </td>
               </tr>
             </tbody>
             <tbody>
               <tr>
                 <td
-                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">GPS･準天頂衛星<br>及びGLONASS衛星</td>
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  GPS･準天頂衛星<br>及びGLONASS衛星</td>
                 <td style="border: 1px solid #333; padding: 8px;text-align: center;">
-                  <span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上</td>
+                  <span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上
+                </td>
                 <td style="border: 1px solid #333; padding: 8px;text-align: center;">
-                  <span class="blank" onclick="this.classList.toggle('show')">6</span>衛星以上</td>
+                  <span class="blank" onclick="this.classList.toggle('show')">6</span>衛星以上
+                </td>
               </tr>
             </tbody>
             <tbody>
               <tr>
                 <td
-                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">備考</td>
+                  style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                  備考</td>
                 <td colspan="2" style="border: 1px solid #333; padding: 8px;">
                   1.GLONASS衛星を用いて観測する場合は、GPS･準天頂衛星及びGLONASS衛星を、それぞれ
                   <span class="blank" onclick="this.classList.toggle('show')">2</span>衛星以上を用いること。
                   <br>2.スタティック法による10㎞以上の観測では、GPS･準天頂衛星を用いて観測する場合は
-                  <span class="blank" onclick="this.classList.toggle('show')">5</span>衛星以上とし、GPS･準天頂衛星及びGLONASS衛星を用いて観測する場合は
+                  <span class="blank"
+                    onclick="this.classList.toggle('show')">5</span>衛星以上とし、GPS･準天頂衛星及びGLONASS衛星を用いて観測する場合は
                   <span class="blank" onclick="this.classList.toggle('show')">6</span>衛星以上とする
                 </td>
               </tr>
             </tbody>
           </table>
-          </div>
-          ホ&emsp;アンテナ高は、mm位まで測定するものとする。
-          <br>ヘ&emsp;標高の取付観測において、距離が500m以下の場合は、楕円体高の差を高低差として使用できる。
-          <br>ト&emsp;GNSS衛星の稼働状態、飛来情報等を考慮し、片寄った配置の使用は避けるものとする。
-          <br>チ&emsp;GNSS衛星の最低高度角は
-          <span class="blank" onclick="this.classList.toggle('show')">15</span>度を標準とする。
+        </div>
+        ホ&emsp;アンテナ高は、mm位まで測定するものとする。
+        <br>ヘ&emsp;標高の取付観測において、距離が500m以下の場合は、楕円体高の差を高低差として使用できる。
+        <br>ト&emsp;GNSS衛星の稼働状態、飛来情報等を考慮し、片寄った配置の使用は避けるものとする。
+        <br>チ&emsp;GNSS衛星の最低高度角は
+        <span class="blank" onclick="this.classList.toggle('show')">15</span>度を標準とする。
       </div>
     </div>
 
@@ -630,58 +651,80 @@
         第37条(観測の実施)
         <br>リ&emsp;スタティック法及び短縮スタティック法については、次のとおり行うものとする。
         <br>(1)スタティック法は、複数の観測点にGNSS測量機を整置して、同時にGNSS衛星からの信号を受信し、それに基づく基線解析により、観測点間の
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。
         <br>(2)短縮スタティック法は、スタティック法のうち、基線解析において衛星の組合せを多数作るなどの処理を行うことで、観測時間を短縮したものである。
         <br>(6)スタティック法及び短縮スタティック法におけるアンテナ高(電子基準点を除く)の測定は、 標識上面からGNSSアンテナ
-        <span class="blank" onclick="this.classList.toggle('show')">底面</span>までの距離を垂直に測定することを標準とする。ただし、これと同精度の測定値が得られる方法を使用することもできるものとする。
+        <span class="blank"
+          onclick="this.classList.toggle('show')">底面</span>までの距離を垂直に測定することを標準とする。ただし、これと同精度の測定値が得られる方法を使用することもできるものとする。
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-title">第5節&emsp;観測</div>
+      <div class="text">
+        第37条(観測の実施)
         <br>ヌ&emsp;キネマティック法は、基準となるGNSS測量機を整置する観測点(以下｢固定局｣という)及び移動する観測点(以下｢移動局｣という)で、同時にGNSS衛星からの信号を受信して初期化などに必要な観測を行う。
         その後、移動局を複数の観測点に次々と移動して観測を行い、それに基づき固定局と移動局の間の
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。ただし、初期化及び基線解析は、観測終了後に行うものとする。
-      </div>  
-    </div>    
-        
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。ただし、初期化及び基線解析は、観測終了後に行うものとする。
+      </div>
+    </div>
+
     <div class="clause-card">
       <div class="clause-title">第5節&emsp;観測</div>
       <div class="text">
         第37条(観測の実施)
         <br>ル&emsp;RTK法は、固定局及び移動局で同時にGNSS衛星からの信号を受信し、固定局で取得した信号を、無線装置等を用いて移動局に転送し、移動局側において
         <span class="blank" onclick="this.classList.toggle('show')">即時</span>に基線解析を行うことで、固定局と移動局の間の
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める。その後、移動局を複数の観測点に次々と移動して、固定局と移動局の間の
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を即時に求める観測方法である。ただし、
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める。その後、移動局を複数の観測点に次々と移動して、固定局と移動局の間の
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を即時に求める観測方法である。ただし、
         <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める方法は、
         <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">直接観測</span>法又は
         <span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">間接観測</span>法によるものとする。
         <br>(1)
-        <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">直接観測</span>法は、固定局及び移動局で同時にGNSS衛星からの信号を受信し、
+        <span class="num-label">2</span><span class="blank g2"
+          onclick="toggleLocal(this, 'g2')">直接観測</span>法は、固定局及び移動局で同時にGNSS衛星からの信号を受信し、
         基線解析により固定局と移動局の間の
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。
         <span class="num-label">2</span><span class="blank g2" onclick="toggleLocal(this, 'g2')">直接観測</span>法による観測距離は、
         <span class="blank" onclick="this.classList.toggle('show')">500m</span>以内を標準とする。
         <br>(2)
-        <span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">間接観測</span>法は、固定局及び2か所以上の移動局で同時にGNSS衛星からの信号を受信し、
+        <span class="num-label">3</span><span class="blank g3"
+          onclick="toggleLocal(this, 'g3')">間接観測</span>法は、固定局及び2か所以上の移動局で同時にGNSS衛星からの信号を受信し、
         基線解析により得られた2つの
-       <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>の差を用いて移動局間の
-       <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。
-        <span class="num-label">3</span><span class="blank g3" onclick="toggleLocal(this, 'g3')">間接観測</span>法による固定局と移動局の間の距離は
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">基線ベクトル</span>の差を用いて移動局間の
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">基線ベクトル</span>を求める観測方法である。
+        <span class="num-label">3</span><span class="blank g3"
+          onclick="toggleLocal(this, 'g3')">間接観測</span>法による固定局と移動局の間の距離は
         <span class="blank" onclick="this.classList.toggle('show')">10km</span>以内とし、間接的に求める移動局間の距離は
         <span class="blank" onclick="this.classList.toggle('show')">500m</span>以内を標準とする。
       </div>
     </div>
 
-  <div class="clause-card">
+    <div class="clause-card">
       <div class="clause-title">第5節&emsp;観測</div>
       <div class="text">
         第37条(観測の実施)
         <br>ヲ&emsp;ネットワーク型RTK法は、位置情報サービス事業者で算出された
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">補正データ等又は面補正パラメータ</span>を、携帯電話等の通信回線を介して移動局で受信すると同時に、移動局でGNSS衛星からの信号を受信し、移動局側において
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">補正データ等又は面補正パラメータ</span>を、携帯電話等の通信回線を介して移動局で受信すると同時に、移動局でGNSS衛星からの信号を受信し、移動局側において
         即時に解析処理を行って位置を求める。その後、複数の観測点に次々と移動して移動局の位置を即時に求める観測方法である。観測終了後に位置情報サービス事業者から
-        <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">補正データ等又は面補正パラメータ</span>を取得することで、
-        <span class="blank" onclick="this.classList.toggle('show')">後処理</span>により解析処理を行うことができるものとする。ただし、基線ベクトルを求める方法は、直接観測法又は間接観測法によるものとする。
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">補正データ等又は面補正パラメータ</span>を取得することで、
+        <span class="blank"
+          onclick="this.classList.toggle('show')">後処理</span>により解析処理を行うことができるものとする。ただし、基線ベクトルを求める方法は、直接観測法又は間接観測法によるものとする。
         <br>(1)直接観測法は、位置情報サービス事業者で算出された移動局近傍の任意地点の補正データ等と移動局の観測データを用いて、基線解析により基線ベクトルを求める観測方法である。
         <br>(2)間接観測法は、次の方式により基線ベクトルを求める観測方法である。
         <br>(ⅰ)2台同時観測方式による間接観測法は、2か所の移動局で同時観測を行い、得られたそれぞれの地心直交座標の差から移動局間の基線ベクトルを求める。
         <br>(ⅱ)1台準同時観測方式による間接観測法は、移動局で得られた地心直交座標と、その後速やかに移動局を他の観測点に移動して観測を行い得られた
-       <span class="blank" onclick="this.classList.toggle('show')">地心直交</span>座標の差から、移動局間の基線ベクトルを求める。この一連の観測は、速やかに行うとともに、必ず往復観測(同方向の観測も可)を行い、重複による基線ベクトルの点検を実施する。
+        <span class="blank"
+          onclick="this.classList.toggle('show')">地心直交</span>座標の差から、移動局間の基線ベクトルを求める。この一連の観測は、速やかに行うとともに、必ず往復観測(同方向の観測も可)を行い、重複による基線ベクトルの点検を実施する。
       </div>
     </div>
 
@@ -696,16 +739,16 @@
         <span class="blank" onclick="this.classList.toggle('show')">倍較差</span>、
         <span class="blank" onclick="this.classList.toggle('show')">観測差</span>
         <br>鉛直角観測：
-        <span class="blank" style="min-width: 9rem;" onclick="this.classList.toggle('show')">高度定数</span>の較差
+        <span class="blank" onclick="this.classList.toggle('show')">高度定数</span>の較差
         <br>距離測定&emsp;：
-        <span class="blank" style="min-width: 9rem;" onclick="this.classList.toggle('show')">1セット内の測定値</span>の較差、
-        <span class="blank" style="min-width: 9rem;" onclick="this.classList.toggle('show')">各セット内の平均値</span>の較差
+        <span class="blank" onclick="this.classList.toggle('show')">1セット内の測定値</span>の較差、
+        <span class="blank" onclick="this.classList.toggle('show')">各セット内の平均値</span>の較差
         <br>測標水準&emsp;：
-        <span class="blank" style="min-width: 9rem;" onclick="this.classList.toggle('show')">往復観測値</span>の較差
+        <span class="blank" onclick="this.classList.toggle('show')">往復観測値</span>の較差
       </div>
     </div>
-   
-  <div class="clause-card">
+
+    <div class="clause-card">
       <div class="clause-title">第6節&emsp;計算</div>
       第42,43条
       <div class="text">
@@ -719,17 +762,19 @@
       </div>
     </div>
 
-  <div class="clause-card">
+    <div class="clause-card">
       <div class="clause-title">第6節&emsp;計算</div>
       <div class="text">
         第41条(計算の方法等)
         <br>二&emsp;GNSS衛星の軌道情報は、
-        <span class="blank" onclick="this.classList.toggle('show')">放送暦</span>を標準とする。
+        <span class="blank" onclick="this.classList.toggle('show')">放送</span>暦を標準とする。
         <br>三&emsp;スタティック法及び短縮スタティック法による基線解析では、原則として
         <span class="blank" onclick="this.classList.toggle('show')">PCV補正</span>を行うものとする。
         <br>六&emsp;基線解析の固定点の緯度及び経度は、成果表の値(
-        <span class="blank" onclick="this.classList.toggle('show')">元期座標</span>)又は国土地理院が提供する地殻変動補正パラメータを使用してセミ・ダイナミック補正を行った値(
-        <span class="blank" onclick="this.classList.toggle('show')">今期座標</span>)とする。ただし、セミ・ダイナミック補正に使用する地殻変動補正パラメータは、測量の実施時期に対応したものを使用するものとする。以後の基線解析は、固定点の緯度及び経度を用いて求められた緯度及び経度を使用するものとする。
+        <span class="blank"
+          onclick="this.classList.toggle('show')">元期</span>)座標又は国土地理院が提供する地殻変動補正パラメータを使用してセミ・ダイナミック補正を行った値(
+        <span class="blank"
+          onclick="this.classList.toggle('show')">今期</span>)座標とする。ただし、セミ・ダイナミック補正に使用する地殻変動補正パラメータは、測量の実施時期に対応したものを使用するものとする。以後の基線解析は、固定点の緯度及び経度を用いて求められた緯度及び経度を使用するものとする。
       </div>
     </div>
 
