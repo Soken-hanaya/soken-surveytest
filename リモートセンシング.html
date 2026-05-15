@@ -1,244 +1,323 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>リモートセンシング</title>
-   
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>リモートセンシング</title>
 
-<style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            background-color: #f0f2f5; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            height: 100vh; 
-            /* 全体の固定を解除し、中身だけスクロールさせる準備 */
-        }
-        
-        .header { 
-            background: #1a3e5e; 
-            color: white; 
-            padding: 15px; 
-            text-align: center; 
-            font-weight: bold; 
-            flex-shrink: 0; /* ヘッダーの高さを固定 */
-        }
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        #container { 
-            flex: 1; 
-            display: flex; 
-            align-items: flex-start; /* 中央寄せから上寄せに変更 */
-            justify-content: center; 
-            padding: 15px; 
-            overflow-y: auto; /* ★ここが重要：縦スクロールを許可 */
-            -webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-        }
+  <style>
+    body {
+      font-family: -apple-system, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      /* 全体の固定を解除し、中身だけスクロールさせる準備 */
+    }
 
-        .clause-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 600px; 
-            /* min-heightを解除し、中身に合わせて伸びるように変更 */
-            margin-bottom: 20px; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-            display: none; 
-            flex-direction: column; 
-            box-sizing: border-box;
-        }
+    .header {
+      background: #1a3e5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      flex-shrink: 0;
+      /* ヘッダーの高さを固定 */
+    }
 
-	.table-container {
-	width: 100%;overflow-x: auto; /* 横方向にのみスクロールを許可 */
-	-webkit-overflow-scrolling: touch; /* iPhoneでのスクロールを滑らかにする */
-	padding-right: 2px; /* ★右端の線が消えないように隙間を作る */
-	}
-        
-	.back-btn {
-	color: #ffcc00; /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
-	text-decoration: none;
-	position: absolute;
-	left: 15px;
-	font-size: 1.5rem;    /* サイズの調整 */
-	font-weight: bold;    /* 太くして見やすくする */
-}
+    #container {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      /* 中央寄せから上寄せに変更 */
+      justify-content: center;
+      padding: 15px;
+      overflow-y: auto;
+      /* ★ここが重要：縦スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+    }
 
-        .clause-card.active { display: flex; }
+    .clause-card {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      /* min-heightを解除し、中身に合わせて伸びるように変更 */
+      margin-bottom: 20px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
 
-        .clause-title { font-weight: bold; color: #3498db; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; flex-shrink: 0; }
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      /* 横方向にのみスクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      /* iPhoneでのスクロールを滑らかにする */
+      padding-right: 2px;
+      /* ★右端の線が消えないように隙間を作る */
+    }
 
-        .text { 
-	line-height: 1.8; /*行間*/
-	font-size: 1.0rem;  /*文字サイズ*/
-	color: #333; 
-	word-wrap: break-word; 
-	}
+    .back-btn {
+      color: #ffcc00;
+      /* ★ここで色を変える（#ffcc00 は鮮やかな黄色） */
+      text-decoration: none;
+      position: absolute;
+      left: 15px;
+      font-size: 1.5rem;
+      /* サイズの調整 */
+      font-weight: bold;
+      /* 太くして見やすくする */
+    }
 
-        .blank { display: inline-block; background: #cbd5e0; color: #cbd5e0; padding: 0 8px; border-radius: 4px; cursor: pointer; font-weight: bold; border-bottom: 2px solid #a0aec0; }
-        .blank.show { background: #fff3cd !important; color: #e74c3c !important; border-bottom: 2px solid #f6e05e !important; }
+    .clause-card.active {
+      display: flex;
+    }
 
-        .num-label { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: #3498db; color: white; border-radius: 50%; text-align: center; font-size: 11px; margin-right: 5px; flex-shrink: 0; }
+    .clause-title {
+      font-weight: bold;
+      color: #3498db;
+      border-left: 5px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
 
-        .nav-bar { 
-            background: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-top: 1px solid #ddd; 
-            flex-shrink: 0; /* ナビバーの高さを固定 */
-            padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
-        }
-        
-        .nav-btn { background: #1a3e5e; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-size: 1rem; font-weight: bold; width: 40%; cursor: pointer; }
-        .nav-btn:disabled { background: #ccc; cursor: default; }
-        .page-info { font-weight: bold; color: #666; }
-    </style>
+    .text {
+      line-height: 1.8;
+      /*行間*/
+      font-size: 1.0rem;
+      /*文字サイズ*/
+      color: #333;
+      word-wrap: break-word;
+    }
+
+    .blank {
+      display: inline-block;
+      background: #cbd5e0;
+      color: #cbd5e0;
+      padding: 0 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 2px solid #a0aec0;
+    }
+
+    .blank.show {
+      background: #fff3cd !important;
+      color: #e74c3c !important;
+      border-bottom: 2px solid #f6e05e !important;
+    }
+
+    .num-label {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 11px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+      /* ナビバーの高さを固定 */
+      padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+
+    .nav-btn {
+      background: #1a3e5e;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      width: 40%;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      background: #ccc;
+      cursor: default;
+    }
+
+    .page-info {
+      font-weight: bold;
+      color: #666;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="header"><a href="index.html" class="back-btn">＜</a><span>リモートセンシング</span>
-</div>
+  <div class="header"><a href="index.html" class="back-btn">＜</a><span>リモートセンシング</span>
+  </div>
 
-<div id="container">
-<div class="clause-card active">
-    <div class="clause-title">合成開口レーダ(SAR)</div>
-    <div class="text">
-	人工衛星や航空機などに搭載したアンテナから
-    <span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">マイクロ波</span>を地表に向けて照射し、地表からの反射波を捉えることで、地表の形状や性質についての画像情報を取得する手法。
-	<br>照射する<span class="num-label">1</span><span class="blank g1" onclick="toggleLocal(this, 'g1')">マイクロ波</span>は可視光･近赤外線より波長が
-	<span class="blank" onclick="this.classList.toggle('show')">長く</span>、雲や雨粒などを透過するため天候の影響をほとんど受けずに地表や海面の観測ができる。
+  <div id="container">
+    <div class="clause-card active">
+      <div class="clause-title">合成開口レーダ(SAR)</div>
+      <div class="text">
+        人工衛星や航空機などに搭載したアンテナから
+        <span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">マイクロ波</span>を地表に向けて照射し、地表からの反射波を捉えることで、地表の形状や性質についての画像情報を取得する手法。
+        <br>照射する<span class="num-label">1</span><span class="blank g1"
+          onclick="toggleLocal(this, 'g1')">マイクロ波</span>は可視光･近赤外線より波長が
+        <span class="blank" onclick="this.classList.toggle('show')">長く</span>、雲や雨粒などを透過するため天候の影響をほとんど受けずに地表や海面の観測ができる。
+      </div>
     </div>
-</div>
 
-<div class="clause-card">
-    <div class="clause-title">プッシュブルーム走査方式</div>
-    <div class="text">
-	衛星が軌道上を移動しながら、ラインセンサで連続的に
-	<span class="blank" onclick="this.classList.toggle('show')">帯状</span>の画像を撮影し、これらを積み重ねて2次元の画像を作成します。
-	<br><span class="blank" onclick="this.classList.toggle('show')">プッシュブルーム</span>方式のようなラインセンサは、センサ取付け直下点の軌跡に対して両側に倒れ込むように写る。
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">プッシュブルーム走査方式</div>
+      <div class="text">
+        衛星が軌道上を移動しながら、ラインセンサで連続的に
+        <span class="blank" onclick="this.classList.toggle('show')">帯状</span>の画像を撮影し、これらを積み重ねて2次元の画像を作成します。
+        <br><span class="blank"
+          onclick="this.classList.toggle('show')">プッシュブルーム</span>方式のようなラインセンサは、センサ取付け直下点の軌跡に対して両側に倒れ込むように写る。
+      </div>
+    </div>
 
-<div class="clause-card">
-    <div class="clause-title">熱赤外リモートセンシング</div>
-    <div class="text">
-	対象物からの
-	<span class="blank" onclick="this.classList.toggle('show')">熱放射</span>を観測する。
-	<br>夜間でも水面の温度や雲の分布を観測することができる。
-       </div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">熱赤外リモートセンシング</div>
+      <div class="text">
+        対象物からの
+        <span class="blank" onclick="this.classList.toggle('show')">熱放射</span>を観測する。
+        <br>夜間でも水面の温度や雲の分布を観測することができる。
+      </div>
+    </div>
 
-<div class="clause-card">
-        <div class="clause-title">波長の名前と特徴</div>
-        <div class="text">
-	<div class="table-container">
-	<table style="width: 100%; min-width: 450px; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed;">
-        <thead>
-        <tr style="background: #1a3e5e; color: white;">
-            <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:25px ;">波長</th>
-		    <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:100px ;">名称</th>
-            <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:300px ;">特徴</th>
-	    </tr>
-	 </thead>
-	 <tbody>
-        <tr>
-		<td rowspan="5" style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">短<br>↑<br>↑<br><br><br><br><br>↓<br>↓<br>長</td>
-		<td style="border: 1px solid #333; padding: 8px;">紫外線</td>
-		<td style="border: 1px solid #333; padding: 8px;"></td>
-        </tr>
-	    <tr>
-		<td style="border: 1px solid #333; padding: 8px;">可視光</td>
-		<td style="border: 1px solid #333; padding: 8px;">太陽光に多く含まれ、土からの反射率が高い。</td>
-	    </tr>
-	    <tr>
-		<td style="border: 1px solid #333; padding: 8px;">近赤外線</td>
-		<td style="border: 1px solid #333; padding: 8px;">太陽光に多く含まれ、
-		<span class="blank" onclick="this.classList.toggle('show')">植物</span>からの反射率が高い。</td>
-	    </tr>
-	    <tr>
-		<td style="border: 1px solid #333; padding: 8px;">熱赤外線</td>
-		<td style="border: 1px solid #333; padding: 8px;">地表面や大気が放射する光に多く含まれる。</td>
-	    </tr>
-	    <tr>
-		<td style="border: 1px solid #333; padding: 8px;">マイクロ波</td>
-		<td style="border: 1px solid #333; padding: 8px;">地表面や大気が放射する光に多く含まれる。<br>最も周波数の長いLバンドは
-		<span class="blank" onclick="this.classList.toggle('show')">地表面</span>で反射する。</td>
-	    </tr>
-	 </tbody>
-	</table>
-	</div>
-	</div>
-</div>
+    <div class="clause-card">
+      <div class="clause-title">波長の名前と特徴</div>
+      <div class="text">
+        <div class="table-container">
+          <div style="text-align: center;">
+            <table
+              style="min-width: 26rem; border-collapse: collapse; font-size: 0.8rem; line-height: 1.4; table-layout: fixed; display: inline-block;">
+              <thead>
+                <tr style="background: #1a3e5e; color: white;">
+                  <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:2rem ;">波長</th>
+                  <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:4rem ;">名称</th>
+                  <th style="border: 1px solid #333; padding: 8px;font-weight: bold;width:20rem ;">特徴</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="5"
+                    style="border: 1px solid #333; padding: 8px; background: #f8f9fa; text-align: center; font-weight: bold;">
+                    短<br>↑<br>↑<br><br><br><br><br>↓<br>↓<br>長</td>
+                  <td style="border: 1px solid #333; padding: 8px;">紫外線</td>
+                  <td style="border: 1px solid #333; padding: 8px;"></td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #333; padding: 8px;">可視光</td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">太陽光に多く含まれ、土からの反射率が高い。</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #333; padding: 8px;">近赤外線</td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">太陽光に多く含まれ、
+                    <span class="blank" onclick="this.classList.toggle('show')">植物</span>からの反射率が高い。
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #333; padding: 8px;">熱赤外線</td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">地表面や大気が放射する光に多く含まれる。</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #333; padding: 8px;">マイクロ波</td>
+                  <td style="border: 1px solid #333; padding: 8px; text-align: left;">地表面や大気が放射する光に多く含まれる。<br>最も周波数の長いLバンドは
+                    <span class="blank" onclick="this.classList.toggle('show')">地表面</span>で反射する。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div>
+  </div>
 
-<div class="nav-bar">
+  <div class="nav-bar">
     <button type="button" class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>前へ</button>
     <div class="page-info"><span id="current-page">1</span> / <span id="total-pages">--</span></div>
     <button type="button" class="nav-btn" id="nextBtn" onclick="changePage(1)">次へ</button>
-</div>
+  </div>
 
-<script>
+  <script>
     var currentPage = 0;
     var cards = document.getElementsByClassName('clause-card');
-    
+
     function updateUI() {
-        var total = cards.length;
-        document.getElementById('total-pages').innerText = total;
-        document.getElementById('current-page').innerText = currentPage + 1;
-        document.getElementById('prevBtn').disabled = (currentPage === 0);
-        document.getElementById('nextBtn').disabled = (currentPage === total - 1);
+      var total = cards.length;
+      document.getElementById('total-pages').innerText = total;
+      document.getElementById('current-page').innerText = currentPage + 1;
+      document.getElementById('prevBtn').disabled = (currentPage === 0);
+      document.getElementById('nextBtn').disabled = (currentPage === total - 1);
     }
 
     function changePage(step) {
-        // すべての穴埋めをリセット
-        var allBlanks = document.getElementsByClassName('blank');
-        for (var j = 0; j < allBlanks.length; j++) {
-            allBlanks[j].classList.remove('show');
-        }
+      // すべての穴埋めをリセット
+      var allBlanks = document.getElementsByClassName('blank');
+      for (var j = 0; j < allBlanks.length; j++) {
+        allBlanks[j].classList.remove('show');
+      }
 
-        // 現在のカードを非表示にする
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].classList.remove('active');
-            cards[i].style.display = 'none';
-        }
-        
-        // ページ移動
-        currentPage += step;
-        if (currentPage < 0) currentPage = 0;
-        if (currentPage >= cards.length) currentPage = cards.length - 1;
-        
-        // 新しいカードを表示する
-        cards[currentPage].classList.add('active');
-        cards[currentPage].style.display = 'flex';
-        
-        updateUI();
+      // 現在のカードを非表示にする
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active');
+        cards[i].style.display = 'none';
+      }
+
+      // ページ移動
+      currentPage += step;
+      if (currentPage < 0) currentPage = 0;
+      if (currentPage >= cards.length) currentPage = cards.length - 1;
+
+      // 新しいカードを表示する
+      cards[currentPage].classList.add('active');
+      cards[currentPage].style.display = 'flex';
+
+      updateUI();
     }
 
     function toggleLocal(el, groupClass) {
-        var parentCard = el.closest('.clause-card');
-        var targets = parentCard.getElementsByClassName(groupClass);
-        var isShow = el.classList.contains('show');
-        for (var i = 0; i < targets.length; i++) {
-            if (isShow) targets[i].classList.remove('show');
-            else targets[i].classList.add('show');
-        }
+      var parentCard = el.closest('.clause-card');
+      var targets = parentCard.getElementsByClassName(groupClass);
+      var isShow = el.classList.contains('show');
+      for (var i = 0; i < targets.length; i++) {
+        if (isShow) targets[i].classList.remove('show');
+        else targets[i].classList.add('show');
+      }
     }
 
     updateUI();
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
